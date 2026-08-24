@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowDownRight, ArrowUpRight, Check, Radio } from "lucide-react";
 import type { HomeCopy, Locale } from "@/lib/content";
+import { HeroMotion } from "@/components/hero-motion";
 
 type HeroProps = {
   locale: Locale;
@@ -81,6 +82,7 @@ export function Hero({ locale, copy }: HeroProps) {
           </div>
         </div>
       </div>
+      <HeroMotion />
     </section>
   );
 }

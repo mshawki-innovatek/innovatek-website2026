@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 import { solutions } from "@/lib/content";
 import { absoluteUrl } from "@/lib/site";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = [
     { path: "/", priority: 1, changeFrequency: "monthly" as const },

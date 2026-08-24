@@ -16,24 +16,27 @@ type Draft = {
   challenge: string;
 };
 
+function getMailtoHref(draft: Draft, ar: boolean) {
+  const subject = ar
+    ? `طلب جلسة عمل من ${draft.organization}`
+    : `Working session request from ${draft.organization}`;
+  const body = ar
+    ? `الاسم: ${draft.name}\nالبريد: ${draft.email}\nالجهة: ${draft.organization}\n\nالتحدي التشغيلي:\n${draft.challenge}`
+    : `Name: ${draft.name}\nEmail: ${draft.email}\nOrganization: ${draft.organization}\n\nOperational challenge:\n${draft.challenge}`;
+
+  return `${CONTACT.emailHref}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
 export function ContactForm({ locale }: ContactFormProps) {
   const [draft, setDraft] = useState<Draft | null>(null);
   const [savedDraft, setSavedDraft] = useState<Draft | null>(null);
   const nameInputRef = useRef<HTMLInputElement>(null);
   const ar = locale === "ar";
 
-  const mailtoHref = useMemo(() => {
-    if (!draft) return CONTACT.emailHref;
-
-    const subject = ar
-      ? `طلب جلسة عمل من ${draft.organization}`
-      : `Working session request from ${draft.organization}`;
-    const body = ar
-      ? `الاسم: ${draft.name}\nالبريد: ${draft.email}\nالجهة: ${draft.organization}\n\nالتحدي التشغيلي:\n${draft.challenge}`
-      : `Name: ${draft.name}\nEmail: ${draft.email}\nOrganization: ${draft.organization}\n\nOperational challenge:\n${draft.challenge}`;
-
-    return `${CONTACT.emailHref}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  }, [ar, draft]);
+  const mailtoHref = useMemo(
+    () => (draft ? getMailtoHref(draft, ar) : CONTACT.emailHref),
+    [ar, draft],
+  );
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -49,6 +52,7 @@ export function ContactForm({ locale }: ContactFormProps) {
 
     setSavedDraft(nextDraft);
     setDraft(nextDraft);
+    window.location.assign(getMailtoHref(nextDraft, ar));
   }
 
   function editDetails() {
@@ -67,13 +71,13 @@ export function ContactForm({ locale }: ContactFormProps) {
         </p>
         <h3>
           {ar
-            ? `شكراً ${draft.name}. أرسل البريد المُعدّ ليصل إلى فريق إنوفاتك.`
-            : `Thanks, ${draft.name}. Send the prepared email to reach the Innovatek team.`}
+            ? `شكراً ${draft.name}. فتحنا رسالة جاهزة لتصل إلى فريق إنوفاتك.`
+            : `Thanks, ${draft.name}. We opened a prepared email for the Innovatek team.`}
         </h3>
         <p>
           {ar
-            ? "لم نرسل بياناتك إلى أي خادم. سيفتح الرابط تطبيق البريد لديك مع التفاصيل التي أدخلتها."
-            : "Nothing was sent to a server. The link opens your email app with the details you entered."}
+            ? "لم نرسل بياناتك إلى أي خادم. إذا لم يفتح تطبيق البريد تلقائياً، استخدم الزر أدناه."
+            : "Nothing was sent to a server. If your email app did not open automatically, use the button below."}
         </p>
         <div className="contact-success__actions">
           <a href={mailtoHref} className="button button--primary">
