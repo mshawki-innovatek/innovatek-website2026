@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="glow" cx="82%" cy="18%" r="72%">
+      <stop offset="0" stop-color="#2d7cff" stop-opacity="0.92" />
+      <stop offset="0.48" stop-color="#1458d8" stop-opacity="0.48" />
+      <stop offset="1" stop-color="#0a1020" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="line" x1="0" x2="1">
+      <stop offset="0" stop-color="#77a8ff" />
+      <stop offset="1" stop-color="#77a8ff" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#0a1020" />
+  <rect width="1200" height="630" fill="url(#glow)" />
+  <g fill="none" stroke="#ffffff" stroke-opacity="0.1">
+    <circle cx="1060" cy="88" r="278" />
+    <circle cx="1060" cy="88" r="220" />
+    <circle cx="1060" cy="88" r="162" />
+  </g>
+  <rect x="72" y="66" width="54" height="54" rx="14" fill="#176bff" />
+  <text x="99" y="101" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700" text-anchor="middle">IN</text>
+  <text x="146" y="103" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" letter-spacing="3">INNOVATEK</text>
+  <rect x="72" y="184" width="166" height="3" rx="1.5" fill="url(#line)" />
+  <text x="72" y="277" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="700" letter-spacing="-3">AI software for giving,</text>
+  <text x="72" y="358" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="700" letter-spacing="-3">facilities and engagement.</text>
+  <text x="72" y="425" fill="#c4cee0" font-family="Arial, Helvetica, sans-serif" font-size="25">Modular, Arabic-ready platforms for operations that cannot wait.</text>
+  <g font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#c4cee0">
+    <text x="72" y="554">Technology for impact</text>
+    <text x="1128" y="554" text-anchor="end">Dubai · UAE</text>
+  </g>
+</svg>

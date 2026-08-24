@@ -1,0 +1,18 @@
+{
+  "source": "gpt-taste",
+  "source_commit": "e988add20dab0fa97d7a76781c48961c8184288e",
+  "seed_algorithm": "sha256-first-64-bits",
+  "brief_sha256": "e0edcab7aeb0dbe356455bfa299f30df553c192eaf015fe143fa4551a77944f9",
+  "seed": 16207833524234935267,
+  "hero_architecture": "Editorial Split",
+  "typography_stack": "Outfit",
+  "component_architectures": [
+    "Inline Typography Images",
+    "Infinite Marquee",
+    "Feedback/Testimonial Carousel"
+  ],
+  "gsap_paradigms": [
+    "Image Scale & Fade Scroll",
+    "Scroll Pinning"
+  ]
+}
