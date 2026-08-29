@@ -1,6 +1,6 @@
 "use client";
 
-/* eslint-disable @typescript-eslint/no-explicit-any, @next/next/no-img-element, @typescript-eslint/no-unused-vars -- generated from the approved design export */
+/* eslint-disable @typescript-eslint/no-explicit-any, @next/next/no-img-element -- generated from the approved design export */
 import { Fragment } from "react";
 import { ArrowDown, ArrowLeft, BadgeCheck, Building2, CircleCheck, Coins, FilePen, KeyRound, Languages, Layers, LayoutDashboard, Mail, MapPin, MessageCircle, MonitorSmartphone, Phone, PhoneCall, Sparkles } from "lucide-react";
 import type { LandingVals } from "./designer-landing";
@@ -273,7 +273,7 @@ export function LandingBodyEn({ v }: { v: LandingVals }) {
         {v.heroTabs.map((tab: any, i: number) => (
 <Fragment key={i}>
 
-          <button  style={{ display: "flex", alignItems: "center", gap: "9px", flexShrink: "0", whiteSpace: "nowrap", background: "transparent", border: "0", padding: "10px 0", cursor: "pointer", fontFamily: "Dubai, -apple-system, 'Segoe UI', var(--font-arabic), sans-serif", fontSize: "14px", fontWeight: "700", color: tab.ink, position: "relative", transition: "color 240ms ease", }}>
+          <button onClick={() => v.setSlide(i)}  style={{ display: "flex", alignItems: "center", gap: "9px", flexShrink: "0", whiteSpace: "nowrap", background: "transparent", border: "0", padding: "10px 0", cursor: "pointer", fontFamily: "Dubai, -apple-system, 'Segoe UI', var(--font-arabic), sans-serif", fontSize: "14px", fontWeight: "700", color: tab.ink, position: "relative", transition: "color 240ms ease", }}>
             <span  style={{ width: "7px", height: "7px", borderRadius: "50%", background: tab.dot, }}></span>
             {tab.label}
             <span  style={{ position: "absolute", bottom: "0", insetInline: "0", height: "2px", borderRadius: "999px", background: "#fff", opacity: tab.line, transition: "opacity 240ms ease", }}></span>
@@ -309,15 +309,15 @@ export function LandingBodyEn({ v }: { v: LandingVals }) {
             </p>
           </div>
           <div  style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(132px, 1fr))", gap: "12px", }}>
-            <div  style={{ background: "rgba(255,255,255,0.72)", border: "1px solid rgba(255,255,255,0.85)", borderRadius: "14px", height: "96px", padding: "14px", backdropFilter: "blur(14px) saturate(1.1)", transition: "background 220ms ease, transform 220ms ease", }} data-hover="background: rgba(255,255,255,0.95); transform: translateY(-2px)"><img src="/assets/designer/c882e3ab.webp" alt="Al Jalila Foundation" loading="lazy"  style={{  }} /></div>
-            <div  style={{ background: "rgba(255,255,255,0.72)", border: "1px solid rgba(255,255,255,0.85)", borderRadius: "14px", height: "96px", padding: "14px", backdropFilter: "blur(14px) saturate(1.1)", transition: "background 220ms ease, transform 220ms ease", }} data-hover="background: rgba(255,255,255,0.95); transform: translateY(-2px)"><img src="/assets/designer/22218520.webp" alt="Dubai Health" loading="lazy"  style={{  }} /></div>
-            <div  style={{ background: "rgba(255,255,255,0.72)", border: "1px solid rgba(255,255,255,0.85)", borderRadius: "14px", height: "96px", padding: "14px", backdropFilter: "blur(14px) saturate(1.1)", transition: "background 220ms ease, transform 220ms ease", }} data-hover="background: rgba(255,255,255,0.95); transform: translateY(-2px)"><img src="/assets/designer/9e8ff21f.webp" alt="Dar Al Ber Society" loading="lazy"  style={{  }} /></div>
-            <div  style={{ background: "rgba(255,255,255,0.72)", border: "1px solid rgba(255,255,255,0.85)", borderRadius: "14px", height: "96px", padding: "14px", backdropFilter: "blur(14px) saturate(1.1)", transition: "background 220ms ease, transform 220ms ease", }} data-hover="background: rgba(255,255,255,0.95); transform: translateY(-2px)"><img src="/assets/designer/ef622a08.webp" alt="Tarahom Foundation" loading="lazy"  style={{  }} /></div>
-            <div  style={{ background: "rgba(255,255,255,0.72)", border: "1px solid rgba(255,255,255,0.85)", borderRadius: "14px", height: "96px", padding: "14px", backdropFilter: "blur(14px) saturate(1.1)", transition: "background 220ms ease, transform 220ms ease", }} data-hover="background: rgba(255,255,255,0.95); transform: translateY(-2px)"><img src="/assets/designer/e7c07a82.webp" alt="Beit Al Khair Society" loading="lazy"  style={{  }} /></div>
-            <div  style={{ background: "rgba(255,255,255,0.72)", border: "1px solid rgba(255,255,255,0.85)", borderRadius: "14px", height: "96px", padding: "14px", backdropFilter: "blur(14px) saturate(1.1)", transition: "background 220ms ease, transform 220ms ease", }} data-hover="background: rgba(255,255,255,0.95); transform: translateY(-2px)"><img src="/assets/designer/43f12ad9.webp" alt="Awqaf Sharjah" loading="lazy"  style={{  }} /></div>
-            <div  style={{ background: "rgba(255,255,255,0.72)", border: "1px solid rgba(255,255,255,0.85)", borderRadius: "14px", height: "96px", padding: "14px", backdropFilter: "blur(14px) saturate(1.1)", transition: "background 220ms ease, transform 220ms ease", }} data-hover="background: rgba(255,255,255,0.95); transform: translateY(-2px)"><img src="/assets/designer/2218988d.webp" alt="Fujairah Charity" loading="lazy"  style={{  }} /></div>
-            <div  style={{ background: "rgba(255,255,255,0.72)", border: "1px solid rgba(255,255,255,0.85)", borderRadius: "14px", height: "96px", padding: "14px", backdropFilter: "blur(14px) saturate(1.1)", transition: "background 220ms ease, transform 220ms ease", }} data-hover="background: rgba(255,255,255,0.95); transform: translateY(-2px)"><img src="/assets/designer/08d4aff9.webp" alt="Sharjah Social Empowerment" loading="lazy"  style={{  }} /></div>
-            <div  style={{ background: "rgba(255,255,255,0.72)", border: "1px solid rgba(255,255,255,0.85)", borderRadius: "14px", height: "96px", padding: "14px", backdropFilter: "blur(14px) saturate(1.1)", transition: "background 220ms ease, transform 220ms ease", }} data-hover="background: rgba(255,255,255,0.95); transform: translateY(-2px)"><img src="/assets/designer/9f863395.webp" alt="Your logo here" loading="lazy"  style={{  }} /></div>
+            <div  style={{ background: "#ffffff", border: "1px solid rgba(11,18,32,0.06)", borderRadius: "14px", height: "96px", padding: "14px", backdropFilter: "blur(14px) saturate(1.1)", transition: "background 220ms ease, transform 220ms ease", }} data-hover="background: rgba(255,255,255,0.95); transform: translateY(-2px)"><img src="/assets/designer/c882e3ab.webp" alt="Al Jalila Foundation" loading="lazy" style={{ width: "100%", height: "100%", objectFit: "contain" }} /></div>
+            <div  style={{ background: "#ffffff", border: "1px solid rgba(11,18,32,0.06)", borderRadius: "14px", height: "96px", padding: "14px", backdropFilter: "blur(14px) saturate(1.1)", transition: "background 220ms ease, transform 220ms ease", }} data-hover="background: rgba(255,255,255,0.95); transform: translateY(-2px)"><img src="/assets/designer/22218520.webp" alt="Dubai Health" loading="lazy" style={{ width: "100%", height: "100%", objectFit: "contain" }} /></div>
+            <div  style={{ background: "#ffffff", border: "1px solid rgba(11,18,32,0.06)", borderRadius: "14px", height: "96px", padding: "14px", backdropFilter: "blur(14px) saturate(1.1)", transition: "background 220ms ease, transform 220ms ease", }} data-hover="background: rgba(255,255,255,0.95); transform: translateY(-2px)"><img src="/assets/designer/9e8ff21f.webp" alt="Dar Al Ber Society" loading="lazy" style={{ width: "100%", height: "100%", objectFit: "contain" }} /></div>
+            <div  style={{ background: "#ffffff", border: "1px solid rgba(11,18,32,0.06)", borderRadius: "14px", height: "96px", padding: "14px", backdropFilter: "blur(14px) saturate(1.1)", transition: "background 220ms ease, transform 220ms ease", }} data-hover="background: rgba(255,255,255,0.95); transform: translateY(-2px)"><img src="/assets/designer/ef622a08.webp" alt="Tarahom Foundation" loading="lazy" style={{ width: "100%", height: "100%", objectFit: "contain" }} /></div>
+            <div  style={{ background: "#ffffff", border: "1px solid rgba(11,18,32,0.06)", borderRadius: "14px", height: "96px", padding: "14px", backdropFilter: "blur(14px) saturate(1.1)", transition: "background 220ms ease, transform 220ms ease", }} data-hover="background: rgba(255,255,255,0.95); transform: translateY(-2px)"><img src="/assets/designer/e7c07a82.webp" alt="Beit Al Khair Society" loading="lazy" style={{ width: "100%", height: "100%", objectFit: "contain" }} /></div>
+            <div  style={{ background: "#ffffff", border: "1px solid rgba(11,18,32,0.06)", borderRadius: "14px", height: "96px", padding: "14px", backdropFilter: "blur(14px) saturate(1.1)", transition: "background 220ms ease, transform 220ms ease", }} data-hover="background: rgba(255,255,255,0.95); transform: translateY(-2px)"><img src="/assets/designer/43f12ad9.webp" alt="Awqaf Sharjah" loading="lazy" style={{ width: "100%", height: "100%", objectFit: "contain" }} /></div>
+            <div  style={{ background: "#ffffff", border: "1px solid rgba(11,18,32,0.06)", borderRadius: "14px", height: "96px", padding: "14px", backdropFilter: "blur(14px) saturate(1.1)", transition: "background 220ms ease, transform 220ms ease", }} data-hover="background: rgba(255,255,255,0.95); transform: translateY(-2px)"><img src="/assets/designer/2218988d.webp" alt="Fujairah Charity" loading="lazy" style={{ width: "100%", height: "100%", objectFit: "contain" }} /></div>
+            <div  style={{ background: "#ffffff", border: "1px solid rgba(11,18,32,0.06)", borderRadius: "14px", height: "96px", padding: "14px", backdropFilter: "blur(14px) saturate(1.1)", transition: "background 220ms ease, transform 220ms ease", }} data-hover="background: rgba(255,255,255,0.95); transform: translateY(-2px)"><img src="/assets/designer/08d4aff9.webp" alt="Sharjah Social Empowerment" loading="lazy" style={{ width: "100%", height: "100%", objectFit: "contain" }} /></div>
+            <div  style={{ background: "#ffffff", border: "1px solid rgba(11,18,32,0.06)", borderRadius: "14px", height: "96px", padding: "14px", backdropFilter: "blur(14px) saturate(1.1)", transition: "background 220ms ease, transform 220ms ease", }} data-hover="background: rgba(255,255,255,0.95); transform: translateY(-2px)"><img src="/assets/designer/9f863395.webp" alt="Your logo here" loading="lazy" style={{ width: "100%", height: "100%", objectFit: "contain" }} /></div>
           </div>
         </div>
       </div>
@@ -912,7 +912,7 @@ export function LandingBodyEn({ v }: { v: LandingVals }) {
           
         </p>
         <div  style={{ marginTop: "auto", display: "flex", alignItems: "center", gap: "12px", }}>
-          <span  style={{ width: "40px", height: "40px", borderRadius: "50%", overflow: "hidden", flexShrink: "0", background: "rgba(255,255,255,0.12)", }}><img src="/assets/designer/.webp" alt="Photo" loading="lazy"  style={{  }} /></span>
+          <span  style={{ width: "40px", height: "40px", borderRadius: "50%", overflow: "hidden", flexShrink: "0", background: "rgba(255,255,255,0.12)", }}></span>
           <span>
             <span  style={{ display: "block", fontSize: "14px", fontWeight: "700", color: "#fff", }}>Head of Facilities</span>
             <span  style={{ display: "block", fontSize: "13px", color: "rgba(255,255,255,0.55)", }}>Government department, Sharjah</span>
@@ -925,7 +925,7 @@ export function LandingBodyEn({ v }: { v: LandingVals }) {
           
         </p>
         <div  style={{ marginTop: "auto", display: "flex", alignItems: "center", gap: "12px", }}>
-          <span  style={{ width: "40px", height: "40px", borderRadius: "50%", overflow: "hidden", flexShrink: "0", background: "rgba(255,255,255,0.12)", }}><img src="/assets/designer/.webp" alt="Photo" loading="lazy"  style={{  }} /></span>
+          <span  style={{ width: "40px", height: "40px", borderRadius: "50%", overflow: "hidden", flexShrink: "0", background: "rgba(255,255,255,0.12)", }}></span>
           <span>
             <span  style={{ display: "block", fontSize: "14px", fontWeight: "700", color: "#fff", }}>Operations Manager</span>
             <span  style={{ display: "block", fontSize: "13px", color: "rgba(255,255,255,0.55)", }}>Charity foundation, Dubai</span>
@@ -948,7 +948,7 @@ export function LandingBodyEn({ v }: { v: LandingVals }) {
 <Fragment key={i}>
 
           <div  style={{ background: "var(--color-background-primary)", border: "1px solid var(--color-border-subtle)", borderRadius: "12px", overflow: "hidden", }}>
-            <button  style={{ width: "100%", display: "flex", alignItems: "center", gap: "16px", padding: "20px 22px", background: "transparent", border: "0", cursor: "pointer", textAlign: "start", fontFamily: "Dubai, -apple-system, 'Segoe UI', var(--font-arabic), sans-serif", }}>
+            <button onClick={() => v.toggleFaq(i)}  style={{ width: "100%", display: "flex", alignItems: "center", gap: "16px", padding: "20px 22px", background: "transparent", border: "0", cursor: "pointer", textAlign: "start", fontFamily: "Dubai, -apple-system, 'Segoe UI', var(--font-arabic), sans-serif", }}>
               <span  style={{ flex: "1", fontSize: "17px", fontWeight: "600", lineHeight: "1.4", color: "var(--color-text-primary)", }}>{q.question}</span>
               <span  style={{ flexShrink: "0", width: "26px", height: "26px", borderRadius: "50%", display: "grid", placeItems: "center", background: "var(--color-surface-subtle)", color: "var(--color-text-secondary)", transform: q.rotate, transition: "transform 200ms ease", }}>
                 <ArrowDown aria-hidden="true" size={14} />
@@ -982,19 +982,19 @@ export function LandingBodyEn({ v }: { v: LandingVals }) {
             <span  style={{ width: "34px", height: "34px", borderRadius: "10px", display: "grid", placeItems: "center", flexShrink: "0", background: "rgba(255,255,255,0.12)", color: "#fff", }}>
               <Mail aria-hidden="true" size={16} />
             </span>
-            hello@innovatek.ae
+            Sales@innovatek-swd.com
           </a>
           <a href="tel:+971558891317" dir="ltr"  style={{ display: "flex", alignItems: "center", gap: "12px", color: "#fff", fontSize: "16px", fontWeight: "600", }} data-hover="color: var(--color-blue-300)">
             <span  style={{ width: "34px", height: "34px", borderRadius: "10px", display: "grid", placeItems: "center", flexShrink: "0", background: "rgba(255,255,255,0.12)", color: "#fff", }}>
               <Phone aria-hidden="true" size={16} />
             </span>
-            +971 55 889 1317
+            055 889 1317
           </a>
           <span  style={{ display: "flex", alignItems: "center", gap: "12px", color: "rgba(255,255,255,0.78)", fontSize: "16px", fontWeight: "500", }}>
             <span  style={{ width: "34px", height: "34px", borderRadius: "10px", display: "grid", placeItems: "center", flexShrink: "0", background: "rgba(255,255,255,0.12)", color: "#fff", }}>
               <MapPin aria-hidden="true" size={16} />
             </span>
-            Dubai, United Arab Emirates
+            Business Bay, Dubai, UAE
           </span>
         </div>
       </div>
@@ -1039,9 +1039,9 @@ export function LandingBodyEn({ v }: { v: LandingVals }) {
         <div>
           <h4  style={{ margin: "0 0 14px", fontSize: "13px", fontWeight: "700", letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--color-text-tertiary)", }}>Contact</h4>
           <div  style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "10px 28px", }}>
-            <a href="mailto:hello@innovatek.ae"  style={{ fontSize: "14px", color: "var(--color-text-secondary)", }} data-hover="color: var(--color-text-primary)">hello@innovatek.ae</a>
-            <a href="tel:+971558891317"  style={{ fontSize: "14px", color: "var(--color-text-secondary)", }} data-hover="color: var(--color-text-primary)" dir="ltr">+971 55 889 1317</a>
-            <span  style={{ fontSize: "14px", color: "var(--color-text-secondary)", }}>Dubai, United Arab Emirates</span>
+            <a href="mailto:Sales@innovatek-swd.com"  style={{ fontSize: "14px", color: "var(--color-text-secondary)", }} data-hover="color: var(--color-text-primary)">Sales@innovatek-swd.com</a>
+            <a href="tel:+971558891317"  style={{ fontSize: "14px", color: "var(--color-text-secondary)", }} data-hover="color: var(--color-text-primary)" dir="ltr">055 889 1317</a>
+            <span  style={{ fontSize: "14px", color: "var(--color-text-secondary)", }}>Business Bay, Dubai, UAE</span>
           </div>
         </div>
       </div>

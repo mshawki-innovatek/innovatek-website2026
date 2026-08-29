@@ -22,11 +22,17 @@ export function DesignerLanding({ lang }: { lang: Lang }) {
   const [live, setLive] = useState({ d: 142, v: 58, o: 31 });
 
   // Hero autoplay + live operational counters, as designed.
+  // The autoplay timer resets on every slide change, so a manually
+  // selected slide always keeps a full cycle before rotating.
   useEffect(() => {
     const slides = setInterval(
       () => setSlide((s) => (s + 1) % HERO.length),
       7000,
     );
+    return () => clearInterval(slides);
+  }, [slide]);
+
+  useEffect(() => {
     const ticks = setInterval(() => {
       setLive((s) => ({
         d: Math.max(138, Math.min(148, s.d + (Math.random() < 0.5 ? -1 : 1))),
@@ -34,10 +40,7 @@ export function DesignerLanding({ lang }: { lang: Lang }) {
         o: Math.max(27, Math.min(35, s.o + (Math.random() < 0.5 ? -1 : 1))),
       }));
     }, 2800);
-    return () => {
-      clearInterval(slides);
-      clearInterval(ticks);
-    };
+    return () => clearInterval(ticks);
   }, []);
 
   // Scroll reveal, as designed.
@@ -250,7 +253,7 @@ export function DesignerLanding({ lang }: { lang: Lang }) {
         const body = ar
           ? `الاسم: ${name}\nالبريد: ${email}\nالجهة: ${org}`
           : `Name: ${name}\nEmail: ${email}\nOrganisation: ${org}`;
-        window.location.href = `mailto:hello@innovatek.ae?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = `mailto:Sales@innovatek-swd.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       },
     };
 

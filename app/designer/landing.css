@@ -6022,3 +6022,11 @@
   [data-lang="ar"] :not([dir="ltr"]):not([dir="ltr"] *) { letter-spacing: normal !important; text-transform: none !important; }
   [data-lang="ar"] [data-display] { line-height: 1.28 !important; }
   [data-lang="ar"] p, [data-lang="ar"] li { line-height: 1.85 !important; }
+
+/* RTL mirror for the hero kiosk cluster */
+[data-lang="ar"] [data-kiosk-photo] { inset: 0 0 46px 62px !important; }
+[data-lang="ar"] [data-kiosk-ticker] { inset-inline-start: auto !important; inset-inline-end: 24px !important; }
+@media (max-width: 640px) {
+  [data-lang="ar"] [data-kiosk-photo] { inset: 0 0 38px 40px !important; }
+  [data-lang="ar"] [data-kiosk-ticker] { inset-inline-start: auto !important; inset-inline-end: 0 !important; }
+}
