@@ -70,12 +70,16 @@ export function DesignerLanding({ lang }: { lang: Lang }) {
     return () => io.disconnect();
   }, [lang]);
 
-  // Inline hover styles from the design export.
+  // Inline hover styles from the design export. Leaving an element restores
+  // its full saved style attribute — removing properties alone would drop the
+  // React-managed base styles (e.g. white logo chips falling back to the
+  // blue panel behind them).
   useEffect(() => {
     const cleanups: Array<() => void> = [];
     document.querySelectorAll<HTMLElement>("[data-hover]").forEach((el) => {
       const decls = el.getAttribute("data-hover");
       if (!decls) return;
+      const base = el.getAttribute("style") ?? "";
       const apply = () => {
         decls.split(";").forEach((d) => {
           const [k, ...rest] = d.split(":");
@@ -83,10 +87,7 @@ export function DesignerLanding({ lang }: { lang: Lang }) {
         });
       };
       const reset = () => {
-        decls.split(";").forEach((d) => {
-          const k = d.split(":")[0];
-          if (k) el.style.removeProperty(k.trim());
-        });
+        el.setAttribute("style", base);
       };
       el.addEventListener("mouseenter", apply);
       el.addEventListener("mouseleave", reset);
