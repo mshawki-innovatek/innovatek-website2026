@@ -1013,10 +1013,10 @@ export function LandingBodyEn({ v }: { v: LandingVals }) {
             <input id="demo-org" type="text"  style={{ width: "100%", height: "46px", padding: "0 14px", borderRadius: "10px", border: "1px solid var(--color-neutral-200)", background: "var(--color-background-primary)", fontFamily: "Dubai, -apple-system, 'Segoe UI', var(--font-arabic), sans-serif", fontSize: "15px", color: "var(--color-text-primary)", }} style-focus="border-color: var(--accent); outline: none" />
           </label>
           <button type="button" onClick={() => v.submitDemo()} style={{ height: "50px", border: "0", borderRadius: "999px", background: "var(--accent)", color: "#fff", fontFamily: "Dubai, -apple-system, 'Segoe UI', var(--font-arabic), sans-serif", fontSize: "16px", fontWeight: "700", cursor: "pointer", marginTop: "4px", }} data-hover="background: var(--accent-deep)">
-            Book a demo
+            {v.demoLabel}
           </button>
-          <p  style={{ margin: "2px 0 0", fontSize: "12px", lineHeight: "1.5", color: "var(--color-text-tertiary)", textAlign: "center", }}>
-            We reply within one working day. Your details stay with our team.
+          <p  style={{ margin: "2px 0 0", fontSize: "12px", lineHeight: "1.5", color: v.demoNoteColor, textAlign: "center", }}>
+            {v.demoNote}
             
           </p>
         </div>

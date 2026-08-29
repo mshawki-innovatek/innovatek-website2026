@@ -1,7 +1,8 @@
 "use client";
 
-import { FormEvent, useMemo, useRef, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 import { ArrowUpRight, CheckCircle2, Mail } from "lucide-react";
+import emailjs from "@emailjs/browser";
 import type { Locale } from "@/lib/content";
 import { CONTACT } from "@/lib/site";
 
@@ -16,49 +17,76 @@ type Draft = {
   challenge: string;
 };
 
-function getMailtoHref(draft: Draft, ar: boolean) {
-  const subject = ar
-    ? `طلب عرض توضيحي من ${draft.organization}`
-    : `Demo request from ${draft.organization}`;
-  const body = ar
-    ? `الاسم: ${draft.name}\nالبريد: ${draft.email}\nالجهة: ${draft.organization}\n\nالتحدي التشغيلي:\n${draft.challenge}`
-    : `Name: ${draft.name}\nEmail: ${draft.email}\nOrganization: ${draft.organization}\n\nOperational challenge:\n${draft.challenge}`;
-
-  return `${CONTACT.emailHref}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-}
+const EMAILJS = {
+  serviceId: "service_qhrceap",
+  templateId: "template_hhl5qlb",
+  publicKey: "0-zKFGIfgkaCORhdN",
+} as const;
 
 export function ContactForm({ locale }: ContactFormProps) {
   const [draft, setDraft] = useState<Draft | null>(null);
   const [savedDraft, setSavedDraft] = useState<Draft | null>(null);
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState(false);
   const nameInputRef = useRef<HTMLInputElement>(null);
   const ar = locale === "ar";
 
-  const mailtoHref = useMemo(
-    () => (draft ? getMailtoHref(draft, ar) : CONTACT.emailHref),
-    [ar, draft],
-  );
+  async function sendEmail(d: Draft) {
+    return emailjs.send(
+      EMAILJS.serviceId,
+      EMAILJS.templateId,
+      {
+        from_name: d.name,
+        Email: d.email,
+        Company: d.organization,
+        Phone: "",
+        services: "Not specified",
+        message: d.challenge,
+      },
+      { publicKey: EMAILJS.publicKey },
+    );
+  }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
     const formData = new FormData(form);
 
-    const nextDraft = {
-      name: String(formData.get("name") ?? ""),
-      email: String(formData.get("email") ?? ""),
-      organization: String(formData.get("organization") ?? ""),
-      challenge: String(formData.get("challenge") ?? ""),
+    const nextDraft: Draft = {
+      name: String(formData.get("name") ?? "").trim(),
+      email: String(formData.get("email") ?? "").trim(),
+      organization: String(formData.get("organization") ?? "").trim(),
+      challenge: String(formData.get("challenge") ?? "").trim(),
     };
 
-    setSavedDraft(nextDraft);
-    setDraft(nextDraft);
-    window.location.assign(getMailtoHref(nextDraft, ar));
+    if (!nextDraft.name || !nextDraft.email || !nextDraft.organization) return;
+
+    setSending(true);
+    setSendError(false);
+    try {
+      const resp = await sendEmail(nextDraft);
+      if (resp.status === 200) {
+        setSavedDraft(nextDraft);
+        setDraft(nextDraft);
+        form.reset();
+      } else {
+        setSendError(true);
+      }
+    } catch {
+      setSendError(true);
+    } finally {
+      setSending(false);
+    }
   }
 
   function editDetails() {
     setDraft(null);
     requestAnimationFrame(() => nameInputRef.current?.focus());
   }
+
+  const submitLabel = sending
+    ? ar ? "جارٍ الإرسال…" : "Sending…"
+    : ar ? "احجز عرضاً توضيحياً" : "Book a demo";
 
   if (draft) {
     return (
@@ -67,26 +95,26 @@ export function ContactForm({ locale }: ContactFormProps) {
           <CheckCircle2 aria-hidden="true" size={28} />
         </span>
         <p className="contact-success__kicker">
-          {ar ? "موجزك جاهز" : "Your brief is ready"}
+          {ar ? "تم استلام طلبك" : "Request received"}
         </p>
         <h3>
           {ar
-            ? `شكراً ${draft.name}. فتحنا رسالة جاهزة لتصل إلى فريق إنوفاتك.`
-            : `Thanks, ${draft.name}. We opened a prepared email for the Innovatek team.`}
+            ? `شكراً ${draft.name}. وصل طلبك إلى فريق إنوفاتك وسنرد خلال يوم عمل واحد.`
+            : `Thanks, ${draft.name}. Your request reached the Innovatek team — we reply within one working day.`}
         </h3>
         <p>
           {ar
-            ? "لم نرسل بياناتك إلى أي خادم. إذا لم يفتح تطبيق البريد تلقائياً، استخدم الزر أدناه."
-            : "Nothing was sent to a server. If your email app did not open automatically, use the button below."}
+            ? `الجهة: ${draft.organization}. لم نشارك بياناتك مع أي طرف آخر.`
+            : `Organisation: ${draft.organization}. Your details stay with our team.`}
         </p>
         <div className="contact-success__actions">
-          <a href={mailtoHref} className="button button--primary">
+          <a href={`${CONTACT.emailHref}`} className="button button--primary">
             <Mail aria-hidden="true" size={18} />
-            <span>{ar ? "أرسل إلى فريق إنوفاتك" : "Email the Innovatek team"}</span>
+            <span>{ar ? "راسلنا مباشرة" : "Email us directly"}</span>
             <ArrowUpRight aria-hidden="true" size={18} />
           </a>
           <button type="button" className="button button--outline" onClick={editDetails}>
-            {ar ? "عدّل التفاصيل" : "Edit details"}
+            {ar ? "أرسل طلباً آخر" : "Send another request"}
           </button>
         </div>
       </div>
@@ -110,7 +138,7 @@ export function ContactForm({ locale }: ContactFormProps) {
           />
         </label>
         <label>
-          <span>{ar ? "بريد العمل" : "Work email"}</span>
+          <span>{ar ? "البريد الإلكتروني للعمل" : "Work email"}</span>
           <input
             name="email"
             type="email"
@@ -123,7 +151,7 @@ export function ContactForm({ locale }: ContactFormProps) {
         </label>
       </div>
       <label>
-        <span>{ar ? "الجهة" : "Organization"}</span>
+        <span>{ar ? "الجهة" : "Organisation"}</span>
         <input
           name="organization"
           type="text"
@@ -149,10 +177,21 @@ export function ContactForm({ locale }: ContactFormProps) {
           defaultValue={savedDraft?.challenge}
         />
       </label>
-      <button type="submit" className="button button--primary contact-form__submit">
-        <span>{ar ? "احجز عرضاً توضيحياً" : "Book a demo"}</span>
+      <button type="submit" className="button button--primary contact-form__submit" disabled={sending}>
+        <span>{submitLabel}</span>
         <ArrowUpRight aria-hidden="true" size={19} />
       </button>
+      {sendError ? (
+        <p role="alert" style={{ margin: 0, fontSize: "14px", fontWeight: "600", color: "var(--color-red-600)", textAlign: "center" }}>
+          {ar ? "تعذّر إرسال الطلب — تحقق من الاتصال وحاول مرة أخرى، أو راسلنا مباشرة." : "Couldn’t send your request — check your connection and try again, or email us directly."}
+        </p>
+      ) : (
+        <p style={{ margin: 0, fontSize: "14px", color: "var(--text-secondary)", textAlign: "center" }}>
+          {ar
+            ? "نرد خلال يوم عمل واحد. بياناتك تبقى لدى فريقنا."
+            : "We reply within one working day. Your details stay with our team."}
+        </p>
+      )}
     </form>
   );
 }

@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import emailjs from "@emailjs/browser";
 import { HERO, T, TINT, pick, type Lang } from "@/lib/designer/landing-data";
 import { LandingBodyEn } from "./landing-body-en";
 import { LandingBodyAr } from "./landing-body-ar";
@@ -20,6 +21,7 @@ export function DesignerLanding({ lang }: { lang: Lang }) {
   const [slide, setSlide] = useState(0);
   const [open, setOpen] = useState(0);
   const [live, setLive] = useState({ d: 142, v: 58, o: 31 });
+  const [demoState, setDemoState] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
   // Hero autoplay + live operational counters, as designed.
   // The autoplay timer resets on every slide change, so a manually
@@ -242,19 +244,67 @@ export function DesignerLanding({ lang }: { lang: Lang }) {
 
       setTab: (i: number) => setTab(i),
 
-      // Demo form: opens a prefilled email, nothing is sent to a server.
+      // Demo form: sends programmatically through EmailJS — no mail app.
       submitDemo: () => {
         const get = (id: string) =>
           (document.getElementById(id) as HTMLInputElement | null)?.value?.trim() ?? "";
         const name = get("demo-name");
         const email = get("demo-email");
         const org = get("demo-org");
-        const subject = ar ? `طلب عرض توضيحي من ${org}` : `Demo request from ${org}`;
-        const body = ar
-          ? `الاسم: ${name}\nالبريد: ${email}\nالجهة: ${org}`
-          : `Name: ${name}\nEmail: ${email}\nOrganisation: ${org}`;
-        window.location.href = `mailto:Sales@innovatek-swd.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        if (!name || !email || !org) {
+          setDemoState("error");
+          return;
+        }
+        setDemoState("sending");
+        const data = {
+          from_name: name,
+          Email: email,
+          Company: org,
+          Phone: "",
+          services: ar ? "طلب عرض توضيحي" : "Demo request",
+        };
+        emailjs
+          .send("service_qhrceap", "template_hhl5qlb", data, { publicKey: "0-zKFGIfgkaCORhdN" })
+          .then((resp) => {
+            if (resp.status === 200) {
+              setDemoState("sent");
+              ["demo-name", "demo-email", "demo-org"].forEach((id) => {
+                const input = document.getElementById(id) as HTMLInputElement | null;
+                if (input) input.value = "";
+              });
+              setTimeout(() => setDemoState("idle"), 8000);
+            } else {
+              // stays on error until the visitor tries again
+              setDemoState("error");
+            }
+          })
+          .catch(() => {
+            setDemoState("error");
+          });
       },
+
+      demoLabel: (() => {
+        if (demoState === "sending") return ar ? "جارٍ الإرسال…" : "Sending…";
+        if (demoState === "sent") return ar ? "تم الإرسال ✓" : "Sent ✓";
+        if (demoState === "error") return ar ? "أعد المحاولة" : "Try again";
+        return ar ? "احجز عرضاً توضيحياً" : "Book a demo";
+      })(),
+      demoNoteColor: demoState === "sent"
+        ? "var(--color-green-600)"
+        : demoState === "error"
+          ? "var(--color-red-600)"
+          : "var(--color-text-tertiary)",
+      demoNote: (() => {
+        if (demoState === "sent")
+          return ar ? "وصلنا طلبك بنجاح — نرد خلال يوم عمل واحد." : "Request received — we reply within one working day.";
+        if (demoState === "error")
+          return ar ? "تعذّر الإرسال، حاول مرة أخرى." : "Couldn’t send — please try again.";
+        if (demoState === "sending")
+          return ar ? "جارٍ إرسال طلبك…" : "Sending your request…";
+        return ar
+          ? "نرد خلال يوم عمل واحد. بياناتك تبقى لدى فريقنا."
+          : "We reply within one working day. Your details stay with our team.";
+      })(),
     };
 
     const slideVals = Object.fromEntries(
@@ -279,7 +329,7 @@ export function DesignerLanding({ lang }: { lang: Lang }) {
     );
 
     return { ...v, ...slideVals, ...tabVals };
-  }, [ar, lang, live, navState, open, router, slide, tab]);
+  }, [ar, demoState, lang, live, navState, open, router, slide, tab]);
 
   return lang === "ar" ? <LandingBodyAr v={vals} /> : <LandingBodyEn v={vals} />;
 }
