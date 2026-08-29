@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { HomePage } from "@/components/home-page";
+import { DesignerLanding } from "@/app/designer/designer-landing";
 import { SEO_KEYWORDS } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -37,5 +37,5 @@ export const metadata: Metadata = {
 };
 
 export default function ArabicPage() {
-  return <HomePage locale="ar" />;
+  return <DesignerLanding lang="ar" />;
 }

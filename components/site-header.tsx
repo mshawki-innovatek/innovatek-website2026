@@ -41,7 +41,7 @@ export function SiteHeader({ locale, nav, alternateHref }: SiteHeaderProps) {
   return (
     <header className="site-header">
       <div className="site-header__shell">
-        <BrandLogo href={prefix || "/"} locale={locale} />
+        <BrandLogo href={prefix || "/"} inverse locale={locale} />
 
         <nav className="site-header__nav" aria-label={locale === "ar" ? "التنقل الرئيسي" : "Primary navigation"}>
           {links.map((link) => (
