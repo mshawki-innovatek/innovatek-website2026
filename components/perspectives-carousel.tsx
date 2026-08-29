@@ -98,6 +98,15 @@ export function PerspectivesCarousel({ locale, copy }: PerspectivesCarouselProps
           </div>
         </div>
 
+        <dl className="impact-stats">
+          {copy.stats.map((stat) => (
+            <div key={stat.label}>
+              <dd>{stat.value}</dd>
+              <dt>{stat.label}</dt>
+            </div>
+          ))}
+        </dl>
+
         <div className="perspective-card">
           <div
             className="perspective-card__avatars"

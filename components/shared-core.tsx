@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Cable, Languages, ShieldCheck, Sparkles } from "lucide-react";
+import { Layers, Languages, ShieldCheck, Sparkles } from "lucide-react";
 import type { HomeCopy, Locale } from "@/lib/content";
 
 type SharedCoreProps = {
@@ -7,7 +7,7 @@ type SharedCoreProps = {
   locale: Locale;
 };
 
-const icons = [Languages, ShieldCheck, Cable, Sparkles];
+const icons = [Layers, Languages, ShieldCheck, Sparkles];
 
 export function SharedCore({ copy, locale }: SharedCoreProps) {
   return (

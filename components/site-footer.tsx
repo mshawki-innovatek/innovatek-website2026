@@ -33,8 +33,8 @@ export function SiteFooter({ locale }: SiteFooterProps) {
           <BrandLogo href={prefix || "/"} inverse locale={locale} />
           <p>
             {ar
-              ? "منصات تشغيلية ذكية للعطاء والمرافق والزوار وتفاعل العملاء في الإمارات والمنطقة."
-              : "AI-native operational platforms for giving, facilities, visitors and customer engagement across the UAE and the region."}
+              ? "تكنولوجيا من أجل الأثر — منصات ذكاء أصلية للعطاء وإدارة المرافق وتفاعل العملاء في الإمارات والسعودية ومصر والشرق الأوسط."
+              : "Technology for Impact — AI-native platforms for giving, facility management and customer engagement across the UAE, KSA, Egypt and MENA."}
           </p>
         </div>
 

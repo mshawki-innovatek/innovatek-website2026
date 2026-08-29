@@ -37,7 +37,7 @@ Derive hover, pressed, selection, positive, warning, and destructive colors whil
 
 - Heading family: Outfit
 - Body and interface family: Outfit
-- Arabic-script exception: Tahoma/Arial as a local system fallback until an approved Arabic webfont is supplied; this avoids a render-blocking remote dependency.
+- Arabic script: IBM Plex Sans Arabic (Google Fonts), self-hosted at build time via `next/font` so rendering is identical on Windows, Linux, and macOS. The Arabic subset only is loaded; Latin glyphs inside RTL text fall through to Outfit. Tahoma/Arial remain as deep fallbacks only.
 - Inter is forbidden.
 - Display headings: tight but readable tracking, intentional line breaks, responsive scale.
 - Body: comfortable measure and line height; avoid low-contrast small text.

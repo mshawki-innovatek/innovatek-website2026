@@ -4,7 +4,7 @@ import {
   ArrowUpRight,
   Languages,
   Layers3,
-  MapPinned,
+  ShieldCheck,
   RefreshCcw,
   type LucideIcon,
 } from "lucide-react";
@@ -26,16 +26,27 @@ export function AboutPage({ locale }: AboutPageProps) {
   const copy = homeCopy[locale];
   const principles: Array<[LucideIcon, string, string]> = ar
     ? [
-        [Languages, "العربية جزء من المنتج", "نراجع مسار العمل واللغة والاتجاه معاً، لأن الترجمة وحدها لا تصنع تجربة تشغيل عربية."],
-        [Layers3, "معيارية بلا تجزئة", "يحل كل منتج مشكلة كاملة، ثم يتصل ببقية المنظومة فقط عندما تكون هناك فائدة واضحة."],
-        [MapPinned, "قريبون من سياق المنطقة", "نصمم حول واقع الجهات في الإمارات والمنطقة، من البوابة والكشك إلى المالية ومكتب الإدارة."],
-        [RefreshCcw, "شراكة بعد الإطلاق", "يبقى فريق المنتج قريباً من الاستخدام الحقيقي والدعم والتحسين، وفق نطاق واضح لكل مشروع."],
+        [Layers3, "معياري بالتصميم", "عشرة حلول مركّزة تعمل منفردة أو تتصل في منظومة كاملة. ابدأ بواحد — ولا نظام جامد بمقاس واحد للجميع."],
+        [Languages, "عربي أولاً بواجهة RTL أصلية", "ليست طبقة ترجمة. كل شاشة مصممة للعربية والإنجليزية، فيقرأ موظف الاستقبال والإدارة كل بلغته."],
+        [ShieldCheck, "جاهز للتدقيق افتراضياً", "كل تغيير ودخول وموافقة يُسجَّل باسم الشخص والوقت — بمواءمة GDPR وقانون حماية البيانات الإماراتي. فلا يصبح موسم التدقيق مشروعاً."],
+        [RefreshCcw, "شريك بعد التشغيل", "دعم مستمر وتحديثات منتظمة وفريق يعرف القطاع — لا تسليم مشروع وفاتورة."],
       ]
     : [
-        [Languages, "Arabic belongs in the product", "We review workflow, language and reading direction together because translation alone does not create an Arabic operational experience."],
-        [Layers3, "Modular without fragmentation", "Each product solves a complete problem, then connects to the wider ecosystem only when the operational value is clear."],
-        [MapPinned, "Close to regional context", "We design around the reality of organizations in the UAE and region—from the gate and kiosk to finance and leadership."],
-        [RefreshCcw, "A partner after launch", "The product team stays close to real usage, support and improvement within a clear engagement scope."],
+        [Layers3, "Modular by design", "Ten focused solutions that work alone or connect into a full ecosystem. Start with one — never a rigid, one-size-fits-all platform."],
+        [Languages, "Arabic-first, RTL native", "Not a translation layer. Every screen is laid out for Arabic and English, so reception staff and leadership each read their own language."],
+        [ShieldCheck, "Audit-ready by default", "Every change, entry and approval is logged with a person and a timestamp — GDPR and UAE PDPL aligned. Audit season stops being a project."],
+        [RefreshCcw, "A partner after go-live", "Continuous support, regular updates and a team that knows the sector — not a handover and an invoice."],
+      ];
+  const stats: Array<[string, string]> = ar
+    ? [
+        ["2024", "تأسست في الإمارات"],
+        ["+15", "خبير تقني"],
+        ["10", "حلول مترابطة"],
+      ]
+    : [
+        ["2024", "Founded in the UAE"],
+        ["15+", "Technology experts"],
+        ["10", "Connected solutions"],
       ];
 
   const schema = {
@@ -60,15 +71,23 @@ export function AboutPage({ locale }: AboutPageProps) {
         <section className="about-hero">
           <div className="shell about-hero__grid">
             <div className="about-hero__copy">
-              <p className="eyebrow eyebrow--light">{ar ? "عن إنوفاتك SWD" : "Innovatek SWD"}</p>
-              <h1>{ar ? "فريق منتج يبقى قريباً من العملية." : "A product team that stays close to the operation."}</h1>
+              <p className="eyebrow eyebrow--light">{ar ? "عن إنوفاتك SWD" : "About Innovatek SWD"}</p>
+              <h1>{ar ? "شركة برمجيات تبقى معك بعد التشغيل." : "A software house that stays after go-live."}</h1>
               <p>
                 {ar
-                  ? "نبني منصات للعطاء والمرافق والزوار وتفاعل العملاء، ونربط البرمجيات بالأجهزة والأنظمة والأشخاص الذين يعتمد عليهم التشغيل كل يوم."
-                  : "We build platforms for giving, facilities, visitors and customer engagement, connecting software with the devices, systems and people the operation relies on every day."}
+                  ? "تأسسنا في الإمارات عام 2024، ونبني منظومات ذكية تتوسع بالذكاء الاصطناعي — للعطاء وإدارة المرافق وتفاعل العملاء في الإمارات والسعودية ومصر وعموم الشرق الأوسط. معيارية بالتصميم، وذكاء أصلي من اليوم الأول، وبمواءمة GDPR وقانون حماية البيانات الإماراتي، ومبنية للبقاء: دعم مستمر وتحديثات منتظمة وفريق يعرف القطاع."
+                  : "Founded in the UAE in 2024, we build intelligent ecosystems that scale with AI — for giving, facility management and customer engagement across the UAE, KSA, Egypt and the wider MENA region. Modular by design, AI-native from day one, GDPR and UAE PDPL aligned, and built to stay: continuous support, regular updates, and a team that knows the sector."}
               </p>
+              <div className="about-hero__stats">
+                {stats.map(([value, label]) => (
+                  <div key={label}>
+                    <strong>{value}</strong>
+                    <span>{label}</span>
+                  </div>
+                ))}
+              </div>
               <Link href={`${prefix}/contact`} className="button button--light">
-                {ar ? "تحدث إلى فريق المنتج" : "Talk to the product team"}
+                {ar ? "تحدّث إلى فريقنا" : "Talk to our team"}
                 <ArrowUpRight aria-hidden="true" />
               </Link>
             </div>

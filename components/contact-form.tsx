@@ -18,8 +18,8 @@ type Draft = {
 
 function getMailtoHref(draft: Draft, ar: boolean) {
   const subject = ar
-    ? `طلب جلسة عمل من ${draft.organization}`
-    : `Working session request from ${draft.organization}`;
+    ? `طلب عرض توضيحي من ${draft.organization}`
+    : `Demo request from ${draft.organization}`;
   const body = ar
     ? `الاسم: ${draft.name}\nالبريد: ${draft.email}\nالجهة: ${draft.organization}\n\nالتحدي التشغيلي:\n${draft.challenge}`
     : `Name: ${draft.name}\nEmail: ${draft.email}\nOrganization: ${draft.organization}\n\nOperational challenge:\n${draft.challenge}`;
@@ -97,7 +97,7 @@ export function ContactForm({ locale }: ContactFormProps) {
     <form className="contact-form" onSubmit={handleSubmit}>
       <div className="contact-form__row">
         <label>
-          <span>{ar ? "الاسم" : "Name"}</span>
+          <span>{ar ? "الاسم الكامل" : "Full name"}</span>
           <input
             ref={nameInputRef}
             name="name"
@@ -150,7 +150,7 @@ export function ContactForm({ locale }: ContactFormProps) {
         />
       </label>
       <button type="submit" className="button button--primary contact-form__submit">
-        <span>{ar ? "جهّز موجز جلسة العمل" : "Prepare my working-session brief"}</span>
+        <span>{ar ? "احجز عرضاً توضيحياً" : "Book a demo"}</span>
         <ArrowUpRight aria-hidden="true" size={19} />
       </button>
     </form>

@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
-import { outfit } from "@/app/fonts";
+import { outfit, plexArabic } from "@/app/fonts";
 import "@/app/globals.css";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import { SEO_KEYWORDS } from "@/lib/seo";
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     template: "%s | Innovatek SWD",
   },
   description:
-    "Innovatek SWD builds modular, Arabic-ready software for donations, facilities, visitor management and customer engagement across the UAE and MENA.",
+    "Technology for Impact — AI-native platforms for giving, facility management and customer engagement across the UAE, KSA, Egypt and MENA. Modular by design, Arabic-first, and supported after go-live.",
   keywords: SEO_KEYWORDS.en.home,
   applicationName: SITE_NAME,
   authors: [{ name: SITE_NAME }],
@@ -41,7 +41,12 @@ export const viewport: Viewport = {
 
 export default function EnglishRootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en-AE" dir="ltr" className={outfit.variable} data-scroll-behavior="smooth">
+    <html
+      lang="en-AE"
+      dir="ltr"
+      className={`${outfit.variable} ${plexArabic.variable}`}
+      data-scroll-behavior="smooth"
+    >
       <body>{children}</body>
     </html>
   );

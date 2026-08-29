@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
-import { outfit } from "@/app/fonts";
+import { outfit, plexArabic } from "@/app/fonts";
 import "@/app/globals.css";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import { SEO_KEYWORDS } from "@/lib/seo";
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     template: "%s | إنوفاتك SWD",
   },
   description:
-    "تبني إنوفاتك SWD منصات معيارية ثنائية اللغة لإدارة التبرعات والمرافق والزوار وتفاعل العملاء في الإمارات ومنطقة الشرق الأوسط.",
+    "تكنولوجيا من أجل الأثر — منصات ذكاء أصلية للعطاء وإدارة المرافق وتفاعل العملاء في الإمارات والسعودية ومصر والشرق الأوسط. معيارية بالتصميم، عربية أولاً، وبدعم بعد التشغيل.",
   keywords: SEO_KEYWORDS.ar.home,
   applicationName: SITE_NAME,
   authors: [{ name: SITE_NAME }],
@@ -41,7 +41,12 @@ export const viewport: Viewport = {
 
 export default function ArabicRootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="ar-AE" dir="rtl" className={outfit.variable} data-scroll-behavior="smooth">
+    <html
+      lang="ar-AE"
+      dir="rtl"
+      className={`${outfit.variable} ${plexArabic.variable}`}
+      data-scroll-behavior="smooth"
+    >
       <body>{children}</body>
     </html>
   );

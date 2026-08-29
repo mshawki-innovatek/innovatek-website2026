@@ -4,8 +4,8 @@ export const SITE_URL =
   "https://www.innovatek.ae";
 
 export const CONTACT = {
-  email: "Sales@innovatek-swd.com",
-  emailHref: "mailto:sales@innovatek-swd.com",
+  email: "hello@innovatek.ae",
+  emailHref: "mailto:hello@innovatek.ae",
   phone: "055 889 1317",
   phoneInternational: "+971 55 889 1317",
   phoneHref: "tel:+971558891317",
