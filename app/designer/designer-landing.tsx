@@ -15,7 +15,7 @@ export function DesignerLanding({ lang }: { lang: Lang }) {
   const router = useRouter();
   const ar = lang === "ar";
 
-  const [nav, setNav] = useState(false);
+  const [navState, setNavState] = useState(false);
   const [tab, setTab] = useState(0);
   const [slide, setSlide] = useState(0);
   const [open, setOpen] = useState(0);
@@ -99,7 +99,7 @@ export function DesignerLanding({ lang }: { lang: Lang }) {
 
   const vals = useMemo<LandingVals>(() => {
     const p = T.panels[tab];
-    const nav = ar ? p.navAr : p.nav;
+    const panelNav = ar ? p.navAr : p.nav;
 
     const faqs = T.faqs.map((f, i) => {
       const c = ar ? f.ar : f.en;
@@ -115,13 +115,13 @@ export function DesignerLanding({ lang }: { lang: Lang }) {
       lang,
       dir: ar ? "rtl" : "ltr",
       showCaseStudy: true,
-      toggleNav: () => setNav((s) => !s),
-      closeNav: () => setNav(false),
+      toggleNav: () => setNavState((s: boolean) => !s),
+      closeNav: () => setNavState(false),
       toggleLang: () => router.push(ar ? "/" : "/ar"),
-      navOpen: nav ? "1" : "0",
-      navBarTop: nav ? "translateY(6px) rotate(45deg)" : "none",
-      navBarMid: nav ? 0 : 1,
-      navBarBot: nav ? "translateY(-6px) rotate(-45deg)" : "none",
+      navOpen: navState ? "1" : "0",
+      navBarTop: navState ? "translateY(6px) rotate(45deg)" : "none",
+      navBarMid: navState ? 0 : 1,
+      navBarBot: navState ? "translateY(-6px) rotate(-45deg)" : "none",
 
       heroEyebrow: pick(HERO[slide].eyebrow, lang),
       heroTitle: pick(HERO[slide].title, lang),
@@ -201,7 +201,7 @@ export function DesignerLanding({ lang }: { lang: Lang }) {
       mockUrl: p.url,
       mockTitle: pick(p.title, lang),
       mockStamp: pick(p.stamp, lang),
-      mockNav: nav.map((label, i) => ({
+      mockNav: panelNav.map((label, i) => ({
         label,
         bg: i === 0 ? "rgba(255,255,255,0.1)" : "transparent",
         ink: i === 0 ? "#fff" : "rgba(255,255,255,0.55)",
@@ -276,7 +276,7 @@ export function DesignerLanding({ lang }: { lang: Lang }) {
     );
 
     return { ...v, ...slideVals, ...tabVals };
-  }, [ar, lang, live, nav, open, router, slide, tab]);
+  }, [ar, lang, live, navState, open, router, slide, tab]);
 
   return lang === "ar" ? <LandingBodyAr v={vals} /> : <LandingBodyEn v={vals} />;
 }

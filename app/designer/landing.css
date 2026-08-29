@@ -6018,7 +6018,7 @@
     [data-hdr-cta] { display: none !important; }
     [data-mock-stats] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
   }
-  [data-lang="ar"] [data-display] { font-family: Dubai, sans-serif !important; }
+  [data-lang="ar"] [data-display] { font-family: var(--font-arabic), Dubai, sans-serif !important; }
   [data-lang="ar"] :not([dir="ltr"]):not([dir="ltr"] *) { letter-spacing: normal !important; text-transform: none !important; }
   [data-lang="ar"] [data-display] { line-height: 1.28 !important; }
   [data-lang="ar"] p, [data-lang="ar"] li { line-height: 1.85 !important; }

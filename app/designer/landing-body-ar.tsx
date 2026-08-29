@@ -11,7 +11,7 @@ export function LandingBodyAr({ v }: { v: LandingVals }) {
 
 
 
-<div data-lang={v.lang} dir={v.dir}  style={{ fontFamily: "Dubai, -apple-system, 'Segoe UI', var(--font-arabic), sans-serif", color: "var(--color-text-primary)", background: "var(--color-background-primary)", overflowX: "hidden", }}>
+<div data-lang={v.lang} dir={v.dir}  style={{ fontFamily: "var(--font-arabic), Dubai, -apple-system, 'Segoe UI', sans-serif", color: "var(--color-text-primary)", background: "var(--color-background-primary)", overflowX: "hidden", }}>
 
   <header  style={{ position: "fixed", top: "0", insetInline: "0", zIndex: "60", backdropFilter: "blur(14px)", background: "rgba(255,255,255,0.86)", borderBottom: "1px solid var(--color-border-subtle)", }}>
     <div  style={{ maxWidth: "1280px", margin: "0 auto", padding: "14px clamp(20px, 4vw, 48px)", display: "flex", alignItems: "center", gap: "32px", }}>
@@ -172,7 +172,7 @@ export function LandingBodyAr({ v }: { v: LandingVals }) {
               <div  style={{ fontSize: "11px", fontWeight: "700", letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--color-text-tertiary)", marginBottom: "11px", }}>Bunyan · {v.heroLabelWorkOrders}</div>
               <div  style={{ display: "flex", flexDirection: "column", gap: "9px", }}>
                 {v.heroWorkOrders.map((wo: any, i: number) => (
-<Fragment key={v.i}>
+<Fragment key={i}>
 
                   <div  style={{ display: "flex", alignItems: "center", gap: "10px", }}>
                     <span dir="ltr"  style={{ fontFamily: "Inter, var(--font-arabic), sans-serif", fontSize: "11px", fontWeight: "700", color: "var(--color-text-tertiary)", flexShrink: "0", }}>{wo.id}</span>
@@ -236,7 +236,7 @@ export function LandingBodyAr({ v }: { v: LandingVals }) {
               </div>
               <div  style={{ display: "flex", flexDirection: "column", gap: "10px", }}>
                 {v.heroThreads.map((th: any, i: number) => (
-<Fragment key={v.i}>
+<Fragment key={i}>
 
                   <div  style={{ display: "flex", alignItems: "flex-start", gap: "10px", padding: "10px", borderRadius: "12px", background: "var(--color-background-primary)", border: "1px solid var(--color-border-subtle)", }}>
                     <span  style={{ width: "28px", height: "28px", borderRadius: "9px", display: "grid", placeItems: "center", flexShrink: "0", background: "var(--color-neutral-950)", color: "#fff", }}>
@@ -271,7 +271,7 @@ export function LandingBodyAr({ v }: { v: LandingVals }) {
 
       <div data-hero-tabs="true"  style={{ position: "relative", maxWidth: "1440px", margin: "0 auto", borderTop: "1px solid rgba(255,255,255,0.14)", padding: "14px clamp(20px, 4vw, 64px)", display: "flex", alignItems: "center", gap: "clamp(16px, 3vw, 40px)", flexWrap: "wrap", }}>
         {v.heroTabs.map((tab: any, i: number) => (
-<Fragment key={v.i}>
+<Fragment key={i}>
 
           <button  style={{ display: "flex", alignItems: "center", gap: "9px", flexShrink: "0", whiteSpace: "nowrap", background: "transparent", border: "0", padding: "10px 0", cursor: "pointer", fontFamily: "Dubai, -apple-system, 'Segoe UI', var(--font-arabic), sans-serif", fontSize: "14px", fontWeight: "700", color: tab.ink, position: "relative", transition: "color 240ms ease", }}>
             <span  style={{ width: "7px", height: "7px", borderRadius: "50%", background: tab.dot, }}></span>
@@ -499,7 +499,7 @@ export function LandingBodyAr({ v }: { v: LandingVals }) {
                 <span  style={{ fontFamily: "Manrope, var(--font-arabic), sans-serif", fontWeight: "700", fontSize: "13px", color: "#fff", }}>Innovatek OS</span>
               </div>
               {v.mockNav.map((item: any, i: number) => (
-<Fragment key={v.i}>
+<Fragment key={i}>
 
                 <div  style={{ display: "flex", alignItems: "center", gap: "9px", padding: "8px 10px", borderRadius: "8px", fontFamily: "Inter, var(--font-arabic), sans-serif", fontSize: "12px", fontWeight: "500", background: item.bg, color: item.ink, }}>
                   <span  style={{ width: "5px", height: "5px", borderRadius: "50%", background: item.dot, flexShrink: "0", }}></span>
@@ -516,7 +516,7 @@ export function LandingBodyAr({ v }: { v: LandingVals }) {
               </div>
               <div data-mock-stats="true"  style={{ display: "grid", gridTemplateColumns: "repeat(4, minmax(0, 1fr))", gap: "10px", }}>
                 {v.mockStats.map((s: any, i: number) => (
-<Fragment key={v.i}>
+<Fragment key={i}>
 
                   <div  style={{ border: "1px solid var(--color-border-subtle)", borderRadius: "10px", padding: "11px 12px", }}>
                     <div  style={{ fontFamily: "Inter, var(--font-arabic), sans-serif", fontSize: "10px", fontWeight: "600", letterSpacing: "0.04em", textTransform: "uppercase", color: "var(--color-text-tertiary)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", }}>{s.label}</div>
@@ -529,7 +529,7 @@ export function LandingBodyAr({ v }: { v: LandingVals }) {
               <div  style={{ border: "1px solid var(--color-border-subtle)", borderRadius: "10px", overflow: "hidden", }}>
                 <div data-mock-row="true"  style={{ display: "grid", gridTemplateColumns: "1.6fr 1fr 1fr 0.9fr", gap: "10px", padding: "9px 14px", background: "var(--color-surface-subtle)", borderBottom: "1px solid var(--color-border-subtle)", }}>
                   {v.mockCols.map((c: any, i: number) => (
-<Fragment key={v.i}>
+<Fragment key={i}>
 
                     <span  style={{ fontFamily: "Inter, var(--font-arabic), sans-serif", fontSize: "10px", fontWeight: "700", letterSpacing: "0.05em", textTransform: "uppercase", color: "var(--color-text-tertiary)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", }}>{c}</span>
                   
@@ -537,7 +537,7 @@ export function LandingBodyAr({ v }: { v: LandingVals }) {
 ))}
                 </div>
                 {v.mockRows.map((r: any, i: number) => (
-<Fragment key={v.i}>
+<Fragment key={i}>
 
                   <div data-mock-row="true"  style={{ display: "grid", gridTemplateColumns: "1.6fr 1fr 1fr 0.9fr", gap: "10px", alignItems: "center", padding: "11px 14px", borderBottom: "1px solid var(--color-border-subtle)", }}>
                     <span  style={{ fontFamily: "Inter, var(--font-arabic), sans-serif", fontSize: "12px", fontWeight: "600", color: "var(--color-text-primary)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", }}>{r.a}</span>
@@ -563,7 +563,7 @@ export function LandingBodyAr({ v }: { v: LandingVals }) {
           <p  style={{ margin: "0 0 24px", fontSize: "17px", lineHeight: "1.65", color: "var(--color-text-secondary)", textWrap: "pretty", }}>{v.panelBody}</p>
           <div  style={{ display: "flex", flexDirection: "column", gap: "14px", marginBottom: "28px", }}>
             {v.panelPoints.map((p: any, i: number) => (
-<Fragment key={v.i}>
+<Fragment key={i}>
 
               <div  style={{ display: "flex", gap: "12px", alignItems: "flex-start", }}>
                 <span  style={{ width: "22px", height: "22px", borderRadius: "50%", flexShrink: "0", display: "grid", placeItems: "center", background: "var(--color-surface-brand)", color: "var(--accent-deep)", marginTop: "1px", }}>
@@ -807,7 +807,7 @@ export function LandingBodyAr({ v }: { v: LandingVals }) {
           </div>
           <div  style={{ background: "#fff", borderRadius: "14px", padding: "8px", boxShadow: "0 8px 22px rgba(15,23,42,0.07)", }}>
             {v.auditRows.map((a: any, i: number) => (
-<Fragment key={v.i}>
+<Fragment key={i}>
 
               <div  style={{ display: "flex", alignItems: "center", gap: "12px", padding: "11px 12px", borderBottom: "1px solid var(--color-border-subtle)", }}>
                 <span  style={{ width: "28px", height: "28px", borderRadius: "8px", flexShrink: "0", display: "grid", placeItems: "center", background: a.tint, color: a.ink, }}>
@@ -849,7 +849,7 @@ export function LandingBodyAr({ v }: { v: LandingVals }) {
 
       <div  style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "18px", }} data-reveal="true">
         {v.compactFeatures.map((f: any, i: number) => (
-<Fragment key={v.i}>
+<Fragment key={i}>
 
           <div  style={{ background: "var(--color-blue-50)", border: "1px solid var(--color-blue-100)", borderRadius: "20px", padding: "28px 26px 30px", }}>
             <span  style={{ display: "grid", placeItems: "center", width: "42px", height: "42px", borderRadius: "12px", background: "#fff", color: "var(--accent)", marginBottom: "20px", boxShadow: "0 6px 16px rgba(15,23,42,0.06)", }}>
@@ -945,7 +945,7 @@ export function LandingBodyAr({ v }: { v: LandingVals }) {
       </h2>
       <div  style={{ display: "flex", flexDirection: "column", gap: "10px", }}>
         {v.faqs.map((q: any, i: number) => (
-<Fragment key={v.i}>
+<Fragment key={i}>
 
           <div  style={{ background: "var(--color-background-primary)", border: "1px solid var(--color-border-subtle)", borderRadius: "12px", overflow: "hidden", }}>
             <button  style={{ width: "100%", display: "flex", alignItems: "center", gap: "16px", padding: "20px 22px", background: "transparent", border: "0", cursor: "pointer", textAlign: "start", fontFamily: "Dubai, -apple-system, 'Segoe UI', var(--font-arabic), sans-serif", }}>
