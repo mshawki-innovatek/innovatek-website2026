@@ -2,8 +2,13 @@
 
 import { FormEvent, useRef, useState } from "react";
 import { ArrowUpRight, CheckCircle2, Mail } from "lucide-react";
-import emailjs from "@emailjs/browser";
 import type { Locale } from "@/lib/content";
+import {
+  buildContactMailto,
+  ContactEmailTimeoutError,
+  describeContactEmailError,
+  startContactEmail,
+} from "@/lib/contact-email";
 import { CONTACT } from "@/lib/site";
 
 type ContactFormProps = {
@@ -17,78 +22,124 @@ type Draft = {
   challenge: string;
 };
 
-const EMAILJS = {
-  serviceId: "service_qhrceap",
-  templateId: "template_hhl5qlb",
-  publicKey: "0-zKFGIfgkaCORhdN",
-} as const;
+type SendState = "idle" | "sending" | "error" | "timeout";
+
+const EMPTY_DRAFT: Draft = {
+  name: "",
+  email: "",
+  organization: "",
+  challenge: "",
+};
 
 export function ContactForm({ locale }: ContactFormProps) {
-  const [draft, setDraft] = useState<Draft | null>(null);
-  const [savedDraft, setSavedDraft] = useState<Draft | null>(null);
-  const [sending, setSending] = useState(false);
-  const [sendError, setSendError] = useState(false);
+  const [draft, setDraft] = useState<Draft>(EMPTY_DRAFT);
+  const [submittedDraft, setSubmittedDraft] = useState<Draft | null>(null);
+  const [sendState, setSendState] = useState<SendState>("idle");
+  const submissionActiveRef = useRef(false);
   const nameInputRef = useRef<HTMLInputElement>(null);
   const ar = locale === "ar";
+  const services = ar ? "طلب جلسة عمل" : "Working session request";
+  const fallbackHref = buildContactMailto(
+    {
+      name: draft.name,
+      email: draft.email,
+      organization: draft.organization,
+      services,
+      message: draft.challenge,
+    },
+    locale,
+  );
 
-  async function sendEmail(d: Draft) {
-    return emailjs.send(
-      EMAILJS.serviceId,
-      EMAILJS.templateId,
-      {
-        from_name: d.name,
-        Email: d.email,
-        Company: d.organization,
-        Phone: "",
-        services: "Not specified",
-        message: d.challenge,
-      },
-      { publicKey: EMAILJS.publicKey },
-    );
+  function updateDraft(field: keyof Draft, value: string) {
+    setDraft((current) => ({ ...current, [field]: value }));
+    if (sendState !== "sending") setSendState("idle");
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (submissionActiveRef.current) return;
+
     const form = event.currentTarget;
     const formData = new FormData(form);
-
     const nextDraft: Draft = {
       name: String(formData.get("name") ?? "").trim(),
       email: String(formData.get("email") ?? "").trim(),
       organization: String(formData.get("organization") ?? "").trim(),
       challenge: String(formData.get("challenge") ?? "").trim(),
     };
+    const challengeField = form.elements.namedItem(
+      "challenge",
+    ) as HTMLTextAreaElement | null;
 
-    if (!nextDraft.name || !nextDraft.email || !nextDraft.organization) return;
+    if (challengeField && nextDraft.challenge.length < 20) {
+      challengeField.setCustomValidity(
+        ar
+          ? "يرجى كتابة 20 حرفاً على الأقل عن مسار العمل."
+          : "Please enter at least 20 characters about the workflow.",
+      );
+      challengeField.reportValidity();
+      challengeField.focus();
+      return;
+    }
+    challengeField?.setCustomValidity("");
 
-    setSending(true);
-    setSendError(false);
+    if (
+      nextDraft.name.length < 2 ||
+      nextDraft.organization.length < 2 ||
+      !nextDraft.email
+    ) {
+      form.reportValidity();
+      return;
+    }
+
+    submissionActiveRef.current = true;
+    setSendState("sending");
+    const operation = startContactEmail({
+      name: nextDraft.name,
+      email: nextDraft.email,
+      organization: nextDraft.organization,
+      services,
+      message: nextDraft.challenge,
+    });
+
     try {
-      const resp = await sendEmail(nextDraft);
-      if (resp.status === 200) {
-        setSavedDraft(nextDraft);
-        setDraft(nextDraft);
-        form.reset();
-      } else {
-        setSendError(true);
-      }
-    } catch {
-      setSendError(true);
+      await operation.result;
+      setSubmittedDraft(nextDraft);
+      setDraft(EMPTY_DRAFT);
+      setSendState("idle");
+    } catch (error) {
+      console.error(
+        "[contact form] send failed:",
+        describeContactEmailError(error),
+      );
+      setSendState(
+        error instanceof ContactEmailTimeoutError ? "timeout" : "error",
+      );
     } finally {
-      setSending(false);
+      void operation.settled.then(() => {
+        submissionActiveRef.current = false;
+      });
     }
   }
 
-  function editDetails() {
-    setDraft(null);
+  function sendAnotherRequest() {
+    setSubmittedDraft(null);
+    setSendState("idle");
     requestAnimationFrame(() => nameInputRef.current?.focus());
   }
 
-  const submitLabel = sending
-    ? ar ? "جارٍ الإرسال…" : "Sending…"
-    : ar ? "احجز عرضاً توضيحياً" : "Book a demo";
+  if (submittedDraft) {
+    const submittedFallback = buildContactMailto(
+      {
+        name: submittedDraft.name,
+        email: submittedDraft.email,
+        organization: submittedDraft.organization,
+        services,
+        message: submittedDraft.challenge,
+      },
+      locale,
+    );
 
-  if (draft) {
     return (
       <div className="contact-success" role="status" aria-live="polite">
         <span className="contact-success__icon">
@@ -99,21 +150,25 @@ export function ContactForm({ locale }: ContactFormProps) {
         </p>
         <h3>
           {ar
-            ? `شكراً ${draft.name}. وصل طلبك إلى فريق إنوفاتك وسنرد خلال يوم عمل واحد.`
-            : `Thanks, ${draft.name}. Your request reached the Innovatek team — we reply within one working day.`}
+            ? `شكراً ${submittedDraft.name}. وصل طلبك إلى فريق إنوفاتك، وسنرد خلال يوم عمل واحد.`
+            : `Thanks, ${submittedDraft.name}. Your request reached the Innovatek team. We reply within one working day.`}
         </h3>
         <p>
           {ar
-            ? `الجهة: ${draft.organization}. لم نشارك بياناتك مع أي طرف آخر.`
-            : `Organisation: ${draft.organization}. Your details stay with our team.`}
+            ? `الجهة: ${submittedDraft.organization}. أُرسلت بيانات النموذج إلى ${CONTACT.email}.`
+            : `Organisation: ${submittedDraft.organization}. The form details were sent to ${CONTACT.email}.`}
         </p>
         <div className="contact-success__actions">
-          <a href={`${CONTACT.emailHref}`} className="button button--primary">
+          <a href={submittedFallback} className="button button--primary">
             <Mail aria-hidden="true" size={18} />
             <span>{ar ? "راسلنا مباشرة" : "Email us directly"}</span>
             <ArrowUpRight aria-hidden="true" size={18} />
           </a>
-          <button type="button" className="button button--outline" onClick={editDetails}>
+          <button
+            type="button"
+            className="button button--outline"
+            onClick={sendAnotherRequest}
+          >
             {ar ? "أرسل طلباً آخر" : "Send another request"}
           </button>
         </div>
@@ -121,8 +176,25 @@ export function ContactForm({ locale }: ContactFormProps) {
     );
   }
 
+  const sending = sendState === "sending";
+  const submitLabel = sending
+    ? ar
+      ? "جارٍ الإرسال…"
+      : "Sending…"
+    : ar
+      ? "احجز عرضاً توضيحياً"
+      : "Book a demo";
+  const noJsHref = buildContactMailto({ services }, locale);
+
   return (
-    <form className="contact-form" onSubmit={handleSubmit}>
+    <form
+      className="contact-form"
+      onSubmit={handleSubmit}
+      action={noJsHref}
+      method="post"
+      encType="text/plain"
+      aria-busy={sending}
+    >
       <div className="contact-form__row">
         <label>
           <span>{ar ? "الاسم الكامل" : "Full name"}</span>
@@ -133,8 +205,10 @@ export function ContactForm({ locale }: ContactFormProps) {
             autoComplete="name"
             required
             minLength={2}
+            maxLength={120}
             placeholder={ar ? "اسمك" : "Your name"}
-            defaultValue={savedDraft?.name}
+            value={draft.name}
+            onChange={(event) => updateDraft("name", event.target.value)}
           />
         </label>
         <label>
@@ -146,7 +220,8 @@ export function ContactForm({ locale }: ContactFormProps) {
             required
             placeholder="name@organization.com"
             dir="ltr"
-            defaultValue={savedDraft?.email}
+            value={draft.email}
+            onChange={(event) => updateDraft("email", event.target.value)}
           />
         </label>
       </div>
@@ -158,40 +233,81 @@ export function ContactForm({ locale }: ContactFormProps) {
           autoComplete="organization"
           required
           minLength={2}
+          maxLength={160}
           placeholder={ar ? "اسم الجهة" : "Organization name"}
-          defaultValue={savedDraft?.organization}
+          value={draft.organization}
+          onChange={(event) => updateDraft("organization", event.target.value)}
         />
       </label>
       <label>
-        <span>{ar ? "ما مسار العمل الذي تريد تحسينه؟" : "Which workflow should we improve first?"}</span>
+        <span>
+          {ar
+            ? "ما مسار العمل الذي تريد تحسينه؟"
+            : "Which workflow should we improve first?"}
+        </span>
         <textarea
           name="challenge"
           required
           minLength={20}
+          maxLength={2000}
           rows={5}
           placeholder={
             ar
               ? "صف أين يتباطأ العمل، ومن يستخدمه، وما الأنظمة المرتبطة به."
               : "Tell us where work slows down, who uses it and which systems are involved."
           }
-          defaultValue={savedDraft?.challenge}
+          value={draft.challenge}
+          onChange={(event) => {
+            event.currentTarget.setCustomValidity("");
+            updateDraft("challenge", event.target.value);
+          }}
         />
       </label>
-      <button type="submit" className="button button--primary contact-form__submit" disabled={sending}>
+      <button
+        type="submit"
+        className="button button--primary contact-form__submit"
+        disabled={sending}
+      >
         <span>{submitLabel}</span>
         <ArrowUpRight aria-hidden="true" size={19} />
       </button>
-      {sendError ? (
-        <p role="alert" style={{ margin: 0, fontSize: "14px", fontWeight: "600", color: "var(--color-red-600)", textAlign: "center" }}>
-          {ar ? "تعذّر إرسال الطلب — تحقق من الاتصال وحاول مرة أخرى، أو راسلنا مباشرة." : "Couldn’t send your request — check your connection and try again, or email us directly."}
-        </p>
-      ) : (
-        <p style={{ margin: 0, fontSize: "14px", color: "var(--text-secondary)", textAlign: "center" }}>
-          {ar
-            ? "نرد خلال يوم عمل واحد. بياناتك تبقى لدى فريقنا."
-            : "We reply within one working day. Your details stay with our team."}
-        </p>
-      )}
+      <div aria-live="polite" aria-atomic="true">
+        {sendState === "error" || sendState === "timeout" ? (
+          <p
+            role="alert"
+            style={{
+              margin: 0,
+              fontSize: "14px",
+              fontWeight: "600",
+              color: "var(--color-red-600)",
+              textAlign: "center",
+            }}
+          >
+            {sendState === "timeout"
+              ? ar
+                ? "لم يصل تأكيد التسليم في الوقت المحدد. تجنّب الإرسال المتكرر وراسلنا مباشرة إذا لم يصلك رد."
+                : "Delivery was not confirmed in time. Avoid repeated submissions and email us directly if you do not hear back."
+              : ar
+                ? "تعذّر إرسال الطلب. بقيت بياناتك في النموذج لتعيد المحاولة."
+                : "The request could not be sent. Your details remain in the form so you can retry."}{" "}
+            <a href={fallbackHref}>{ar ? "افتح بريدك" : "Open email fallback"}</a>
+          </p>
+        ) : (
+          <p
+            style={{
+              margin: 0,
+              fontSize: "14px",
+              color: "var(--text-secondary)",
+              textAlign: "center",
+            }}
+          >
+            {ar
+              ? `يُرسل النموذج بياناتك إلى ${CONTACT.email}. يمكنك استخدام البريد المباشر بدلاً منه.`
+              : `This form sends your details to ${CONTACT.email}. You can use direct email instead.`}{" "}
+            <a href={fallbackHref}>{ar ? "البريد المباشر" : "Direct email"}</a>
+          </p>
+        )}
+      </div>
     </form>
   );
 }

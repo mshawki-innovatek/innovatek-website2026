@@ -342,7 +342,7 @@ export const homeCopy = {
       title: "See it running on your own sites.",
       body: "A 30-minute walkthrough with the team that will run your rollout. No slides — the actual system, with your projects, your sites and your channels.",
       emailLabel: "Prefer email?",
-      note: "Your form details stay in your browser until you choose to send the prepared email.",
+      note: "Your details are sent to Sales@innovatek-swd.com. If delivery is not confirmed, your draft stays in the form and you can open a prefilled email instead.",
     },
   },
   ar: {
@@ -448,7 +448,7 @@ export const homeCopy = {
       title: "شاهدها تعمل على مواقعك أنت.",
       body: "جلسة 30 دقيقة مع الفريق الذي سينفّذ مشروعك. بلا عروض تقديمية — النظام الفعلي، بمشاريعك ومواقعك وقنواتك.",
       emailLabel: "تفضل البريد؟",
-      note: "تبقى بيانات النموذج في متصفحك حتى تختار إرسال البريد المُعدّ.",
+      note: "تُرسل بياناتك إلى Sales@innovatek-swd.com. إذا لم يتأكد التسليم، تبقى البيانات في النموذج ويمكنك فتح بريد مُعبّأ مسبقاً.",
     },
   },
 };

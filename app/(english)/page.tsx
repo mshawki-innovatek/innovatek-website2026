@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { DesignerLanding } from "@/app/designer/designer-landing";
+import { JsonLd } from "@/components/json-ld";
 import { SEO_KEYWORDS } from "@/lib/seo";
+import { buildHomeSchema } from "@/lib/home-schema";
 
 export const metadata: Metadata = {
   title: {
@@ -38,5 +40,10 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <DesignerLanding lang="en" />;
+  return (
+    <>
+      <JsonLd data={buildHomeSchema("en")} />
+      <DesignerLanding lang="en" />
+    </>
+  );
 }

@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { solutions } from "@/lib/content";
-import { absoluteUrl } from "@/lib/site";
+import { canonicalUrl } from "@/lib/site";
 
 export const dynamic = "force-static";
 
@@ -30,7 +30,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ]);
 
   return [...staticPages, ...solutionPages].map((entry) => ({
-    url: absoluteUrl(entry.path),
+    url: canonicalUrl(entry.path),
     changeFrequency: entry.changeFrequency,
     priority: entry.priority,
   }));

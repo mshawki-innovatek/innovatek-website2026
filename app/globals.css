@@ -47,7 +47,7 @@ body {
   min-width: 320px;
   background: var(--background);
   color: var(--text-primary);
-  font-family: Dubai, -apple-system, "Segoe UI", var(--font-arabic), sans-serif;
+  font-family: var(--font-outfit), var(--font-arabic), "Segoe UI", sans-serif;
   line-height: 1.6;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -69,7 +69,7 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: Manrope, var(--font-arabic), sans-serif;
+  font-family: var(--font-outfit), var(--font-arabic), sans-serif;
   letter-spacing: -0.02em;
 }
 
@@ -234,12 +234,12 @@ html[dir="rtl"] .display-heading {
 
 .button--primary {
   color: #ffffff;
-  background: var(--accent);
+  background: var(--accent-dark);
 }
 
 .button--primary:hover {
   color: #ffffff;
-  background: var(--accent-dark);
+  background: #1f4ed6;
 }
 
 .button--light {
@@ -2232,6 +2232,13 @@ html[dir="rtl"] .contact-section__copy h2 {
   padding: 0.9rem;
   line-height: 1.55;
   resize: vertical;
+}
+
+/* Latin-only fields (email, phone, URL) keep LTR entry order, but must still start
+   from the same edge as every other field in an RTL form. */
+[dir="rtl"] .contact-form input[dir="ltr"],
+[dir="rtl"] .contact-form textarea[dir="ltr"] {
+  text-align: right;
 }
 
 .contact-form input::placeholder,

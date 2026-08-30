@@ -721,12 +721,12 @@
   --elevation-xs-blur: var(--numerical-nm-8);
   --elevation-xs-size-y: var(--numerical-nm-1);
   --elevation-xs-spread: var(--numerical-nm-2);
-  --font-families-arabic: "Dubai";
-  --font-families-english: "Dubai";
-  --font-family-display: "Manrope";
-  --font-family-headlines-2: "Manrope";
-  --font-family-headlines: "Manrope";
-  --font-family-mono: "Inconsolata";
+  --font-families-arabic: var(--font-arabic);
+  --font-families-english: var(--font-outfit);
+  --font-family-display: var(--font-outfit);
+  --font-family-headlines-2: var(--font-outfit);
+  --font-family-headlines: var(--font-outfit);
+  --font-family-mono: var(--font-outfit);
   --font-height-body-lg-2: var(--numeric-24);
   --font-height-body-lg: var(--numerical-nm-28);
   --font-height-body-md-2: var(--numeric-22);
@@ -3149,9 +3149,9 @@
 }
 
 :root[data-mode="rtl"] {
-  --font-family-display: "Manrope";
-  --font-family-headlines-2: "Manrope";
-  --font-family-headlines: "Manrope";
+  --font-family-display: var(--font-outfit);
+  --font-family-headlines-2: var(--font-outfit);
+  --font-family-headlines: var(--font-outfit);
   --font-height-body-lg: var(--numerical-nm-28);
   --font-height-body-md: var(--numerical-nm-24);
   --font-height-body-sm: var(--numerical-nm-20);
@@ -5456,11 +5456,7 @@
   --wizard-title-text: var(--color-text-primary); /* @kind color */
 }
 
-/* Fonts used by the kit's Typography variables: Dubai (Arabic + Latin UI text),
-   Inter (body copy — highest character count in the source file), Manrope
-   (display/headline family), Inconsolata (mono/label-mono). All four are
-   Google Fonts; loaded via @import since no local font binaries were attached. */
-/* vietnamese */
+/* Legacy embedded font faces are disabled. The app loads Outfit and IBM Plex Sans Arabic through next/font.
 @font-face {
   font-family: 'Inconsolata';
   font-style: normal;
@@ -5470,7 +5466,6 @@
   src: url(/assets/designer/fonts/422268e1.woff2) format('woff2');
   unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
 }
-/* latin-ext */
 @font-face {
   font-family: 'Inconsolata';
   font-style: normal;
@@ -5480,7 +5475,6 @@
   src: url(/assets/designer/fonts/b9aa9cdc.woff2) format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
-/* latin */
 @font-face {
   font-family: 'Inconsolata';
   font-style: normal;
@@ -5490,7 +5484,6 @@
   src: url(/assets/designer/fonts/f0d18d8d.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-/* vietnamese */
 @font-face {
   font-family: 'Inconsolata';
   font-style: normal;
@@ -5500,7 +5493,6 @@
   src: url(/assets/designer/fonts/422268e1.woff2) format('woff2');
   unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
 }
-/* latin-ext */
 @font-face {
   font-family: 'Inconsolata';
   font-style: normal;
@@ -5510,7 +5502,6 @@
   src: url(/assets/designer/fonts/b9aa9cdc.woff2) format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
-/* latin */
 @font-face {
   font-family: 'Inconsolata';
   font-style: normal;
@@ -5520,7 +5511,6 @@
   src: url(/assets/designer/fonts/f0d18d8d.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-/* vietnamese */
 @font-face {
   font-family: 'Inconsolata';
   font-style: normal;
@@ -5530,7 +5520,6 @@
   src: url(/assets/designer/fonts/422268e1.woff2) format('woff2');
   unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
 }
-/* latin-ext */
 @font-face {
   font-family: 'Inconsolata';
   font-style: normal;
@@ -5540,7 +5529,6 @@
   src: url(/assets/designer/fonts/b9aa9cdc.woff2) format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
-/* latin */
 @font-face {
   font-family: 'Inconsolata';
   font-style: normal;
@@ -5550,7 +5538,6 @@
   src: url(/assets/designer/fonts/f0d18d8d.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-/* cyrillic-ext */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -5559,7 +5546,6 @@
   src: url(/assets/designer/fonts/3a29243f.woff2) format('woff2');
   unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 }
-/* cyrillic */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -5568,7 +5554,6 @@
   src: url(/assets/designer/fonts/cc27b0ec.woff2) format('woff2');
   unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
-/* greek-ext */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -5577,7 +5562,6 @@
   src: url(/assets/designer/fonts/51186d9d.woff2) format('woff2');
   unicode-range: U+1F00-1FFF;
 }
-/* greek */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -5586,7 +5570,6 @@
   src: url(/assets/designer/fonts/cdac4e9f.woff2) format('woff2');
   unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
 }
-/* vietnamese */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -5595,7 +5578,6 @@
   src: url(/assets/designer/fonts/56fbf5bd.woff2) format('woff2');
   unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
 }
-/* latin-ext */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -5604,7 +5586,6 @@
   src: url(/assets/designer/fonts/a7704924.woff2) format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
-/* latin */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -5613,7 +5594,6 @@
   src: url(/assets/designer/fonts/ee70b57c.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-/* cyrillic-ext */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -5622,7 +5602,6 @@
   src: url(/assets/designer/fonts/3a29243f.woff2) format('woff2');
   unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 }
-/* cyrillic */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -5631,7 +5610,6 @@
   src: url(/assets/designer/fonts/cc27b0ec.woff2) format('woff2');
   unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
-/* greek-ext */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -5640,7 +5618,6 @@
   src: url(/assets/designer/fonts/51186d9d.woff2) format('woff2');
   unicode-range: U+1F00-1FFF;
 }
-/* greek */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -5649,7 +5626,6 @@
   src: url(/assets/designer/fonts/cdac4e9f.woff2) format('woff2');
   unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
 }
-/* vietnamese */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -5658,7 +5634,6 @@
   src: url(/assets/designer/fonts/56fbf5bd.woff2) format('woff2');
   unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
 }
-/* latin-ext */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -5667,7 +5642,6 @@
   src: url(/assets/designer/fonts/a7704924.woff2) format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
-/* latin */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -5676,7 +5650,6 @@
   src: url(/assets/designer/fonts/ee70b57c.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-/* cyrillic-ext */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -5685,7 +5658,6 @@
   src: url(/assets/designer/fonts/3a29243f.woff2) format('woff2');
   unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 }
-/* cyrillic */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -5694,7 +5666,6 @@
   src: url(/assets/designer/fonts/cc27b0ec.woff2) format('woff2');
   unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
-/* greek-ext */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -5703,7 +5674,6 @@
   src: url(/assets/designer/fonts/51186d9d.woff2) format('woff2');
   unicode-range: U+1F00-1FFF;
 }
-/* greek */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -5712,7 +5682,6 @@
   src: url(/assets/designer/fonts/cdac4e9f.woff2) format('woff2');
   unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
 }
-/* vietnamese */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -5721,7 +5690,6 @@
   src: url(/assets/designer/fonts/56fbf5bd.woff2) format('woff2');
   unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
 }
-/* latin-ext */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -5730,7 +5698,6 @@
   src: url(/assets/designer/fonts/a7704924.woff2) format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
-/* latin */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -5739,7 +5706,6 @@
   src: url(/assets/designer/fonts/ee70b57c.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-/* cyrillic-ext */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -5748,7 +5714,6 @@
   src: url(/assets/designer/fonts/3a29243f.woff2) format('woff2');
   unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 }
-/* cyrillic */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -5757,7 +5722,6 @@
   src: url(/assets/designer/fonts/cc27b0ec.woff2) format('woff2');
   unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
-/* greek-ext */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -5766,7 +5730,6 @@
   src: url(/assets/designer/fonts/51186d9d.woff2) format('woff2');
   unicode-range: U+1F00-1FFF;
 }
-/* greek */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -5775,7 +5738,6 @@
   src: url(/assets/designer/fonts/cdac4e9f.woff2) format('woff2');
   unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
 }
-/* vietnamese */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -5784,7 +5746,6 @@
   src: url(/assets/designer/fonts/56fbf5bd.woff2) format('woff2');
   unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
 }
-/* latin-ext */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -5793,7 +5754,6 @@
   src: url(/assets/designer/fonts/a7704924.woff2) format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
-/* latin */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -5802,7 +5762,6 @@
   src: url(/assets/designer/fonts/ee70b57c.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-/* cyrillic-ext */
 @font-face {
   font-family: 'Manrope';
   font-style: normal;
@@ -5811,7 +5770,6 @@
   src: url(/assets/designer/fonts/5b729b9b.woff2) format('woff2');
   unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 }
-/* cyrillic */
 @font-face {
   font-family: 'Manrope';
   font-style: normal;
@@ -5820,7 +5778,6 @@
   src: url(/assets/designer/fonts/6f838ffa.woff2) format('woff2');
   unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
-/* greek */
 @font-face {
   font-family: 'Manrope';
   font-style: normal;
@@ -5829,7 +5786,6 @@
   src: url(/assets/designer/fonts/fe416fcf.woff2) format('woff2');
   unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
 }
-/* vietnamese */
 @font-face {
   font-family: 'Manrope';
   font-style: normal;
@@ -5838,7 +5794,6 @@
   src: url(/assets/designer/fonts/4dee6828.woff2) format('woff2');
   unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
 }
-/* latin-ext */
 @font-face {
   font-family: 'Manrope';
   font-style: normal;
@@ -5847,7 +5802,6 @@
   src: url(/assets/designer/fonts/e274ca98.woff2) format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
-/* latin */
 @font-face {
   font-family: 'Manrope';
   font-style: normal;
@@ -5856,7 +5810,6 @@
   src: url(/assets/designer/fonts/1326e10d.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-/* cyrillic-ext */
 @font-face {
   font-family: 'Manrope';
   font-style: normal;
@@ -5865,7 +5818,6 @@
   src: url(/assets/designer/fonts/5b729b9b.woff2) format('woff2');
   unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 }
-/* cyrillic */
 @font-face {
   font-family: 'Manrope';
   font-style: normal;
@@ -5874,7 +5826,6 @@
   src: url(/assets/designer/fonts/6f838ffa.woff2) format('woff2');
   unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
-/* greek */
 @font-face {
   font-family: 'Manrope';
   font-style: normal;
@@ -5883,7 +5834,6 @@
   src: url(/assets/designer/fonts/fe416fcf.woff2) format('woff2');
   unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
 }
-/* vietnamese */
 @font-face {
   font-family: 'Manrope';
   font-style: normal;
@@ -5892,7 +5842,6 @@
   src: url(/assets/designer/fonts/4dee6828.woff2) format('woff2');
   unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
 }
-/* latin-ext */
 @font-face {
   font-family: 'Manrope';
   font-style: normal;
@@ -5901,7 +5850,6 @@
   src: url(/assets/designer/fonts/e274ca98.woff2) format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
-/* latin */
 @font-face {
   font-family: 'Manrope';
   font-style: normal;
@@ -5910,7 +5858,6 @@
   src: url(/assets/designer/fonts/1326e10d.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-/* cyrillic-ext */
 @font-face {
   font-family: 'Manrope';
   font-style: normal;
@@ -5919,7 +5866,6 @@
   src: url(/assets/designer/fonts/5b729b9b.woff2) format('woff2');
   unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 }
-/* cyrillic */
 @font-face {
   font-family: 'Manrope';
   font-style: normal;
@@ -5928,7 +5874,6 @@
   src: url(/assets/designer/fonts/6f838ffa.woff2) format('woff2');
   unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
-/* greek */
 @font-face {
   font-family: 'Manrope';
   font-style: normal;
@@ -5937,7 +5882,6 @@
   src: url(/assets/designer/fonts/fe416fcf.woff2) format('woff2');
   unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
 }
-/* vietnamese */
 @font-face {
   font-family: 'Manrope';
   font-style: normal;
@@ -5946,7 +5890,6 @@
   src: url(/assets/designer/fonts/4dee6828.woff2) format('woff2');
   unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
 }
-/* latin-ext */
 @font-face {
   font-family: 'Manrope';
   font-style: normal;
@@ -5955,7 +5898,6 @@
   src: url(/assets/designer/fonts/e274ca98.woff2) format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
-/* latin */
 @font-face {
   font-family: 'Manrope';
   font-style: normal;
@@ -5965,68 +5907,360 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+*/
 
-
-  :root { --accent: var(--color-blue-500); --accent-deep: var(--color-blue-600); }
-  * { box-sizing: border-box; }
-  body { margin: 0; background: var(--color-background-primary); -webkit-font-smoothing: antialiased; }
-  a { color: var(--color-text-brand); text-decoration: none; }
-  a:hover { color: var(--color-blue-700); }
-  [data-l="ar"], [data-lb="ar"], [data-lf="ar"] { display: none !important; }
-  [data-lang="ar"] [data-l="ar"] { display: inline !important; }
-  [data-lang="ar"] [data-lb="ar"] { display: block !important; }
-  [data-lang="ar"] [data-lf="ar"] { display: flex !important; }
-  [data-lang="ar"] [data-l="en"], [data-lang="ar"] [data-lb="en"], [data-lang="ar"] [data-lf="en"] { display: none !important; }
-  @keyframes heroFloat { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-6px) } }
-  [id] { scroll-margin-top: 84px; }
-  #top input::placeholder { color: rgba(255,255,255,0.72); opacity: 1; }
-  [data-mobnav] { display: none; }
-  [data-mobnav][data-open="1"] { display: flex; }
-  [data-burger] { display: none; }
-  [data-hero-tabs]::-webkit-scrollbar { display: none; }
-  @media (max-width: 1080px) {
-    [data-split] { grid-template-columns: minmax(0, 1fr) !important; }
-    [data-mock-stats] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .designer-landing {
+    --accent: var(--color-blue-500);
+    --accent-deep: var(--color-blue-600);
+    -webkit-font-smoothing: antialiased;
   }
-  @media (min-width: 901px) { [data-mobnav] { display: none !important; } }
+  .designer-landing, .designer-landing * { box-sizing: border-box; }
+  .designer-landing a { color: var(--color-text-brand); text-decoration: none; }
+  .designer-landing a:hover { color: var(--color-blue-700); }
+  .designer-landing .designer-demo-form p a { text-decoration: underline; text-underline-offset: 0.18em; }
+  .designer-landing [data-l="ar"], .designer-landing [data-lb="ar"], .designer-landing [data-lf="ar"] { display: none !important; }
+  .designer-landing[data-lang="ar"] [data-l="ar"] { display: inline !important; }
+  .designer-landing[data-lang="ar"] [data-lb="ar"] { display: block !important; }
+  .designer-landing[data-lang="ar"] [data-lf="ar"] { display: flex !important; }
+  .designer-landing[data-lang="ar"] [data-l="en"], .designer-landing[data-lang="ar"] [data-lb="en"], .designer-landing[data-lang="ar"] [data-lf="en"] { display: none !important; }
+  @keyframes heroFloat { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-6px) } }
+  .designer-landing [id] { scroll-margin-top: 84px; }
+  .designer-landing #top input::placeholder { color: rgba(255,255,255,0.72); opacity: 1; }
+  .designer-landing [data-mobnav] { display: none; }
+  .designer-landing [data-mobnav][data-open="1"] { display: flex; }
+  .designer-landing [data-burger] { display: none; }
+  .designer-landing [data-hero-tabs]::-webkit-scrollbar { display: none; }
+  .designer-landing [data-image-frame] { position: relative; overflow: hidden; }
+  .designer-landing [data-image-frame] > img,
+  .designer-landing [data-kiosk-photo] > img,
+  .designer-landing [data-hero-slide] img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+  .designer-landing [data-hero-slide][data-slide-active="0"] [style*="animation"] { animation-play-state: paused !important; }
+  .designer-landing[data-motion="paused"] [style*="animation"] { animation-play-state: paused !important; }
+  .designer-landing .designer-skip-link { position: fixed; inset-inline-start: 1rem; top: -5rem; z-index: 100; padding: .75rem 1rem; border-radius: .5rem; background: #fff; color: var(--color-text-primary); }
+  .designer-landing .designer-skip-link:focus { top: 1rem; }
+  @media (max-width: 1080px) {
+    .designer-landing [data-split] { grid-template-columns: minmax(0, 1fr) !important; }
+    .designer-landing [data-mock-stats] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  }
+  @media (min-width: 901px) { .designer-landing [data-mobnav] { display: none !important; } }
   @media (max-width: 1100px) {
-    [data-hero-stage] { min-height: 516px !important; }
-    [data-slide-flow] { display: flex !important; flex-direction: column !important; gap: 12px !important; }
-    [data-slide-flow] > div { position: static !important; inset: auto !important; width: 100% !important; animation: none !important; }
+    .designer-landing [data-hero-stage] { min-height: 516px !important; }
+    .designer-landing [data-slide-flow] { display: flex !important; flex-direction: column !important; gap: 12px !important; }
+    .designer-landing [data-slide-flow] > div { position: static !important; inset: auto !important; width: 100% !important; animation: none !important; }
   }
   @media (max-width: 900px) {
-    [data-hero-grid] { grid-template-columns: minmax(0, 1fr) !important; }
-    [data-hero-stage] { min-height: 470px !important; }
-    [data-stack] { grid-template-columns: minmax(0, 1fr) !important; }
-    [data-desknav] { display: none !important; }
-    [data-burger] { display: grid !important; }
-    [data-mock-shell] { grid-template-columns: minmax(0, 1fr) !important; }
-    [data-mock-nav] { display: none !important; }
+    .designer-landing [data-hero-grid] { grid-template-columns: minmax(0, 1fr) !important; }
+    .designer-landing [data-hero-stage] { min-height: 470px !important; }
+    .designer-landing [data-stack] { grid-template-columns: minmax(0, 1fr) !important; }
+    .designer-landing [data-desknav] { display: none !important; }
+    .designer-landing [data-burger] { display: grid !important; }
+    .designer-landing [data-mock-shell] { grid-template-columns: minmax(0, 1fr) !important; }
+    .designer-landing [data-mock-nav] { display: none !important; }
   }
   @media (max-width: 720px) {
-    [data-mock-row] { grid-template-columns: 1.7fr 1fr 0.9fr !important; }
-    [data-mock-row] > *:nth-child(3) { display: none !important; }
+    .designer-landing [data-mock-row] { grid-template-columns: 1.7fr 1fr 0.9fr !important; }
+    .designer-landing [data-mock-row] > *:nth-child(3) { display: none !important; }
   }
   @media (max-width: 640px) {
-    [data-hero-title], [data-hero-body] { min-height: 0 !important; }
-    [data-hero-stage] { min-height: 500px !important; }
-    [data-kiosk-photo] { inset: 0 40px 38px 0 !important; }
-    [data-kiosk-kpis] { width: min(152px, 43%) !important; top: 14px !important; }
-    [data-kiosk-ticker] { inset-inline-start: 0 !important; width: min(258px, 74%) !important; }
-    [data-hero-tabs] { flex-wrap: nowrap !important; overflow-x: auto !important; gap: 22px !important; scrollbar-width: none; }
-    [data-hero-arrows] { display: none !important; }
-    [data-hdr-cta] { display: none !important; }
-    [data-mock-stats] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+    .designer-landing [data-hero-title] { min-height: 5.5rem !important; }
+    .designer-landing [data-hero-body] { min-height: 6.4rem !important; }
+    .designer-landing [data-hero-stage] { min-height: 500px !important; }
+    .designer-landing [data-kiosk-photo] { inset-block: 0 38px !important; inset-inline: 0 40px !important; }
+    .designer-landing [data-kiosk-kpis] { width: min(152px, 43%) !important; top: 14px !important; }
+    .designer-landing [data-kiosk-ticker] { inset-inline-start: 0 !important; width: min(258px, 74%) !important; }
+    .designer-landing [data-hero-tabs] { flex-wrap: nowrap !important; overflow-x: auto !important; gap: 22px !important; scrollbar-width: none; }
+    .designer-landing [data-hero-arrows] { display: none !important; }
+    .designer-landing [data-hdr-cta] { display: none !important; }
+    .designer-landing [data-mock-stats] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+    .designer-landing .designer-demo-form { min-width: 0; }
   }
-  [data-lang="ar"] [data-display] { font-family: var(--font-arabic), Dubai, sans-serif !important; }
-  [data-lang="ar"] :not([dir="ltr"]):not([dir="ltr"] *) { letter-spacing: normal !important; text-transform: none !important; }
-  [data-lang="ar"] [data-display] { line-height: 1.28 !important; }
-  [data-lang="ar"] p, [data-lang="ar"] li { line-height: 1.85 !important; }
+  .designer-landing[data-lang="ar"] [data-display] { font-family: var(--font-arabic), var(--font-outfit), sans-serif !important; }
+  .designer-landing [dir="ltr"], .designer-landing [dir="ltr"] * { font-family: var(--font-outfit), var(--font-arabic), sans-serif; }
+  .designer-landing[data-lang="ar"] :not([dir="ltr"]):not([dir="ltr"] *) { letter-spacing: normal !important; text-transform: none !important; }
+  .designer-landing[data-lang="ar"] [data-display] { line-height: 1.28 !important; }
+  .designer-landing[data-lang="ar"] p, .designer-landing[data-lang="ar"] li { line-height: 1.85 !important; }
 
-/* RTL mirror for the hero kiosk cluster */
-[data-lang="ar"] [data-kiosk-photo] { inset: 0 0 46px 62px !important; }
-[data-lang="ar"] [data-kiosk-ticker] { inset-inline-start: auto !important; inset-inline-end: 24px !important; }
+/* Client logo wall.
+   Each <img> carries an explicit width % (set in landing-body-*.tsx) chosen so every
+   mark renders with the SAME optical ink area, measured from its ink bounding box
+   rather than its file bounding box. Sizing by width keeps that parity at every
+   breakpoint. Nine logos sit in a fixed 3-column grid so the wall never leaves an
+   orphan chip on the last row. */
+.designer-landing [data-client-logos] > div { overflow: hidden; }
 @media (max-width: 640px) {
-  [data-lang="ar"] [data-kiosk-photo] { inset: 0 0 38px 40px !important; }
-  [data-lang="ar"] [data-kiosk-ticker] { inset-inline-start: auto !important; inset-inline-end: 0 !important; }
+  .designer-landing [data-client-logos] { gap: 8px !important; }
+}
+
+/* The hero kiosk cluster mirrors on its own: the frame, KPI stack and ticker all
+   use logical insets. The photo itself is flipped so the kiosk stays clear of the
+   KPI cards, which sit on the opposite side in RTL. */
+.designer-landing[data-lang="ar"] [data-kiosk-photo] > img { transform: scaleX(-1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .designer-landing *, .designer-landing *::before, .designer-landing *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.designer-landing {
+  --accent: var(--color-blue-600);
+  --accent-deep: var(--color-blue-700);
+  --color-text-tertiary: var(--color-neutral-600);
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+/* Keeps sideways bleed off the page without turning the landing into a scroll
+   container: `overflow-x: hidden` forces overflow-y to auto, and a scroll
+   container is what position: sticky sticks to — which left the flagship
+   intro column scrolling away with the rest of the page. `clip` does not.
+   The `hidden` line ahead of it is the fallback for browsers without `clip`. */
+.designer-landing {
+  overflow-x: hidden;
+  overflow-x: clip;
+}
+
+.designer-landing .designer-hero-email {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  max-width: 470px;
+  margin-bottom: 16px;
+  padding: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(12px);
+}
+
+.designer-landing .designer-hero-email input {
+  min-width: min(160px, 100%);
+}
+
+/* The field shares the pill's frosted surface rather than painting its own fill,
+   so the control reads as one unit instead of a slab inside a slab. */
+.designer-landing .designer-hero-email input::placeholder {
+  color: rgba(255, 255, 255, 0.72);
+  opacity: 1;
+}
+
+.designer-landing .designer-hero-email button,
+.designer-landing .designer-demo-form button {
+  font: inherit;
+}
+
+.designer-landing input:focus-visible,
+.designer-landing textarea:focus-visible,
+.designer-landing button:focus-visible,
+.designer-landing a:focus-visible {
+  outline: 3px solid var(--focus-ring, #2f7bff);
+  outline-offset: 3px;
+}
+
+.designer-landing .designer-visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.designer-landing .designer-phone-row {
+  display: flex;
+  align-items: center;
+}
+
+  .designer-landing .designer-hero-email {
+    display: flex;
+    flex-wrap: nowrap;
+    width: min(100%, 560px);
+    max-width: 560px;
+  }
+
+  .designer-landing .designer-hero-email input {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .designer-landing[data-lang="ar"] {
+    direction: rtl;
+  }
+
+  .designer-landing[data-lang="ar"] [data-hero-grid],
+  .designer-landing[data-lang="ar"] [data-split],
+  .designer-landing[data-lang="ar"] [data-stack] {
+    direction: rtl;
+  }
+
+  .designer-landing[data-lang="ar"] [data-split] > :first-child {
+    min-width: 0;
+  }
+
+  .designer-landing[data-lang="ar"] [data-display] {
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+  .designer-landing[data-lang="ar"] #demo > div > :first-of-type {
+    direction: rtl;
+    text-align: right;
+  }
+
+  .designer-landing[data-lang="ar"] .designer-demo-form,
+  .designer-landing[data-lang="ar"] .designer-demo-form input {
+    direction: rtl;
+    text-align: right;
+  }
+
+  /* The submit label centres like its LTR counterpart. Inheriting the form's
+     right alignment pinned it flush against the button's edge. */
+  .designer-landing[data-lang="ar"] .designer-demo-form button {
+    direction: rtl;
+    text-align: center;
+  }
+
+  /* Latin entry order, but aligned with the rest of the RTL form. */
+  .designer-landing[data-lang="ar"] .designer-demo-form input[type="email"] {
+    direction: ltr;
+  }
+
+  .designer-landing[data-lang="ar"] .designer-phone-row,
+  .designer-landing[data-lang="ar"] #demo bdi {
+    direction: ltr;
+    unicode-bidi: isolate;
+  }
+
+  @media (max-width: 900px) {
+    .designer-landing .designer-hero-email {
+      max-width: 100%;
+    }
+
+    .designer-landing [data-stack] {
+      grid-template-columns: minmax(0, 1fr) !important;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .designer-landing .designer-hero-email {
+      flex-wrap: wrap;
+      border-radius: 18px;
+    }
+
+    .designer-landing .designer-hero-email input,
+    .designer-landing .designer-hero-email button {
+      width: 100%;
+      min-width: 0;
+    }
+
+    .designer-landing [data-mock-stats] {
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+
+    .designer-landing #demo > div {
+      padding: 24px !important;
+    }
+  }
+
+  .designer-landing [data-hero-slide][data-slide-active="0"] [style*="animation"],
+  .designer-landing[data-motion="paused"] [style*="animation"] {
+    animation-play-state: paused !important;
+  }
+
+/* --- Section reveal --------------------------------------------------------
+   Driven from designer-landing.tsx, which tags the parts of each [data-reveal]
+   block and then flips them to "in" as the block crosses into view. Attributes
+   rather than inline styles: the [data-hover] handler snapshots and restores
+   an element's whole style attribute, so anything left inline here would be
+   caught in that snapshot and pinned at opacity 0 on the first hover. */
+
+@media (prefers-reduced-motion: no-preference) {
+  .designer-landing [data-reveal-item] {
+    /* A settle, not a journey. Eight pixels is enough to register as arriving
+       and small enough that the eye reads the fade, not the travel. */
+    opacity: 0;
+    transform: translateY(8px);
+    transition:
+      opacity 440ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 440ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .designer-landing [data-reveal-item="in"] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* --- Flagship solutions story ---------------------------------------------
+   Four chapters that scroll past an intro column which stays put, replacing the
+   deck that used to pin the whole section under the reader. The scroll-linked
+   part lives in designer-motion.tsx; this is layout only. */
+
+.designer-landing [data-story-grid] {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: start;
+}
+
+.designer-landing [data-story-index] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: clamp(24px, 3vw, 36px);
+}
+
+.designer-landing [data-story-chapters] {
+  display: grid;
+  gap: clamp(64px, 9vw, 128px);
+}
+
+.designer-landing [data-story-chapter] {
+  /* Clears the fixed header when the index jumps to a chapter. */
+  scroll-margin-top: 104px;
+}
+
+.designer-landing [data-story-copy] {
+  max-width: 62ch;
+  margin-top: clamp(22px, 2.6vw, 34px);
+}
+
+.designer-landing[data-lang="ar"] [data-story-copy] {
+  text-align: right;
+}
+
+@media (min-width: 960px) {
+  .designer-landing [data-story-grid] {
+    grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+  }
+
+  .designer-landing [data-story-intro] {
+    position: sticky;
+    top: 104px;
+  }
+
+  .designer-landing [data-story-index] {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 6px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* React swaps these inline styles in a single frame as the active chapter
+     changes, which reads as a flicker without a transition. */
+  .designer-landing [data-platform-tab] {
+    transition:
+      background-color 300ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 300ms cubic-bezier(0.22, 1, 0.36, 1),
+      color 200ms ease;
+  }
 }

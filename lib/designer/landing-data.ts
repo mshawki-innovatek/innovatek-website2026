@@ -1,8 +1,10 @@
 // Designer landing data — ported verbatim from the approved design export.
+import { APP_HOST } from "@/lib/site";
+
 export const T = {
   panels: [
     {
-      url: "app.innovatek.ae/donation-hub/projects",
+      url: `${APP_HOST}/donation-hub/projects`,
       group: { en: "Giving ecosystem", ar: "منظومة العطاء" },
       tagline: { en: "Run every campaign, device and dirham from one screen.", ar: "أدر كل حملة وجهاز ودرهم من شاشة واحدة." },
       replaces: { en: "Replaces spreadsheets + disconnected terminals", ar: "يستبدل الجداول والأجهزة غير المترابطة" },
@@ -33,7 +35,7 @@ export const T = {
       }
     },
     {
-      url: "app.innovatek.ae/bunyan/work-orders",
+      url: `${APP_HOST}/bunyan/work-orders`,
       group: { en: "Facilities ecosystem", ar: "منظومة المرافق" },
       tagline: { en: "One system from the work order to the boardroom.", ar: "نظام واحد من أمر العمل إلى قاعة الإدارة." },
       replaces: { en: "Replaces reactive, manual maintenance", ar: "يستبدل الصيانة التفاعلية اليدوية" },
@@ -64,7 +66,7 @@ export const T = {
       }
     },
     {
-      url: "app.innovatek.ae/vms/visiting-log",
+      url: `${APP_HOST}/vms/visiting-log`,
       group: { en: "Facilities ecosystem", ar: "منظومة المرافق" },
       tagline: { en: "From gate to exit, logged and reportable.", ar: "من البوابة حتى الخروج، موثّق وقابل للتقرير." },
       replaces: { en: "Replaces paper logs and reception books", ar: "يستبدل السجلات الورقية ودفاتر الاستقبال" },
@@ -95,7 +97,7 @@ export const T = {
       }
     },
     {
-      url: "app.innovatek.ae/communication/inbox",
+      url: `${APP_HOST}/communication/inbox`,
       group: { en: "Shared core", ar: "النواة المشتركة" },
       tagline: { en: "Answer everyone, everywhere — with AI on the front line.", ar: "أجب على الجميع في كل مكان — بالذكاء الاصطناعي في الصف الأول." },
       replaces: { en: "Replaces four separate inboxes", ar: "يستبدل أربعة صناديق منفصلة" },
@@ -171,10 +173,10 @@ export const HERO = [
 ];
 
 export const TINT = {
-  ok:   { tint: "var(--color-surface-success)", ink: "var(--color-green-600)" },
-  bad:  { tint: "var(--color-surface-error)",   ink: "var(--color-red-600)" },
-  warn: { tint: "var(--color-surface-warning)", ink: "var(--color-orange-600)" },
-  info: { tint: "var(--color-surface-brand)",   ink: "var(--color-blue-600)" }
+  ok:   { tint: "var(--color-surface-success)", ink: "var(--color-green-700)" },
+  bad:  { tint: "var(--color-surface-error)",   ink: "var(--color-red-700)" },
+  warn: { tint: "var(--color-surface-warning)", ink: "var(--color-orange-700)" },
+  info: { tint: "var(--color-surface-brand)",   ink: "var(--color-blue-700)" }
 };
 
 export type Lang = "en" | "ar";
