@@ -1,7 +1,10 @@
 export const SITE_NAME = "Innovatek SWD";
-export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
-  "https://www.innovatek.ae";
+
+const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+
+export const SITE_URL = (
+  configuredSiteUrl || "https://www.innovatek.ae"
+).replace(/\/+$/, "");
 
 export const CONTACT = {
   email: "Sales@innovatek-swd.com",
@@ -23,8 +26,7 @@ export const CONTACT = {
 
 export const CONTACT_EMAIL = CONTACT.email;
 
-/** App subdomain shown in the platform section's mock browser chrome, tied to the
- *  company's verified email domain rather than the marketing site's SITE_URL. */
+// Keep the mock app host tied to the verified company email domain.
 export const APP_HOST = `app.${CONTACT.email.split("@")[1].toLowerCase()}`;
 
 export const canonicalPath = (path = "/") => {
