@@ -25,15 +25,32 @@ npm start
 
 ## Configuration
 
-Copy `.env.example` to `.env.local` only when the canonical production origin differs from the current default:
+Copy `.env.example` to `.env.local` and fill in the values:
 
 ```bash
 NEXT_PUBLIC_SITE_URL=https://www.innovatek.ae
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=
 ```
 
-That value drives canonical URLs, hreflang, Open Graph URLs, JSON-LD, `robots.txt`, and `sitemap.xml`.
+The site reads these public values at build time. They are intentionally visible in the browser because EmailJS uses a public key.
 
-The contact experience is deliberately backend-free: it prepares a complete message in the visitor’s email app for `Sales@innovatek-swd.com` and clearly states that nothing is transmitted until the visitor sends it. The official sales line is `055 889 1317` and the office address is Business Bay, Dubai, UAE.
+### Form delivery
+
+The contact and demo forms use the client-side EmailJS SDK. There is no API route or Server Action, so the whole site stays a static export.
+
+The three `NEXT_PUBLIC_EMAILJS_*` values are **required** and have no built-in defaults. If any is missing the forms skip the send entirely and offer the prefilled `mailto:` fallback instead — deliberately, so an unconfigured build fails visibly rather than posting to a stale account. Send failures are logged to the browser console with the provider's own reason (bad SMTP credentials, quota, blocked origin); the visitor only ever sees a generic retry message.
+
+To point the forms at a different mailbox, change only these variables — no code change is needed. The EmailJS template must use these exact variable names (case-sensitive):
+
+```
+{{from_name}} {{Email}} {{Company}} {{Phone}} {{services}} {{message}}
+```
+
+and its **To Email** must be the address that should receive enquiries — currently `Sales@innovatek-swd.com`. Note that `innovatek-swd.com` is a Microsoft 365 domain whose SPF ends in `-all`, so a mailbox-backed service (Outlook, connected by OAuth) is the sane choice there; a transactional provider would need SPF and DKIM records added first.
+
+The official sales line is `055 889 1317` and the office address is Business Bay, Dubai, UAE.
 
 ## Route coverage
 
@@ -48,8 +65,8 @@ The contact experience is deliberately backend-free: it prepares a complete mess
 - All indexable pages have a unique title, description, canonical URL, reciprocal locale alternate, and one H1.
 - Organization, WebSite, WebPage, ItemList, FAQ, Service, BreadcrumbList, AboutPage, and ContactPage structured data is emitted where relevant.
 - Privacy and terms pages are operational drafts and intentionally `noindex` until legal review is complete.
-- Security headers ship from `next.config.ts`; HSTS should be enabled at the HTTPS host/CDN.
-- The site uses Next Image optimization, so deploy to Vercel or another Next.js-capable Node host rather than a static-file-only host.
+- Security headers belong to the static host/CDN. Configure them in Azure Static Web Apps or the chosen edge host; HSTS should be enabled only after every relevant host is HTTPS.
+- Use `npm start` only for the local static preview server (`python3 -m http.server`); production deployment publishes `out/` directly.
 
 See [docs/seo-launch-checklist.md](docs/seo-launch-checklist.md) before publishing.
 

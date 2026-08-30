@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { outfit, plexArabic } from "@/app/fonts";
 import "@/app/globals.css";
+import "@/app/designer/landing.css";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import { SEO_KEYWORDS } from "@/lib/seo";
 

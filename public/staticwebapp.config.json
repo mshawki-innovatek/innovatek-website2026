@@ -1,4 +1,5 @@
 {
+  "trailingSlash": "always",
   "mimeTypes": {
     ".webmanifest": "application/manifest+json"
   },

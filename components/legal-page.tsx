@@ -18,16 +18,16 @@ export function LegalPage({ locale, type }: LegalPageProps) {
 
   const privacySections = ar
     ? [
-        ["ما الذي يجمعه هذا الموقع", "لا يستخدم هذا الإصدار حسابات مستخدمين أو تحليلات تسويقية أو ملفات تتبع. نموذج التواصل يجهز مسودة بريد داخل متصفحك ولا يرسل بياناتك إلى خادم إنوفاتك."],
-        ["عندما تختار إرسال البريد", `تنتقل المعلومات التي ترسلها عبر تطبيق البريد ومزود الخدمة لديك إلى ${CONTACT_EMAIL}. استخدم فقط التفاصيل التي ترغب في مشاركتها معنا.`],
+        ["ما الذي يجمعه هذا الموقع", "لا يستخدم هذا الإصدار حسابات مستخدمين أو تحليلات تسويقية أو ملفات تتبع. عند إرسال نموذج التواصل، يعالج EmailJS الاسم والبريد والجهة والتفاصيل لتسليمها إلى فريق إنوفاتك عبر البريد الإلكتروني."],
+        ["إرسال النموذج والبديل المباشر", `يُرسل النموذج عبر EmailJS إلى ${CONTACT_EMAIL}. إذا تعذر التسليم أو لم يتأكد في الوقت المحدد، تبقى البيانات في النموذج ويمكنك فتح رسالة بريد مُعبّأة مسبقاً. استخدم فقط التفاصيل التي ترغب في مشاركتها معنا.`],
         ["ملفات التشغيل", "قد يحتفظ مزود الاستضافة بسجلات تقنية أساسية مثل عنوان الشبكة ووقت الطلب ونوع المتصفح لحماية الخدمة وتشغيلها. يجب تأكيد مزود الاستضافة وفترة الاحتفاظ قبل الإطلاق العام."],
-        ["حقوقك وتواصلك معنا", `يمكنك طلب الاستفسار عن معلومات أرسلتها مباشرة أو تصحيحها أو حذفها عبر ${CONTACT_EMAIL}. يجب مراجعة هذا الإشعار قانونياً عند ربط نموذج إنتاج أو أداة تحليلات.`],
+        ["حقوقك وتواصلك معنا", `يمكنك طلب الاستفسار عن معلومات أرسلتها مباشرة أو تصحيحها أو حذفها عبر ${CONTACT_EMAIL}. يجب اعتماد هذا الإشعار قانونياً قبل الإطلاق العام، مع تأكيد سياسات المعالجة والاحتفاظ لدى مزودي البريد والاستضافة.`],
       ]
     : [
-        ["What this website collects", "This build does not use user accounts, marketing analytics or tracking cookies. The contact form prepares an email draft in your browser and does not transmit your details to an Innovatek server."],
-        ["When you choose to send an email", `Information you send travels through your email application and provider to ${CONTACT_EMAIL}. Include only the details you want to share with us.`],
+        ["What this website collects", "This build does not use user accounts, marketing analytics or tracking cookies. When you submit the contact form, EmailJS processes your name, email, organisation and challenge so it can deliver them to the Innovatek team by email."],
+        ["Form delivery and direct fallback", `The form sends through EmailJS to ${CONTACT_EMAIL}. If delivery fails or is not confirmed in time, your details remain in the form and you can open a prefilled email instead. Include only the details you want to share with us.`],
         ["Operational logs", "A future hosting provider may keep basic technical logs such as network address, request time and browser type to operate and protect the service. The provider and retention period must be confirmed before public launch."],
-        ["Your choices and contact", `You can ask about, correct or delete information you sent directly by writing to ${CONTACT_EMAIL}. This notice must receive legal review when a production form endpoint or analytics tool is connected.`],
+        ["Your choices and contact", `You can ask about, correct or delete information you sent directly by writing to ${CONTACT_EMAIL}. This notice requires legal approval before public launch, including confirmation of processing and retention policies with the email and hosting providers.`],
       ];
 
   const termsSections = ar

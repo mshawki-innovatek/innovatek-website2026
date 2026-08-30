@@ -3,7 +3,7 @@
 ## Before deployment
 
 - Confirm `https://www.innovatek.ae` is the preferred canonical origin and that the apex domain redirects to it with one permanent redirect.
-- Confirm `Sales@innovatek-swd.com` is monitored and test the prepared-email workflow on desktop and mobile.
+- Confirm `hello@innovatek.ae` is monitored and test the EmailJS workflow plus its encoded `mailto:` fallback on desktop and mobile. Do not send a real test email from local QA.
 - Confirm the sales line `055 889 1317` and the Business Bay, Dubai, UAE address remain current in visible contact details and Organization structured data.
 - Have UAE-qualified counsel review the privacy notice and terms; they are deliberately excluded from the sitemap and marked `noindex` until approved.
 - Review all product descriptions with Innovatek product owners. Unverified customer logos, statistics, testimonials, and performance claims from the reference were intentionally omitted.
@@ -11,8 +11,8 @@
 
 ## At deployment
 
-- Set `NEXT_PUBLIC_SITE_URL` to the final HTTPS origin before building.
-- Use a Next.js-capable Node host so image optimization and framework routes remain available.
+- Set `NEXT_PUBLIC_SITE_URL` to the final HTTPS origin before building. If the EmailJS defaults are not used, also set `NEXT_PUBLIC_EMAILJS_SERVICE_ID`, `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID`, and `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY` before building.
+- Publish the generated `out/` directory to Azure Static Web Apps or another static host. The build uses `output: "export"`, Next route folders, and `images.unoptimized: true`; Azure `staticwebapp.config.json` normalizes requests with `trailingSlash: "always"`. No Node server, API route, or Server Action is required.
 - Enable HTTPS, HSTS, Brotli/Gzip, immutable caching for hashed assets, and a permanent canonical-host redirect at the edge.
 - Verify `/robots.txt`, `/sitemap.xml`, `/manifest.webmanifest`, `/icon.png`, and `/opengraph-image.png` return `200` with the expected MIME types.
 - Confirm the contact, language-switch, and mobile-menu flows against the deployed origin.

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
-import { HomePage } from "@/components/home-page";
+import { DesignerLanding } from "@/app/designer/designer-landing";
+import { JsonLd } from "@/components/json-ld";
 import { SEO_KEYWORDS } from "@/lib/seo";
+import { buildHomeSchema } from "@/lib/home-schema";
 
 export const metadata: Metadata = {
   title: {
@@ -37,5 +39,10 @@ export const metadata: Metadata = {
 };
 
 export default function ArabicPage() {
-  return <HomePage locale="ar" />;
+  return (
+    <>
+      <JsonLd data={buildHomeSchema("ar")} />
+      <DesignerLanding lang="ar" />
+    </>
+  );
 }
