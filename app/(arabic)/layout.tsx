@@ -45,7 +45,7 @@ export default function ArabicRootLayout({ children }: { children: ReactNode }) 
     <html
       lang="ar-AE"
       dir="rtl"
-      className={`${outfit.variable} ${plexArabic.variable}`}
+      className={`${outfit.variable} ${plexArabic.variable} ${plexArabic.className}`}
       data-scroll-behavior="smooth"
     >
       <body>{children}</body>

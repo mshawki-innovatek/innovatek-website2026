@@ -5974,7 +5974,10 @@
     .designer-landing [data-mock-stats] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
     .designer-landing .designer-demo-form { min-width: 0; }
   }
-  .designer-landing[data-lang="ar"] [data-display] { font-family: var(--font-arabic), var(--font-outfit), sans-serif !important; }
+  .designer-landing[data-lang="ar"] [data-display] {
+    font-family: var(--font-arabic), var(--font-outfit), sans-serif !important;
+    font-weight: 700 !important;
+  }
   .designer-landing [dir="ltr"], .designer-landing [dir="ltr"] * { font-family: var(--font-outfit), var(--font-arabic), sans-serif; }
   .designer-landing[data-lang="ar"] :not([dir="ltr"]):not([dir="ltr"] *) { letter-spacing: normal !important; text-transform: none !important; }
   .designer-landing[data-lang="ar"] [data-display] { line-height: 1.28 !important; }
