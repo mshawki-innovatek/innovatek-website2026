@@ -6135,7 +6135,12 @@
     direction: ltr;
   }
 
-  .designer-landing[data-lang="ar"] .designer-phone-row,
+  .designer-landing[data-lang="ar"] .designer-phone-row {
+    direction: rtl;
+    justify-content: flex-start;
+  }
+
+  .designer-landing[data-lang="ar"] .designer-phone-row bdi,
   .designer-landing[data-lang="ar"] #demo bdi {
     direction: ltr;
     unicode-bidi: isolate;
