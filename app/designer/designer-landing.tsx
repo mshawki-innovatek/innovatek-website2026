@@ -602,7 +602,6 @@ export function DesignerLanding({ lang }: { lang: Lang }) {
       updateDemoDraft,
       demoState,
       demoDisabled: demoState === "sending",
-      demoAction: buildContactMailto({ services: demoServices }, lang),
       demoFallbackHref: buildContactMailto(
         {
           name: demoDraft.name,

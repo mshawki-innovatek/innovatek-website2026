@@ -76,7 +76,7 @@ export function LandingBodyEn({ v }: { v: LandingVals }) {
 
           <p  style={{ margin: "0 0 30px", fontSize: "clamp(16px, 1.25vw, 19px)", lineHeight: "1.6", color: "rgba(255,255,255,0.82)", maxWidth: "52ch", textWrap: "pretty", minHeight: "4.8em", }} data-hero-body="true">{v.heroBody}</p>
 
-          <form className="designer-hero-email" onSubmit={v.continueToDemo} action={v.demoAction} method="post" encType="text/plain">
+          <form className="designer-hero-email" onSubmit={v.continueToDemo}>
             <input id="hero-email" name="email" type="email" autoComplete="email" required maxLength={254} placeholder={v.heroInputPlaceholder} dir="ltr" value={v.heroEmail} onChange={(event) => v.updateHeroEmail(event.target.value)}  style={{ flex: "1", minWidth: "160px", height: "44px", border: "0", outline: "none", background: "transparent", borderRadius: "999px", paddingInline: "16px", fontFamily: "var(--font-outfit), var(--font-arabic), sans-serif", fontSize: "15px", color: "#fff", textAlign: "start", }} />
             <button type="submit"  style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", minHeight: "44px", paddingInline: "24px", borderRadius: "999px", background: "#fff", color: "var(--color-blue-600)", fontFamily: "var(--font-outfit), var(--font-arabic), sans-serif", fontSize: "15px", fontWeight: "700", flexShrink: "0", cursor: "pointer", }} data-hover="background: var(--color-blue-50); color: var(--color-blue-700)">
               Book a demo
@@ -989,7 +989,7 @@ export function LandingBodyEn({ v }: { v: LandingVals }) {
         </div>
       </div>
       <div  style={{ position: "relative", background: "var(--color-background-primary)", borderRadius: "16px", padding: "26px", }}>
-        <form className="designer-demo-form" onSubmit={v.submitDemo} action={v.demoAction} method="post" encType="text/plain" aria-busy={v.demoDisabled}>
+        <form className="designer-demo-form" onSubmit={v.submitDemo} aria-busy={v.demoDisabled}>
           <div  style={{ display: "flex", flexDirection: "column", gap: "14px", }}>
             <label htmlFor="demo-name" style={{ display: "block", }}>
               <span  style={{ display: "block", fontSize: "13px", fontWeight: "600", color: "var(--color-text-secondary)", marginBottom: "6px", }}>Full name</span>

@@ -184,15 +184,10 @@ export function ContactForm({ locale }: ContactFormProps) {
     : ar
       ? "احجز عرضاً توضيحياً"
       : "Book a demo";
-  const noJsHref = buildContactMailto({ services }, locale);
-
   return (
     <form
       className="contact-form"
       onSubmit={handleSubmit}
-      action={noJsHref}
-      method="post"
-      encType="text/plain"
       aria-busy={sending}
     >
       <div className="contact-form__row">
