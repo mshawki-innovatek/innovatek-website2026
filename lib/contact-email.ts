@@ -1,4 +1,9 @@
 import emailjs from "@emailjs/browser";
+import {
+  checkContactRateLimit,
+  recordContactSubmission,
+  releaseContactSubmission,
+} from "@/lib/contact-rate-limit";
 import { CONTACT, SITE_NAME } from "@/lib/site";
 
 /**
@@ -47,6 +52,17 @@ export class ContactEmailTimeoutError extends Error {
   }
 }
 
+/** Thrown when this device has used up its send allowance. */
+export class ContactEmailRateLimitError extends Error {
+  readonly retryAt: number;
+
+  constructor(retryAt: number) {
+    super("This device has sent too many requests recently.");
+    this.name = "ContactEmailRateLimitError";
+    this.retryAt = retryAt;
+  }
+}
+
 /**
  * Turns a send failure into something readable in the console. The provider
  * rejects with { status, text } and that text carries the real cause (bad SMTP
@@ -87,6 +103,17 @@ export function startContactEmail(
     return { result: failure, settled: failure.catch(() => undefined) };
   }
 
+  // Claim the allowance before dispatching, so parallel calls cannot all clear
+  // the check before any of them counts.
+  const verdict = checkContactRateLimit();
+  if (!verdict.allowed) {
+    const failure = Promise.reject(
+      new ContactEmailRateLimitError(verdict.retryAt),
+    );
+    return { result: failure, settled: failure.catch(() => undefined) };
+  }
+  const allowanceStamp = recordContactSubmission();
+
   let timeoutId: ReturnType<typeof setTimeout> | undefined;
   const transport = emailjs.send(
     EMAILJS_CONFIG.serviceId,
@@ -110,6 +137,15 @@ export function startContactEmail(
         throw new Error(`EmailJS returned status ${response.status}.`);
       }
       return response;
+    })
+    .catch((error: unknown) => {
+      // Hand the allowance back when the request definitely never landed. A
+      // timeout keeps it: the message may well have gone through, and the UI
+      // already tells the visitor not to resend.
+      if (!(error instanceof ContactEmailTimeoutError)) {
+        releaseContactSubmission(allowanceStamp);
+      }
+      throw error;
     })
     .finally(() => {
       if (timeoutId !== undefined) clearTimeout(timeoutId);

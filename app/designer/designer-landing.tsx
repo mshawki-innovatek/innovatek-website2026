@@ -4,10 +4,12 @@ import { useCallback, useEffect, useState } from "react";
 import type { FormEvent, KeyboardEvent as ReactKeyboardEvent } from "react";
 import {
   buildContactMailto,
+  ContactEmailRateLimitError,
   ContactEmailTimeoutError,
   describeContactEmailError,
   startContactEmail,
 } from "@/lib/contact-email";
+import { checkContactRateLimit, formatRetryIn } from "@/lib/contact-rate-limit";
 import { HERO, T, TINT, pick, type Lang } from "@/lib/designer/landing-data";
 import { CONTACT } from "@/lib/site";
 import { LandingBodyEn } from "./landing-body-en";
@@ -23,7 +25,13 @@ type DemoDraft = {
   organization: string;
 };
 
-type DemoState = "idle" | "sending" | "sent" | "error" | "timeout";
+type DemoState =
+  | "idle"
+  | "sending"
+  | "sent"
+  | "error"
+  | "timeout"
+  | "throttled";
 
 const EMPTY_DEMO_DRAFT: DemoDraft = {
   name: "",
@@ -55,6 +63,8 @@ export function DesignerLanding({ lang }: { lang: Lang }) {
   const [documentHidden, setDocumentHidden] = useState(false);
   const [demoDraft, setDemoDraft] = useState<DemoDraft>(EMPTY_DEMO_DRAFT);
   const [demoState, setDemoState] = useState<DemoState>("idle");
+  const [demoRetryAt, setDemoRetryAt] = useState<number | null>(null);
+  const [demoNow, setDemoNow] = useState(0);
 
   const heroMotionPaused =
     prefersReducedMotion || heroPaused || documentHidden;
@@ -274,9 +284,37 @@ export function DesignerLanding({ lang }: { lang: Lang }) {
     return () => clearTimeout(reset);
   }, [demoState]);
 
+  // Read after hydration rather than during render: localStorage is client-only
+  // and this page is prerendered as a static export. A timeout rather than an
+  // animation frame, because frame callbacks are paused in a background tab.
+  useEffect(() => {
+    const task = window.setTimeout(() => {
+      const verdict = checkContactRateLimit();
+      if (verdict.allowed) return;
+      setDemoRetryAt(verdict.retryAt);
+      setDemoNow(Date.now());
+      setDemoState("throttled");
+    }, 0);
+    return () => window.clearTimeout(task);
+  }, []);
+
+  useEffect(() => {
+    if (demoRetryAt === null) return;
+    const timer = window.setInterval(() => {
+      const tick = Date.now();
+      setDemoNow(tick);
+      if (tick < demoRetryAt) return;
+      setDemoRetryAt(null);
+      setDemoState((current) => (current === "throttled" ? "idle" : current));
+    }, 1000);
+    return () => window.clearInterval(timer);
+  }, [demoRetryAt]);
+
   function updateDemoDraft(field: keyof DemoDraft, value: string) {
     setDemoDraft((current) => ({ ...current, [field]: value }));
-    if (demoState !== "sending") setDemoState("idle");
+    if (demoState !== "sending" && demoState !== "throttled") {
+      setDemoState("idle");
+    }
   }
 
   function continueToDemo(event: FormEvent<HTMLFormElement>) {
@@ -378,13 +416,19 @@ export function DesignerLanding({ lang }: { lang: Lang }) {
       setDemoDraft(EMPTY_DEMO_DRAFT);
       setDemoState("sent");
     } catch (error) {
-      console.error(
-        "[demo form] send failed:",
-        describeContactEmailError(error),
-      );
-      setDemoState(
-        error instanceof ContactEmailTimeoutError ? "timeout" : "error",
-      );
+      if (error instanceof ContactEmailRateLimitError) {
+        setDemoRetryAt(error.retryAt);
+        setDemoNow(Date.now());
+        setDemoState("throttled");
+      } else {
+        console.error(
+          "[demo form] send failed:",
+          describeContactEmailError(error),
+        );
+        setDemoState(
+          error instanceof ContactEmailTimeoutError ? "timeout" : "error",
+        );
+      }
     } finally {
       if (!operation) delete form.dataset.submitting;
     }
@@ -601,7 +645,7 @@ export function DesignerLanding({ lang }: { lang: Lang }) {
       demoDraft,
       updateDemoDraft,
       demoState,
-      demoDisabled: demoState === "sending",
+      demoDisabled: demoState === "sending" || demoState === "throttled",
       demoFallbackHref: buildContactMailto(
         {
           name: demoDraft.name,
@@ -618,6 +662,7 @@ export function DesignerLanding({ lang }: { lang: Lang }) {
         if (demoState === "error" || demoState === "timeout") {
           return ar ? "أعد المحاولة" : "Try again";
         }
+        if (demoState === "throttled") return ar ? "غير متاح مؤقتاً" : "Paused";
         return ar ? "احجز عرضاً توضيحياً" : "Book a demo";
       })(),
       demoNoteColor:
@@ -625,8 +670,19 @@ export function DesignerLanding({ lang }: { lang: Lang }) {
           ? "var(--color-green-600)"
           : demoState === "error" || demoState === "timeout"
             ? "var(--color-red-600)"
-            : "var(--color-text-tertiary)",
+            : demoState === "throttled"
+              ? "var(--color-orange-700)"
+              : "var(--color-text-tertiary)",
       demoNote: (() => {
+        if (demoState === "throttled") {
+          const retryLabel =
+            demoRetryAt === null
+              ? ""
+              : formatRetryIn(demoRetryAt - demoNow, lang);
+          return ar
+            ? `عدد كبير من الطلبات من هذا الجهاز. يمكنك الإرسال مجدداً ${retryLabel}.`
+            : `Too many requests from this device. You can submit again ${retryLabel}.`;
+        }
         if (demoState === "sent") {
           return ar
             ? "تم تأكيد استلام طلبك. نرد خلال يوم عمل واحد."

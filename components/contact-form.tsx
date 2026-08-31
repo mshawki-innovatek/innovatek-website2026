@@ -1,14 +1,16 @@
 "use client";
 
-import { FormEvent, useRef, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { ArrowUpRight, CheckCircle2, Mail } from "lucide-react";
 import type { Locale } from "@/lib/content";
 import {
   buildContactMailto,
+  ContactEmailRateLimitError,
   ContactEmailTimeoutError,
   describeContactEmailError,
   startContactEmail,
 } from "@/lib/contact-email";
+import { checkContactRateLimit, formatRetryIn } from "@/lib/contact-rate-limit";
 import { CONTACT } from "@/lib/site";
 
 type ContactFormProps = {
@@ -22,7 +24,7 @@ type Draft = {
   challenge: string;
 };
 
-type SendState = "idle" | "sending" | "error" | "timeout";
+type SendState = "idle" | "sending" | "error" | "timeout" | "throttled";
 
 const EMPTY_DRAFT: Draft = {
   name: "",
@@ -35,10 +37,38 @@ export function ContactForm({ locale }: ContactFormProps) {
   const [draft, setDraft] = useState<Draft>(EMPTY_DRAFT);
   const [submittedDraft, setSubmittedDraft] = useState<Draft | null>(null);
   const [sendState, setSendState] = useState<SendState>("idle");
+  const [retryAt, setRetryAt] = useState<number | null>(null);
+  const [now, setNow] = useState(0);
   const submissionActiveRef = useRef(false);
   const nameInputRef = useRef<HTMLInputElement>(null);
   const ar = locale === "ar";
   const services = ar ? "طلب جلسة عمل" : "Working session request";
+
+  // Read after hydration rather than during render: localStorage is client-only
+  // and these pages are prerendered as a static export. A timeout rather than an
+  // animation frame, because frame callbacks are paused in a background tab.
+  useEffect(() => {
+    const task = window.setTimeout(() => {
+      const verdict = checkContactRateLimit();
+      if (verdict.allowed) return;
+      setRetryAt(verdict.retryAt);
+      setNow(Date.now());
+      setSendState("throttled");
+    }, 0);
+    return () => window.clearTimeout(task);
+  }, []);
+
+  useEffect(() => {
+    if (retryAt === null) return;
+    const timer = window.setInterval(() => {
+      const tick = Date.now();
+      setNow(tick);
+      if (tick < retryAt) return;
+      setRetryAt(null);
+      setSendState((current) => (current === "throttled" ? "idle" : current));
+    }, 1000);
+    return () => window.clearInterval(timer);
+  }, [retryAt]);
   const fallbackHref = buildContactMailto(
     {
       name: draft.name,
@@ -52,7 +82,7 @@ export function ContactForm({ locale }: ContactFormProps) {
 
   function updateDraft(field: keyof Draft, value: string) {
     setDraft((current) => ({ ...current, [field]: value }));
-    if (sendState !== "sending") setSendState("idle");
+    if (sendState !== "sending" && sendState !== "throttled") setSendState("idle");
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -108,13 +138,19 @@ export function ContactForm({ locale }: ContactFormProps) {
       setDraft(EMPTY_DRAFT);
       setSendState("idle");
     } catch (error) {
-      console.error(
-        "[contact form] send failed:",
-        describeContactEmailError(error),
-      );
-      setSendState(
-        error instanceof ContactEmailTimeoutError ? "timeout" : "error",
-      );
+      if (error instanceof ContactEmailRateLimitError) {
+        setRetryAt(error.retryAt);
+        setNow(Date.now());
+        setSendState("throttled");
+      } else {
+        console.error(
+          "[contact form] send failed:",
+          describeContactEmailError(error),
+        );
+        setSendState(
+          error instanceof ContactEmailTimeoutError ? "timeout" : "error",
+        );
+      }
     } finally {
       void operation.settled.then(() => {
         submissionActiveRef.current = false;
@@ -177,6 +213,9 @@ export function ContactForm({ locale }: ContactFormProps) {
   }
 
   const sending = sendState === "sending";
+  const throttled = sendState === "throttled";
+  const retryLabel =
+    retryAt === null ? "" : formatRetryIn(retryAt - now, locale);
   const submitLabel = sending
     ? ar
       ? "جارٍ الإرسال…"
@@ -261,13 +300,27 @@ export function ContactForm({ locale }: ContactFormProps) {
       <button
         type="submit"
         className="button button--primary contact-form__submit"
-        disabled={sending}
+        disabled={sending || throttled}
       >
         <span>{submitLabel}</span>
         <ArrowUpRight aria-hidden="true" size={19} />
       </button>
       <div aria-live="polite" aria-atomic="true">
-        {sendState === "error" || sendState === "timeout" ? (
+        {throttled ? (
+          <p
+            style={{
+              margin: 0,
+              fontSize: "14px",
+              fontWeight: "600",
+              color: "var(--color-orange-700)",
+              textAlign: "center",
+            }}
+          >
+            {ar
+              ? `عدد كبير من الطلبات من هذا الجهاز. يمكنك الإرسال مجدداً ${retryLabel}.`
+              : `Too many requests from this device. You can submit again ${retryLabel}.`}
+          </p>
+        ) : sendState === "error" || sendState === "timeout" ? (
           <p
             role="alert"
             style={{

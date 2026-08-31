@@ -227,6 +227,17 @@ html[dir="rtl"] .display-heading {
   transform: translateY(0);
 }
 
+/* Paired with :disabled:hover so it outranks the per-variant hover rules below:
+   :hover still matches a disabled button. */
+.button:disabled,
+.button:disabled:hover {
+  color: var(--text-secondary);
+  border-color: var(--border);
+  background: var(--surface-soft);
+  cursor: not-allowed;
+  transform: none;
+}
+
 .button--small {
   min-height: 42px;
   padding: 0.65rem 1rem;

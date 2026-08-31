@@ -6057,6 +6057,15 @@
   font: inherit;
 }
 
+/* The demo button carries its palette in an inline style, and the [data-hover]
+   handler restores a snapshot of that attribute, so only !important can hold a
+   disabled look. The panel behind it is white, hence the light neutrals. */
+.designer-landing .designer-demo-form button[type="submit"]:disabled {
+  background: var(--color-neutral-200) !important;
+  color: var(--color-neutral-700) !important;
+  cursor: not-allowed !important;
+}
+
 .designer-landing input:focus-visible,
 .designer-landing textarea:focus-visible,
 .designer-landing button:focus-visible,
