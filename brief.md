@@ -29,7 +29,7 @@ The single primary action is “Book a working session.” It opens the contact 
 - JSON-LD for Organization, WebSite, services, and FAQ content.
 - Search-focused copy around UAE/MENA operational software, donation management, facilities management/CMMS, visitor management, and AI-powered communication—without keyword stuffing.
 - Fast server-rendered content, local or optimized visual assets, descriptive alt text, accessible controls, and no client-only shell for core copy.
-- Default site URL is `https://innovatek.ae`, overridable by `NEXT_PUBLIC_SITE_URL`.
+- Canonical site URL is `https://www.innovatek-swd.com`, confirmed by the owner and configured through `NEXT_PUBLIC_SITE_URL`.
 
 ## Reference-guided visual system
 

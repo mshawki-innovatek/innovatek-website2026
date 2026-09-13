@@ -1,34 +1,46 @@
 # SEO launch checklist
 
-## Before deployment
+Canonical origin: **https://www.innovatek-swd.com**, confirmed by the owner on 13 September 2026. Use this origin for build settings, verification and sitemap submission.
 
-- Confirm `https://www.innovatek.ae` is the preferred canonical origin and that the apex domain redirects to it with one permanent redirect.
-- Confirm `hello@innovatek.ae` is monitored and test the EmailJS workflow plus its encoded `mailto:` fallback on desktop and mobile. Do not send a real test email from local QA.
-- Confirm the sales line `055 889 1317` and the Business Bay, Dubai, UAE address remain current in visible contact details and Organization structured data.
-- Have UAE-qualified counsel review the privacy notice and terms; they are deliberately excluded from the sitemap and marked `noindex` until approved.
-- Review all product descriptions with Innovatek product owners. Unverified customer logos, statistics, testimonials, and performance claims from the reference were intentionally omitted.
-- Run `npm run check` using Node 24 and npm 11.
+## Before an authorized deployment
 
-## At deployment
+- Run `npm run check` with Node 24 and npm 11. This includes exported-HTML SEO validation.
+- Build with `NEXT_PUBLIC_SITE_URL=https://www.innovatek-swd.com`.
+- Keep all ten product descriptions accurate in `lib/product-catalog.ts`; this drives both visible homepage content and Service structured data. Keep FAQ text in `lib/designer/landing-data.ts` synchronized through the shared schema source.
+- If using HTML-tag ownership verification, obtain the actual token from Google Search Console or Bing Webmaster Tools and set `GOOGLE_SITE_VERIFICATION` / `BING_SITE_VERIFICATION` before building. CI reads the corresponding GitHub repository variables. These are public verification identifiers. Never invent a token.
+- Review the generated sitemap: only `/`, `/ar/`, `/about/`, `/ar/about/`, `/contact/`, `/ar/contact/`. Privacy and terms remain `noindex`; removed solutions routes and backups stay excluded.
+- Keep the established sales contact `Sales@innovatek-swd.com`, `+971 55 889 1317`, Business Bay, Dubai consistent with visible copy and Organization data.
 
-- Set `NEXT_PUBLIC_SITE_URL` to the final HTTPS origin before building. If the EmailJS defaults are not used, also set `NEXT_PUBLIC_EMAILJS_SERVICE_ID`, `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID`, and `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY` before building.
-- Publish the generated `out/` directory to Azure Static Web Apps or another static host. The build uses `output: "export"`, Next route folders, and `images.unoptimized: true`; Azure `staticwebapp.config.json` normalizes requests with `trailingSlash: "always"`. No Node server, API route, or Server Action is required.
-- Enable HTTPS, HSTS, Brotli/Gzip, immutable caching for hashed assets, and a permanent canonical-host redirect at the edge.
-- Verify `/robots.txt`, `/sitemap.xml`, `/manifest.webmanifest`, `/icon.png`, and `/opengraph-image.png` return `200` with the expected MIME types.
-- Confirm the contact, language-switch, and mobile-menu flows against the deployed origin.
+## Deployment and host checks
 
-## Immediately after launch
+Deployment, DNS changes and production changes require the owner's authorization. None were performed during the SEO implementation.
 
-- Add and verify the canonical origin in Google Search Console and Bing Webmaster Tools.
-- Submit `https://www.innovatek.ae/sitemap.xml` to both services.
-- Inspect the English and Arabic home pages plus one solution page in Google’s URL Inspection tool.
-- Validate representative pages in Schema.org Validator and Rich Results Test.
-- Test the social card in LinkedIn Post Inspector and the relevant messaging platforms.
-- Record a Core Web Vitals baseline for mobile and desktop; monitor field data before adding third-party scripts.
-- If analytics is added, use consent and privacy controls appropriate to the deployed markets and update the privacy notice first.
+- Publish the new `out/` build through the existing Azure workflow once authorized.
+- Check HTTPS and the www host. The apex `innovatek-swd.com` failed DNS resolution from the audit environment; the domain administrator should confirm authoritative DNS and configure the intended redirect to www. This observation alone does not establish a worldwide outage.
+- Keep `trailingSlash: "auto"` in `staticwebapp.config.json`; exported directory routes should normalize `/about` and `/about/index.html` to `/about/` on Azure. Verify the deployed 301 behavior.
+- Verify Brotli/Gzip at the host. Source config now requests one-year immutable caching for hashed `/_next/static/*` assets and one-day revalidation for `/assets/*`. Confirm actual response headers after deployment. HTML should not receive immutable caching.
+- Confirm all six indexable pages return HTTP 200 without `noindex` in HTML or `X-Robots-Tag` headers, and self-reference the correct canonical origin.
+- Confirm `/robots.txt`, `/sitemap.xml`, `/manifest.webmanifest`, `/icon.png`, and `/opengraph-image.png` return 200 and appropriate MIME types.
+- Confirm a missing page, `/solutions/`, `/ar/solutions/` and their former detail paths return real HTTP 404 responses. Do not add a homepage fallback returning 200 for nonexistent routes. Source backups must not be publicly served.
+- Inspect desktop and mobile English/Arabic pages, footer links, language switches, FAQs and CTA validation. Any real email delivery test needs authorization to send it.
 
-## Ongoing
+## Google and Bing
 
-- Re-run crawl, broken-link, metadata, structured-data, and responsive checks with every content release.
-- Keep titles, descriptions, Arabic translations, screenshots, and solution capabilities synchronized across locale pairs.
-- Add `lastModified` dates to the sitemap only when they can be sourced from genuine content update times.
+- In an owner-controlled Google account, add/verify the Search Console property for this website. Choose a Domain property with DNS verification if all subdomains/protocols should be covered, or an exact `https://www.innovatek-swd.com/` URL-prefix property with a supported verification method.
+- After deployment and successful verification, submit **https://www.innovatek-swd.com/sitemap.xml**. Submit it to Bing Webmaster Tools as well.
+- Use URL Inspection for the English and Arabic homepage, about and contact pages. Check fetched HTML, crawl permission, Google-selected canonical and indexing status. Request indexing of updated representative URLs where appropriate; this is a request, not a guarantee.
+- Validate homepage JSON-LD in Schema.org Validator and Google's Rich Results Test. Service/Organization validity does not imply a special search presentation; this commercial site should not expect FAQ rich results.
+- Review Page Indexing reasons before diagnosing a missing query result. Distinguish an excluded URL from an indexed URL that ranks below the visible results.
+
+## Measure and develop content
+
+- Record the first available Search Console baseline by query, page, country and device. Track impressions, clicks, CTR and average position for the ten product groups in the audit, including singular/plural donation-system queries and Arabic equivalents.
+- Compare equivalent 28-day periods once enough data exists. Separate branded from non-branded queries; do not infer success from a single personalized Google search.
+- Monitor real-user Core Web Vitals and lead quality. Local Lighthouse scores are diagnostic lab results, not Google ranking or field-performance measurements.
+- Add accurate case studies, implementation details, integration documentation and buyer FAQs when source material exists. Obtain client approval before publishing names, results or quotations. Seek relevant links through legitimate partner and customer references.
+- Product anchors remain sections of the homepages, not independently indexable product pages. More focused editorial pages could support deeper product searches later, but require an agreed content/routing decision; do not restore the retired solutions layout automatically.
+- Add sitemap `lastModified` only when backed by actual content update dates. Re-run `npm run check` for each release.
+
+See [the audit and query map](seo-audit-2026-09-13.md) for evidence and research sources.
+
+Final local verification and current GitHub Actions status: [14 September review](seo-final-review-2026-09-14.md).

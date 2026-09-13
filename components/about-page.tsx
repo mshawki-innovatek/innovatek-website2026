@@ -9,10 +9,8 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import type { Locale } from "@/lib/content";
-import { homeCopy } from "@/lib/content";
-import { absoluteUrl, SITE_NAME, SITE_URL } from "@/lib/site";
-import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
+import { canonicalUrl, SITE_NAME, SITE_URL } from "@/lib/site";
+import { MarketingHeader, MarketingFooter } from "@/components/marketing-chrome";
 import { ContactSection } from "@/components/contact-section";
 import { JsonLd } from "@/components/json-ld";
 
@@ -23,7 +21,6 @@ type AboutPageProps = {
 export function AboutPage({ locale }: AboutPageProps) {
   const ar = locale === "ar";
   const prefix = ar ? "/ar" : "";
-  const copy = homeCopy[locale];
   const principles: Array<[LucideIcon, string, string]> = ar
     ? [
         [Layers3, "معياري بالتصميم", "عشرة حلول مركّزة تعمل منفردة أو تتصل في منظومة كاملة. ابدأ بواحد — ولا نظام جامد بمقاس واحد للجميع."],
@@ -52,7 +49,7 @@ export function AboutPage({ locale }: AboutPageProps) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "AboutPage",
-    url: absoluteUrl(`${prefix}/about`),
+    url: canonicalUrl(`${prefix}/about`),
     name: ar ? "عن إنوفاتك SWD" : "About Innovatek SWD",
     about: {
       "@type": "Organization",
@@ -64,28 +61,20 @@ export function AboutPage({ locale }: AboutPageProps) {
   };
 
   return (
-    <>
+    <div className="designer-landing secondary-page" data-lang={locale} dir={ar ? "rtl" : "ltr"}>
       <JsonLd data={schema} />
-      <SiteHeader locale={locale} nav={copy.nav} alternateHref={ar ? "/about" : "/ar/about"} />
-      <main className="overflow-x-hidden w-full max-w-full about-page">
+      <MarketingHeader locale={locale} alternateHref={ar ? "/about" : "/ar/about"} />
+      <main id="main-content" className="overflow-x-hidden w-full max-w-full about-page">
         <section className="about-hero">
           <div className="shell about-hero__grid">
             <div className="about-hero__copy">
-              <p className="eyebrow eyebrow--light">{ar ? "عن إنوفاتك SWD" : "About Innovatek SWD"}</p>
+
               <h1>{ar ? "شركة برمجيات تبقى معك بعد التشغيل." : "A software house that stays after go-live."}</h1>
               <p>
                 {ar
                   ? "تأسسنا في الإمارات عام 2024، ونبني منظومات ذكية تتوسع بالذكاء الاصطناعي — للعطاء وإدارة المرافق وتفاعل العملاء في الإمارات والسعودية ومصر وعموم الشرق الأوسط. معيارية بالتصميم، وذكاء أصلي من اليوم الأول، وبمواءمة GDPR وقانون حماية البيانات الإماراتي، ومبنية للبقاء: دعم مستمر وتحديثات منتظمة وفريق يعرف القطاع."
                   : "Founded in the UAE in 2024, we build intelligent ecosystems that scale with AI — for giving, facility management and customer engagement across the UAE, KSA, Egypt and the wider MENA region. Modular by design, AI-native from day one, GDPR and UAE PDPL aligned, and built to stay: continuous support, regular updates, and a team that knows the sector."}
               </p>
-              <div className="about-hero__stats">
-                {stats.map(([value, label]) => (
-                  <div key={label}>
-                    <strong>{value}</strong>
-                    <span>{label}</span>
-                  </div>
-                ))}
-              </div>
               <Link href={`${prefix}/contact`} className="button button--light">
                 {ar ? "تحدّث إلى فريقنا" : "Talk to our team"}
                 <ArrowUpRight aria-hidden="true" />
@@ -102,6 +91,15 @@ export function AboutPage({ locale }: AboutPageProps) {
             </div>
           </div>
         </section>
+
+              <div className="about-facts shell">
+                {stats.map(([value, label]) => (
+                  <div key={label}>
+                    <strong>{value}</strong>
+                    <span>{label}</span>
+                  </div>
+                ))}
+              </div>
 
         <section className="about-statement section section--light">
           <div className="shell about-statement__grid">
@@ -157,7 +155,7 @@ export function AboutPage({ locale }: AboutPageProps) {
                   ? "نركز على المسارات التي تربط خدمة الناس بالحوكمة: إدارة التبرعات، صيانة الأصول، تجربة الزائر، والتواصل الذي يتحول إلى طلب ومهمة وقرار."
                   : "We focus on workflows where service and governance meet: donation management, asset maintenance, visitor experience and communication that becomes a request, task and decision."}
               </p>
-              <Link href={`${prefix}/solutions`} className="text-link">
+              <Link href={`${prefix}/#platform`} className="text-link">
                 {ar ? "استعرض منصاتنا" : "Explore our platforms"}
                 <ArrowUpRight aria-hidden="true" />
               </Link>
@@ -165,9 +163,9 @@ export function AboutPage({ locale }: AboutPageProps) {
           </div>
         </section>
 
-        <ContactSection locale={locale} copy={copy.contact} />
+        <ContactSection locale={locale} />
       </main>
-      <SiteFooter locale={locale} />
-    </>
+      <MarketingFooter locale={locale} alternateHref={ar ? "/about/" : "/ar/about/"} />
+    </div>
   );
 }

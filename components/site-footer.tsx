@@ -14,16 +14,16 @@ export function SiteFooter({ locale }: SiteFooterProps) {
 
   const productLinks = ar
     ? [
-        ["Donation Hub", "/ar/solutions/donation-hub"],
-        ["بنيان + Twin AI", "/ar/solutions/bunyan-cmms"],
-        ["Smart VMS", "/ar/solutions/visitor-management-system"],
-        ["منصة التواصل", "/ar/solutions/communication-platform"],
+        ["Donation Hub", "/ar/#platform"],
+        ["بنيان + Twin AI", "/ar/#platform"],
+        ["Smart VMS", "/ar/#platform"],
+        ["منصة التواصل", "/ar/#platform"],
       ]
     : [
-        ["Donation Hub", "/solutions/donation-hub"],
-        ["Bunyan + Twin AI", "/solutions/bunyan-cmms"],
-        ["Smart VMS", "/solutions/visitor-management-system"],
-        ["Communication Platform", "/solutions/communication-platform"],
+        ["Donation Hub", "/#platform"],
+        ["Bunyan + Twin AI", "/#platform"],
+        ["Smart VMS", "/#platform"],
+        ["Communication Platform", "/#platform"],
       ];
 
   return (
@@ -41,7 +41,7 @@ export function SiteFooter({ locale }: SiteFooterProps) {
         <div className="site-footer__column">
           <p className="site-footer__heading">{ar ? "الحلول" : "Solutions"}</p>
           {productLinks.map(([label, href]) => (
-            <Link key={href} href={href}>
+            <Link key={label} href={href}>
               {label}
             </Link>
           ))}

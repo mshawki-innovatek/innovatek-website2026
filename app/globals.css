@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 :root {
+  /* Keep native controls light and opt out of browser auto-darkening. */
+  color-scheme: only light;
   --background: #090b10;
   --surface: #10141d;
   --surface-soft: #151a24;
@@ -3856,13 +3858,25 @@ html[dir="rtl"] .legal-page__hero h1 {
   }
 }
 
+.not-found-root {
+  --background: #f5f7fb;
+  --surface: #ffffff;
+  --surface-soft: #edf1f7;
+  --border: #dde3ee;
+  --border-strong: #bdc7d8;
+  --text-primary: #0a1020;
+  --text-secondary: #5c667a;
+  --accent-dark: #245fe0;
+  --shadow-soft: 0 18px 56px rgba(10, 16, 32, 0.08);
+}
+
 .not-found-page {
   display: grid;
   min-height: 100svh;
   place-items: center;
   padding: 32px;
   background:
-    radial-gradient(circle at 84% 16%, rgba(23, 107, 255, 0.2), transparent 32%),
+    radial-gradient(circle at 84% 16%, rgba(23, 107, 255, 0.08), transparent 32%),
     var(--background);
 }
 
@@ -3871,7 +3885,7 @@ html[dir="rtl"] .legal-page__hero h1 {
   padding: clamp(2rem, 6vw, 5rem);
   border: 1px solid var(--border);
   border-radius: var(--radius-xl);
-  background: rgba(10, 13, 20, 0.82);
+  background: var(--surface);
   box-shadow: var(--shadow-soft);
 }
 

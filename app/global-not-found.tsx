@@ -19,7 +19,7 @@ export default function GlobalNotFound() {
     <html
       lang="en-AE"
       dir="ltr"
-      className={`${outfit.variable} ${plexArabic.variable}`}
+      className={`not-found-root ${outfit.variable} ${plexArabic.variable}`}
     >
       <body className="not-found-page">
         <main>

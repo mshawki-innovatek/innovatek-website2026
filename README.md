@@ -20,6 +20,7 @@ Useful checks:
 npm run lint
 npm run typecheck
 npm run build
+npm run check:seo
 npm start
 ```
 
@@ -28,7 +29,7 @@ npm start
 Copy `.env.example` to `.env.local` and fill in the values:
 
 ```bash
-NEXT_PUBLIC_SITE_URL=https://www.innovatek.ae
+NEXT_PUBLIC_SITE_URL=https://www.innovatek-swd.com
 NEXT_PUBLIC_EMAILJS_SERVICE_ID=
 NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=
 NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=
@@ -38,7 +39,7 @@ The site reads these public values at build time. They are intentionally visible
 
 ### Form delivery
 
-The contact and demo forms use the client-side EmailJS SDK. There is no API route or Server Action, so the whole site stays a static export.
+Home, About and Contact share the same three-field booking section and submission hook, using the client-side EmailJS SDK. Their English and Arabic versions also share the homepage navigation and footer. There is no API route or Server Action, so the whole site stays a static export.
 
 The three `NEXT_PUBLIC_EMAILJS_*` values are **required** and have no built-in defaults. If any is missing the forms skip the send entirely and offer the prefilled `mailto:` fallback instead — deliberately, so an unconfigured build fails visibly rather than posting to a stale account. Send failures are logged to the browser console with the provider's own reason (bad SMTP credentials, quota, blocked origin); the visitor only ever sees a generic retry message.
 
@@ -54,8 +55,9 @@ The official sales line is `055 889 1317` and the office address is Business Bay
 
 ## Route coverage
 
-- English and Arabic home, solutions, about, contact, privacy, and terms pages
-- Four English and four Arabic solution detail pages
+- English and Arabic home, about, contact, privacy, and terms pages
+- Ten products described on each homepage with individual section anchors
+- Retired solutions routes return 404; their content is preserved in `backups/solutions/`, outside the public export
 - Global branded 404 page
 - Generated robots, sitemap, and web manifest endpoints
 - Static 512×512 app icon and 1200×630 social sharing image
@@ -63,12 +65,19 @@ The official sales line is `055 889 1317` and the office address is Business Bay
 ## SEO and production notes
 
 - All indexable pages have a unique title, description, canonical URL, reciprocal locale alternate, and one H1.
-- Organization, WebSite, WebPage, ItemList, FAQ, Service, BreadcrumbList, AboutPage, and ContactPage structured data is emitted where relevant.
+- Organization, WebSite, WebPage, ItemList, FAQPage, Service, AboutPage, and ContactPage structured data is emitted where relevant. The visible ten-product catalog and homepage schema share one data source.
+- `npm run check` runs lint, types, build and exported-HTML SEO checks. The crawler checks all six indexable pages, locale pairs, canonical URLs, metadata, links, image paths, ten products per homepage and FAQ/schema parity.
+- Optional `GOOGLE_SITE_VERIFICATION` and `BING_SITE_VERIFICATION` values render public verification tags at build time. In GitHub Actions, set the matching repository variables before rebuilding. Adding a tag alone does not complete verification or submit a sitemap.
+- Both languages and the global 404 enforce light color-scheme regardless of system preference. Intentional dark editorial sections retain their designed colors.
 - Privacy and terms pages are operational drafts and intentionally `noindex` until legal review is complete.
 - Security headers belong to the static host/CDN. Configure them in Azure Static Web Apps or the chosen edge host; HSTS should be enabled only after every relevant host is HTTPS.
 - Use `npm start` only for the local static preview server (`python3 -m http.server`); production deployment publishes `out/` directly.
 
 See [docs/seo-launch-checklist.md](docs/seo-launch-checklist.md) before publishing.
+
+The [SEO audit](docs/seo-audit-2026-09-13.md) records the research, ten-product query map, local checks and remaining launch steps. Google ranking is not established by a local SEO score.
+
+Unused Figma custom properties were removed from `app/designer/landing.css` using `node scripts/prune-design-tokens.mjs`. This optional maintenance tool follows CSS variable dependencies and keeps selectors and live values; review its diff and render both languages after future use.
 
 ## Design provenance
 

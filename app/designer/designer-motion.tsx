@@ -73,10 +73,8 @@ export function DesignerMotion({ onPanelChange }: DesignerMotionProps) {
         }
 
         if (visual) {
-          // Scrubbed depth pass. The screen being read is the one at full size
-          // and full strength; the ones above and below sit back. A light touch
-          // on purpose — these mocks are dense with text, so the resting state
-          // stays legible instead of dropping away to a ghost.
+          // Keep text contrast constant while the screen moves through depth.
+          // Opacity scrubbing made the small interface labels unreadable.
           gsap
             .timeline({
               scrollTrigger: {
@@ -90,12 +88,11 @@ export function DesignerMotion({ onPanelChange }: DesignerMotionProps) {
             })
             .fromTo(
               visual,
-              { scale: 0.945, opacity: 0.5, y: 34 },
-              { scale: 1, opacity: 1, y: 0, ease: "none", duration: 0.5 },
+              { scale: 0.945, y: 34 },
+              { scale: 1, y: 0, ease: "none", duration: 0.5 },
             )
             .to(visual, {
               scale: 0.975,
-              opacity: 0.45,
               y: -26,
               ease: "none",
               duration: 0.5,

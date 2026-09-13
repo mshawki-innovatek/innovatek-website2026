@@ -21,7 +21,7 @@ export function ProductStory({ locale, copy, solutions }: ProductStoryProps) {
           <p className="eyebrow eyebrow--light">{copy.preface}</p>
           <h2 id="product-story-title">{copy.title}</h2>
           <p>{copy.body}</p>
-          <Link href={`${prefix}/solutions`} className="text-link text-link--light">
+          <Link href={`${prefix}/#platform`} className="text-link text-link--light">
             {copy.cta}
             <ArrowUpRight aria-hidden="true" size={18} />
           </Link>

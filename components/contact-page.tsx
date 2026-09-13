@@ -1,20 +1,17 @@
 import type { Locale } from "@/lib/content";
-import { homeCopy } from "@/lib/content";
-import { absoluteUrl, CONTACT, SITE_NAME, SITE_URL } from "@/lib/site";
-import { SiteHeader } from "@/components/site-header";
+import { canonicalUrl, CONTACT, SITE_NAME, SITE_URL } from "@/lib/site";
+import { MarketingHeader, MarketingFooter } from "@/components/marketing-chrome";
 import { ContactSection } from "@/components/contact-section";
-import { SiteFooter } from "@/components/site-footer";
 import { JsonLd } from "@/components/json-ld";
 
 export function ContactPage({ locale }: { locale: Locale }) {
   const ar = locale === "ar";
   const prefix = ar ? "/ar" : "";
-  const copy = homeCopy[locale];
 
   const schema = {
     "@context": "https://schema.org",
     "@type": "ContactPage",
-    url: absoluteUrl(`${prefix}/contact`),
+    url: canonicalUrl(`${prefix}/contact`),
     name: ar ? "تواصل مع إنوفاتك SWD" : "Contact Innovatek SWD",
     about: { "@id": `${SITE_URL}/#organization` },
     mainEntity: {
@@ -41,13 +38,13 @@ export function ContactPage({ locale }: { locale: Locale }) {
   };
 
   return (
-    <>
+    <div className="designer-landing secondary-page" data-lang={locale} dir={ar ? "rtl" : "ltr"}>
       <JsonLd data={schema} />
-      <SiteHeader locale={locale} nav={copy.nav} alternateHref={ar ? "/contact" : "/ar/contact"} />
-      <main className="overflow-x-hidden w-full max-w-full">
-        <ContactSection locale={locale} copy={copy.contact} standalone />
+      <MarketingHeader locale={locale} alternateHref={ar ? "/contact" : "/ar/contact"} />
+      <main id="main-content" className="overflow-x-hidden w-full max-w-full">
+        <ContactSection locale={locale} standalone />
       </main>
-      <SiteFooter locale={locale} />
-    </>
+      <MarketingFooter locale={locale} alternateHref={ar ? "/contact/" : "/ar/contact/"} />
+    </div>
   );
 }

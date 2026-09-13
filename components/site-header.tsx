@@ -18,8 +18,8 @@ export function SiteHeader({ locale, nav, alternateHref }: SiteHeaderProps) {
   const prefix = locale === "ar" ? "/ar" : "";
 
   const links = [
-    { label: nav.solutions, href: `${prefix}/solutions` },
-    { label: nav.approach, href: `${prefix}/#approach` },
+    { label: nav.solutions, href: `${prefix}/#platform` },
+    { label: nav.approach, href: `${prefix}/#solutions` },
     { label: nav.about, href: `${prefix}/about` },
     { label: nav.contact, href: `${prefix}/contact` },
   ];

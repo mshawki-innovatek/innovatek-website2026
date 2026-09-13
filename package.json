@@ -13,7 +13,8 @@
     "start": "python3 -m http.server 3000 --directory out",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "check": "npm run lint && npm run typecheck && npm run build"
+    "check": "npm run lint && npm run typecheck && npm run build && npm run check:seo",
+    "check:seo": "python3 scripts/check-seo.py"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

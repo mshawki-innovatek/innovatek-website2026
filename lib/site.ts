@@ -3,7 +3,7 @@ export const SITE_NAME = "Innovatek SWD";
 const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
 
 export const SITE_URL = (
-  configuredSiteUrl || "https://www.innovatek.ae"
+  configuredSiteUrl || "https://www.innovatek-swd.com"
 ).replace(/\/+$/, "");
 
 export const CONTACT = {
@@ -30,9 +30,8 @@ export const CONTACT_EMAIL = CONTACT.email;
 export const APP_HOST = `app.${CONTACT.email.split("@")[1].toLowerCase()}`;
 
 export const canonicalPath = (path = "/") => {
-  if (path === "/") return "/";
-
-  return `/${path.replace(/^\/+|\/+$/g, "")}/`;
+  const normalized = path.replace(/^\/+|\/+$/g, "");
+  return normalized ? `/${normalized}/` : "/";
 };
 
 export const canonicalUrl = (path = "/") =>

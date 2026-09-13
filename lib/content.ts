@@ -35,7 +35,7 @@ export const solutions: Solution[] = [
     image: "/assets/reference/uae-smart-giving-kiosk.webp",
     imageAlt: "Emirati visitors using a smart giving kiosk in a modern lobby",
     cardClass: "solution-card--cobalt",
-    href: "/solutions/donation-hub",
+    href: "/#platform",
   },
   {
     slug: "bunyan-cmms",
@@ -55,7 +55,7 @@ export const solutions: Solution[] = [
     image: "/assets/reference/smart-facility-access-control.webp",
     imageAlt: "Smart access-control entrance inside a modern UAE facility",
     cardClass: "solution-card--ink",
-    href: "/solutions/bunyan-cmms",
+    href: "/#platform",
   },
   {
     slug: "visitor-management-system",
@@ -75,7 +75,7 @@ export const solutions: Solution[] = [
     image: "/assets/reference/visitor-self-check-in-gate.webp",
     imageAlt: "Visitor completing self check-in at a secure facility entrance",
     cardClass: "solution-card--mist",
-    href: "/solutions/visitor-management-system",
+    href: "/#platform",
   },
   {
     slug: "communication-platform",
@@ -95,7 +95,7 @@ export const solutions: Solution[] = [
     image: "/assets/reference/innovatek-engineering-team.webp",
     imageAlt: "Innovatek engineering team developing operational software",
     cardClass: "solution-card--ice",
-    href: "/solutions/communication-platform",
+    href: "/#platform",
   },
 ];
 
@@ -118,7 +118,7 @@ export const solutionsAr: Solution[] = [
     image: "/assets/reference/uae-smart-giving-kiosk.webp",
     imageAlt: "زوار إماراتيون يستخدمون كشك تبرع ذكي في ردهة حديثة",
     cardClass: "solution-card--cobalt",
-    href: "/ar/solutions/donation-hub",
+    href: "/ar/#platform",
   },
   {
     slug: "bunyan-cmms",
@@ -138,7 +138,7 @@ export const solutionsAr: Solution[] = [
     image: "/assets/reference/smart-facility-access-control.webp",
     imageAlt: "مدخل ذكي للتحكم بالدخول داخل منشأة حديثة في الإمارات",
     cardClass: "solution-card--ink",
-    href: "/ar/solutions/bunyan-cmms",
+    href: "/ar/#platform",
   },
   {
     slug: "visitor-management-system",
@@ -158,7 +158,7 @@ export const solutionsAr: Solution[] = [
     image: "/assets/reference/visitor-self-check-in-gate.webp",
     imageAlt: "زائر يُكمل إجراءات الدخول الذاتي عند مدخل منشأة آمنة",
     cardClass: "solution-card--mist",
-    href: "/ar/solutions/visitor-management-system",
+    href: "/ar/#platform",
   },
   {
     slug: "communication-platform",
@@ -178,7 +178,7 @@ export const solutionsAr: Solution[] = [
     image: "/assets/reference/innovatek-engineering-team.webp",
     imageAlt: "فريق إنوفاتك الهندسي يطور البرمجيات التشغيلية",
     cardClass: "solution-card--ice",
-    href: "/ar/solutions/communication-platform",
+    href: "/ar/#platform",
   },
 ];
 

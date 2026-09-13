@@ -1,9 +1,11 @@
 "use client";
 
 /* eslint-disable @typescript-eslint/no-explicit-any, @next/next/no-img-element -- generated from the approved design export */
+import { DemoSection } from "@/components/contact-section";
+import { MarketingHeader, MarketingFooter } from "@/components/marketing-chrome";
 import { Fragment } from "react";
-import Link from "next/link";
-import { ArrowDown, ArrowLeft, ArrowRight, BadgeCheck, Building2, CircleCheck, Coins, FilePen, KeyRound, Languages, Layers, LayoutDashboard, Mail, MapPin, MessageCircle, MonitorSmartphone, Phone, PhoneCall, Sparkles } from "lucide-react";
+import { ArrowDown, ArrowLeft, ArrowRight, BadgeCheck, Building2, CircleCheck, Coins, FilePen, KeyRound, Layers, LayoutDashboard, Mail, MessageCircle, MonitorSmartphone, PhoneCall, Sparkles } from "lucide-react";
+import { ProductEcosystemGroup } from "@/components/product-ecosystem-group";
 import type { LandingVals } from "./designer-landing";
 
 // Index order matches T.panels.
@@ -17,46 +19,7 @@ export function LandingBodyEn({ v }: { v: LandingVals }) {
 
 <div  className="designer-landing" data-lang={v.lang} data-motion={v.heroMotionState} dir={v.dir}  style={{ fontFamily: "var(--font-outfit), var(--font-arabic), sans-serif", color: "var(--color-text-primary)", background: "var(--color-background-primary)", }}>
 
-  <a className="designer-skip-link" href="#main-content">Skip to content</a>
-  <header  style={{ position: "fixed", top: "0", insetInline: "0", zIndex: "60", backdropFilter: "blur(14px)", background: "rgba(255,255,255,0.86)", borderBottom: "1px solid var(--color-border-subtle)", }}>
-    <div  style={{ maxWidth: "1280px", margin: "0 auto", padding: "11px clamp(20px, 4vw, 48px)", display: "flex", alignItems: "center", gap: "32px", minHeight: "67px", }}>
-      <Link href="/" aria-label="Innovatek SWD home"  style={{ display: "flex", alignItems: "center", gap: "10px", flexShrink: "0", }}>
-        <img src="/assets/designer/9a22adcf.png" alt="Innovatek SWD" width="1136" height="316"  style={{ height: "34px", width: "auto", display: "block", }} />
-      </Link>
-      <nav data-desknav="true" aria-label={v.navLabel}  style={{ display: "flex", gap: "28px", marginInlineStart: "auto", alignItems: "center", }}>
-        <a href="#platform"  style={{ fontSize: "15px", fontWeight: "500", color: "var(--color-text-secondary)", }} data-hover="color: var(--color-text-primary)">Solutions</a>
-        <a href="#ecosystem"  style={{ fontSize: "15px", fontWeight: "500", color: "var(--color-text-secondary)", }} data-hover="color: var(--color-text-primary)">Ecosystem</a>
-        <a href="#clients"  style={{ fontSize: "15px", fontWeight: "500", color: "var(--color-text-secondary)", }} data-hover="color: var(--color-text-primary)">Clients</a>
-        <a href="#about"  style={{ fontSize: "15px", fontWeight: "500", color: "var(--color-text-secondary)", }} data-hover="color: var(--color-text-primary)">About</a>
-      </nav>
-      <div  style={{ display: "flex", alignItems: "center", gap: "10px", marginInlineStart: "auto", }}>
-        <button id="designer-menu-button" type="button" data-burger="true" onClick={() => v.toggleNav()} aria-label={v.menuLabel} aria-expanded={v.navExpanded} aria-controls="designer-mobile-nav"  style={{ width: "44px", height: "44px", borderRadius: "999px", placeItems: "center", border: "1px solid var(--color-border-subtle)", background: "var(--color-background-primary)", cursor: "pointer", flexShrink: "0", }}>
-          <span aria-hidden="true"  style={{ display: "grid", gap: "4px", width: "17px", }}>
-            <span  style={{ height: "2px", borderRadius: "2px", background: "var(--color-text-primary)", transition: "transform 220ms ease", transform: v.navBarTop, }}></span>
-            <span  style={{ height: "2px", borderRadius: "2px", background: "var(--color-text-primary)", transition: "opacity 180ms ease", opacity: v.navBarMid, }}></span>
-            <span  style={{ height: "2px", borderRadius: "2px", background: "var(--color-text-primary)", transition: "transform 220ms ease", transform: v.navBarBot, }}></span>
-          </span>
-        </button>
-        <a href={v.localeHref} hrefLang={v.localeHrefLang} lang={v.localeLang}  style={{ display: "flex", alignItems: "center", gap: "7px", minHeight: "44px", paddingInline: "14px", borderRadius: "999px", border: "1px solid var(--color-border-subtle)", background: "var(--color-background-primary)", fontFamily: "var(--font-arabic), var(--font-outfit), sans-serif", fontSize: "14px", fontWeight: "600", color: "var(--color-text-secondary)", }} data-hover="border-color: var(--color-neutral-300); color: var(--color-text-primary)">
-          <Languages aria-hidden="true" size={16} />
-          العربية
-        </a>
-        <a data-hdr-cta="true" href="#demo"  style={{ display: "flex", alignItems: "center", minHeight: "44px", paddingInline: "20px", borderRadius: "999px", background: "var(--accent)", color: "#fff", fontSize: "14px", fontWeight: "700", flexShrink: "0", }} data-hover="background: var(--accent-deep); color: #fff">
-          Book a demo
-        </a>
-      </div>
-    </div>
-
-    <nav  id="designer-mobile-nav" data-mobnav="true" data-open={v.navOpen} aria-label={v.mobileNavLabel}  style={{ flexDirection: "column", padding: "6px clamp(20px, 4vw, 48px) 18px", borderTop: "1px solid var(--color-border-subtle)", background: "var(--color-background-primary)", maxHeight: "74vh", overflowY: "auto", }}>
-        <a href="#platform" onClick={() => v.closeNav()}  style={{ display: "flex", alignItems: "center", minHeight: "48px", fontSize: "16px", fontWeight: "600", color: "var(--color-text-primary)", borderBottom: "1px solid var(--color-border-subtle)", }} data-hover="color: var(--accent)">Solutions</a>
-        <a href="#ecosystem" onClick={() => v.closeNav()}  style={{ display: "flex", alignItems: "center", minHeight: "48px", fontSize: "16px", fontWeight: "600", color: "var(--color-text-primary)", borderBottom: "1px solid var(--color-border-subtle)", }} data-hover="color: var(--accent)">Ecosystem</a>
-        <a href="#clients" onClick={() => v.closeNav()}  style={{ display: "flex", alignItems: "center", minHeight: "48px", fontSize: "16px", fontWeight: "600", color: "var(--color-text-primary)", borderBottom: "1px solid var(--color-border-subtle)", }} data-hover="color: var(--accent)">Clients</a>
-        <a href="#about" onClick={() => v.closeNav()}  style={{ display: "flex", alignItems: "center", minHeight: "48px", fontSize: "16px", fontWeight: "600", color: "var(--color-text-primary)", borderBottom: "1px solid var(--color-border-subtle)", }} data-hover="color: var(--accent)">About</a>
-      <a href="#demo" onClick={() => v.closeNav()}  style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "50px", marginTop: "16px", borderRadius: "999px", background: "var(--accent)", color: "#fff", fontSize: "15px", fontWeight: "700", }} data-hover="background: var(--accent-deep); color: #fff">
-        Book a demo
-      </a>
-    </nav>
-  </header>
+  <MarketingHeader locale="en" />
 
   <main id="main-content">
   <section id="top" aria-labelledby="designer-hero-title"  style={{ padding: "67px 0 0", background: "var(--color-neutral-950)", }}>
@@ -317,15 +280,15 @@ export function LandingBodyEn({ v }: { v: LandingVals }) {
             </p>
           </div>
           <div data-client-logos="true"  style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: "12px", }}>
-            <div  style={{ background: "#ffffff", border: "1px solid rgba(11,18,32,0.06)", borderRadius: "14px", aspectRatio: "1.5", padding: "clamp(9px, 1.4vw, 14px)", display: "grid", placeItems: "center", backdropFilter: "blur(14px) saturate(1.1)", transition: "background 220ms ease, transform 220ms ease", }} data-hover="background: rgba(255,255,255,0.95); transform: translateY(-2px)"><img src="/assets/designer/c882e3ab.webp" alt="Al Jalila Foundation" loading="lazy" style={{ width: "76.3%", height: "auto", maxHeight: "100%", objectFit: "contain" }} /></div>
-            <div  style={{ background: "#ffffff", border: "1px solid rgba(11,18,32,0.06)", borderRadius: "14px", aspectRatio: "1.5", padding: "clamp(9px, 1.4vw, 14px)", display: "grid", placeItems: "center", backdropFilter: "blur(14px) saturate(1.1)", transition: "background 220ms ease, transform 220ms ease", }} data-hover="background: rgba(255,255,255,0.95); transform: translateY(-2px)"><img src="/assets/designer/22218520.webp" alt="Dubai Health" loading="lazy" style={{ width: "73.8%", height: "auto", maxHeight: "100%", objectFit: "contain" }} /></div>
-            <div  style={{ background: "#ffffff", border: "1px solid rgba(11,18,32,0.06)", borderRadius: "14px", aspectRatio: "1.5", padding: "clamp(9px, 1.4vw, 14px)", display: "grid", placeItems: "center", backdropFilter: "blur(14px) saturate(1.1)", transition: "background 220ms ease, transform 220ms ease", }} data-hover="background: rgba(255,255,255,0.95); transform: translateY(-2px)"><img src="/assets/designer/9e8ff21f.webp" alt="Dar Al Ber Society" loading="lazy" style={{ width: "56.2%", height: "auto", maxHeight: "100%", objectFit: "contain" }} /></div>
-            <div  style={{ background: "#ffffff", border: "1px solid rgba(11,18,32,0.06)", borderRadius: "14px", aspectRatio: "1.5", padding: "clamp(9px, 1.4vw, 14px)", display: "grid", placeItems: "center", backdropFilter: "blur(14px) saturate(1.1)", transition: "background 220ms ease, transform 220ms ease", }} data-hover="background: rgba(255,255,255,0.95); transform: translateY(-2px)"><img src="/assets/designer/ef622a08.webp" alt="Tarahom Foundation" loading="lazy" style={{ width: "74.4%", height: "auto", maxHeight: "100%", objectFit: "contain" }} /></div>
-            <div  style={{ background: "#ffffff", border: "1px solid rgba(11,18,32,0.06)", borderRadius: "14px", aspectRatio: "1.5", padding: "clamp(9px, 1.4vw, 14px)", display: "grid", placeItems: "center", backdropFilter: "blur(14px) saturate(1.1)", transition: "background 220ms ease, transform 220ms ease", }} data-hover="background: rgba(255,255,255,0.95); transform: translateY(-2px)"><img src="/assets/designer/e7c07a82.webp" alt="Beit Al Khair Society" loading="lazy" style={{ width: "51.0%", height: "auto", maxHeight: "100%", objectFit: "contain" }} /></div>
-            <div  style={{ background: "#ffffff", border: "1px solid rgba(11,18,32,0.06)", borderRadius: "14px", aspectRatio: "1.5", padding: "clamp(9px, 1.4vw, 14px)", display: "grid", placeItems: "center", backdropFilter: "blur(14px) saturate(1.1)", transition: "background 220ms ease, transform 220ms ease", }} data-hover="background: rgba(255,255,255,0.95); transform: translateY(-2px)"><img src="/assets/designer/43f12ad9.webp" alt="Awqaf Sharjah" loading="lazy" style={{ width: "59.0%", height: "auto", maxHeight: "100%", objectFit: "contain" }} /></div>
-            <div  style={{ background: "#ffffff", border: "1px solid rgba(11,18,32,0.06)", borderRadius: "14px", aspectRatio: "1.5", padding: "clamp(9px, 1.4vw, 14px)", display: "grid", placeItems: "center", backdropFilter: "blur(14px) saturate(1.1)", transition: "background 220ms ease, transform 220ms ease", }} data-hover="background: rgba(255,255,255,0.95); transform: translateY(-2px)"><img src="/assets/designer/2218988d.webp" alt="Fujairah Charity" loading="lazy" style={{ width: "45.7%", height: "auto", maxHeight: "100%", objectFit: "contain" }} /></div>
-            <div  style={{ background: "#ffffff", border: "1px solid rgba(11,18,32,0.06)", borderRadius: "14px", aspectRatio: "1.5", padding: "clamp(9px, 1.4vw, 14px)", display: "grid", placeItems: "center", backdropFilter: "blur(14px) saturate(1.1)", transition: "background 220ms ease, transform 220ms ease", }} data-hover="background: rgba(255,255,255,0.95); transform: translateY(-2px)"><img src="/assets/designer/08d4aff9.webp" alt="Sharjah Social Empowerment" loading="lazy" style={{ width: "45.3%", height: "auto", maxHeight: "100%", objectFit: "contain" }} /></div>
-            <div  style={{ background: "#ffffff", border: "1px solid rgba(11,18,32,0.06)", borderRadius: "14px", aspectRatio: "1.5", padding: "clamp(9px, 1.4vw, 14px)", display: "grid", placeItems: "center", backdropFilter: "blur(14px) saturate(1.1)", transition: "background 220ms ease, transform 220ms ease", }} data-hover="background: rgba(255,255,255,0.95); transform: translateY(-2px)"><img src="/assets/designer/client-sharjah-charity.webp" alt="Sharjah Charity Society" loading="lazy" style={{ width: "45.3%", height: "auto", maxHeight: "100%", objectFit: "contain" }} /></div>
+            <div  style={{ background: "#ffffff", border: "1px solid rgba(11,18,32,0.06)", borderRadius: "14px", aspectRatio: "1.5", padding: "clamp(9px, 1.4vw, 14px)", display: "grid", placeItems: "center", backdropFilter: "blur(14px) saturate(1.1)", transition: "background 220ms ease, transform 220ms ease", }} data-hover="background: rgba(255,255,255,0.95); transform: translateY(-2px)"><img width="232" height="61" src="/assets/designer/c882e3ab.webp" alt="Al Jalila Foundation" loading="lazy" style={{ width: "76.3%", height: "auto", maxHeight: "100%", objectFit: "contain" }} /></div>
+            <div  style={{ background: "#ffffff", border: "1px solid rgba(11,18,32,0.06)", borderRadius: "14px", aspectRatio: "1.5", padding: "clamp(9px, 1.4vw, 14px)", display: "grid", placeItems: "center", backdropFilter: "blur(14px) saturate(1.1)", transition: "background 220ms ease, transform 220ms ease", }} data-hover="background: rgba(255,255,255,0.95); transform: translateY(-2px)"><img width="232" height="60" src="/assets/designer/22218520.webp" alt="Dubai Health" loading="lazy" style={{ width: "73.8%", height: "auto", maxHeight: "100%", objectFit: "contain" }} /></div>
+            <div  style={{ background: "#ffffff", border: "1px solid rgba(11,18,32,0.06)", borderRadius: "14px", aspectRatio: "1.5", padding: "clamp(9px, 1.4vw, 14px)", display: "grid", placeItems: "center", backdropFilter: "blur(14px) saturate(1.1)", transition: "background 220ms ease, transform 220ms ease", }} data-hover="background: rgba(255,255,255,0.95); transform: translateY(-2px)"><img width="227" height="101" src="/assets/designer/9e8ff21f.webp" alt="Dar Al Ber Society" loading="lazy" style={{ width: "56.2%", height: "auto", maxHeight: "100%", objectFit: "contain" }} /></div>
+            <div  style={{ background: "#ffffff", border: "1px solid rgba(11,18,32,0.06)", borderRadius: "14px", aspectRatio: "1.5", padding: "clamp(9px, 1.4vw, 14px)", display: "grid", placeItems: "center", backdropFilter: "blur(14px) saturate(1.1)", transition: "background 220ms ease, transform 220ms ease", }} data-hover="background: rgba(255,255,255,0.95); transform: translateY(-2px)"><img width="232" height="64" src="/assets/designer/ef622a08.webp" alt="Tarahom Foundation" loading="lazy" style={{ width: "74.4%", height: "auto", maxHeight: "100%", objectFit: "contain" }} /></div>
+            <div  style={{ background: "#ffffff", border: "1px solid rgba(11,18,32,0.06)", borderRadius: "14px", aspectRatio: "1.5", padding: "clamp(9px, 1.4vw, 14px)", display: "grid", placeItems: "center", backdropFilter: "blur(14px) saturate(1.1)", transition: "background 220ms ease, transform 220ms ease", }} data-hover="background: rgba(255,255,255,0.95); transform: translateY(-2px)"><img width="232" height="136" src="/assets/designer/e7c07a82.webp" alt="Beit Al Khair Society" loading="lazy" style={{ width: "51.0%", height: "auto", maxHeight: "100%", objectFit: "contain" }} /></div>
+            <div  style={{ background: "#ffffff", border: "1px solid rgba(11,18,32,0.06)", borderRadius: "14px", aspectRatio: "1.5", padding: "clamp(9px, 1.4vw, 14px)", display: "grid", placeItems: "center", backdropFilter: "blur(14px) saturate(1.1)", transition: "background 220ms ease, transform 220ms ease", }} data-hover="background: rgba(255,255,255,0.95); transform: translateY(-2px)"><img width="232" height="197" src="/assets/designer/43f12ad9.webp" alt="Awqaf Sharjah" loading="lazy" style={{ width: "59.0%", height: "auto", maxHeight: "100%", objectFit: "contain" }} /></div>
+            <div  style={{ background: "#ffffff", border: "1px solid rgba(11,18,32,0.06)", borderRadius: "14px", aspectRatio: "1.5", padding: "clamp(9px, 1.4vw, 14px)", display: "grid", placeItems: "center", backdropFilter: "blur(14px) saturate(1.1)", transition: "background 220ms ease, transform 220ms ease", }} data-hover="background: rgba(255,255,255,0.95); transform: translateY(-2px)"><img width="232" height="156" src="/assets/designer/2218988d.webp" alt="Fujairah Charity" loading="lazy" style={{ width: "45.7%", height: "auto", maxHeight: "100%", objectFit: "contain" }} /></div>
+            <div  style={{ background: "#ffffff", border: "1px solid rgba(11,18,32,0.06)", borderRadius: "14px", aspectRatio: "1.5", padding: "clamp(9px, 1.4vw, 14px)", display: "grid", placeItems: "center", backdropFilter: "blur(14px) saturate(1.1)", transition: "background 220ms ease, transform 220ms ease", }} data-hover="background: rgba(255,255,255,0.95); transform: translateY(-2px)"><img width="232" height="173" src="/assets/designer/08d4aff9.webp" alt="Sharjah Social Empowerment" loading="lazy" style={{ width: "45.3%", height: "auto", maxHeight: "100%", objectFit: "contain" }} /></div>
+            <div  style={{ background: "#ffffff", border: "1px solid rgba(11,18,32,0.06)", borderRadius: "14px", aspectRatio: "1.5", padding: "clamp(9px, 1.4vw, 14px)", display: "grid", placeItems: "center", backdropFilter: "blur(14px) saturate(1.1)", transition: "background 220ms ease, transform 220ms ease", }} data-hover="background: rgba(255,255,255,0.95); transform: translateY(-2px)"><img width="232" height="173" src="/assets/designer/client-sharjah-charity.webp" alt="Sharjah Charity Society" loading="lazy" style={{ width: "45.3%", height: "auto", maxHeight: "100%", objectFit: "contain" }} /></div>
           </div>
         </div>
       </div>
@@ -596,30 +559,7 @@ export function LandingBodyEn({ v }: { v: LandingVals }) {
             One harmonised journey for every donor — first message to final receipt.
             
           </p>
-            <div  style={{ display: "flex", gap: "12px", alignItems: "flex-start", padding: "14px 0", borderTop: "1px solid var(--color-border-subtle)", }}>
-              <span  style={{ flex: "1", minWidth: "0", }}>
-                <span  style={{ display: "block", fontSize: "15px", fontWeight: "700", color: "var(--color-text-primary)", }}>Donation Hub</span>
-                <span  style={{ display: "block", fontSize: "14px", lineHeight: "1.5", color: "var(--color-text-secondary)", marginTop: "2px", }}>Projects, devices, transactions and campaigns in one system.</span>
-              </span>
-            </div>
-            <div  style={{ display: "flex", gap: "12px", alignItems: "flex-start", padding: "14px 0", borderTop: "1px solid var(--color-border-subtle)", }}>
-              <span  style={{ flex: "1", minWidth: "0", }}>
-                <span  style={{ display: "block", fontSize: "15px", fontWeight: "700", color: "var(--color-text-primary)", }}>Tajir</span>
-                <span  style={{ display: "block", fontSize: "14px", lineHeight: "1.5", color: "var(--color-text-secondary)", marginTop: "2px", }}>In-kind giving with the simplicity of online shopping.</span>
-              </span>
-            </div>
-            <div  style={{ display: "flex", gap: "12px", alignItems: "flex-start", padding: "14px 0", borderTop: "1px solid var(--color-border-subtle)", }}>
-              <span  style={{ flex: "1", minWidth: "0", }}>
-                <span  style={{ display: "block", fontSize: "15px", fontWeight: "700", color: "var(--color-text-primary)", }}>Agent Management</span>
-                <span  style={{ display: "block", fontSize: "14px", lineHeight: "1.5", color: "var(--color-text-secondary)", marginTop: "2px", }}>Field agents, custody reconciliation and attendance in real time.</span>
-              </span>
-            </div>
-            <div  style={{ display: "flex", gap: "12px", alignItems: "flex-start", padding: "14px 0", borderTop: "1px solid var(--color-border-subtle)", }}>
-              <span  style={{ flex: "1", minWidth: "0", }}>
-                <span  style={{ display: "block", fontSize: "15px", fontWeight: "700", color: "var(--color-text-primary)", }}>Jood</span>
-                <span  style={{ display: "block", fontSize: "14px", lineHeight: "1.5", color: "var(--color-text-secondary)", marginTop: "2px", }}>SMS campaigns and lead management that convert outreach into action.</span>
-              </span>
-            </div>
+          <ProductEcosystemGroup group="giving" locale="en" />
         </div>
         <div  style={{ background: "var(--color-background-primary)", borderRadius: "20px", padding: "30px 28px 24px", }}>
           <span  style={{ display: "grid", placeItems: "center", width: "42px", height: "42px", borderRadius: "12px", background: "var(--color-surface-brand)", color: "var(--accent-deep)", marginBottom: "20px", }}>
@@ -630,24 +570,7 @@ export function LandingBodyEn({ v }: { v: LandingVals }) {
             From reactive maintenance to real-time operational certainty.
             
           </p>
-            <div  style={{ display: "flex", gap: "12px", alignItems: "flex-start", padding: "14px 0", borderTop: "1px solid var(--color-border-subtle)", }}>
-              <span  style={{ flex: "1", minWidth: "0", }}>
-                <span  style={{ display: "block", fontSize: "15px", fontWeight: "700", color: "var(--color-text-primary)", }}>Bunyan · CMMS / CAFM</span>
-                <span  style={{ display: "block", fontSize: "14px", lineHeight: "1.5", color: "var(--color-text-secondary)", marginTop: "2px", }}>Preventive and corrective maintenance with SLA and asset history.</span>
-              </span>
-            </div>
-            <div  style={{ display: "flex", gap: "12px", alignItems: "flex-start", padding: "14px 0", borderTop: "1px solid var(--color-border-subtle)", }}>
-              <span  style={{ flex: "1", minWidth: "0", }}>
-                <span  style={{ display: "block", fontSize: "15px", fontWeight: "700", color: "var(--color-text-primary)", }}>Twin AI</span>
-                <span  style={{ display: "block", fontSize: "14px", lineHeight: "1.5", color: "var(--color-text-secondary)", marginTop: "2px", }}>A live digital twin that shows risk forming before failure.</span>
-              </span>
-            </div>
-            <div  style={{ display: "flex", gap: "12px", alignItems: "flex-start", padding: "14px 0", borderTop: "1px solid var(--color-border-subtle)", }}>
-              <span  style={{ flex: "1", minWidth: "0", }}>
-                <span  style={{ display: "block", fontSize: "15px", fontWeight: "700", color: "var(--color-text-primary)", }}>VMS</span>
-                <span  style={{ display: "block", fontSize: "14px", lineHeight: "1.5", color: "var(--color-text-secondary)", marginTop: "2px", }}>Visitor and contractor access, secured and fully logged.</span>
-              </span>
-            </div>
+          <ProductEcosystemGroup group="facilities" locale="en" />
         </div>
         <div  style={{ background: "var(--color-background-primary)", borderRadius: "20px", padding: "30px 28px 24px", }}>
           <span  style={{ display: "grid", placeItems: "center", width: "42px", height: "42px", borderRadius: "12px", background: "var(--color-surface-brand)", color: "var(--accent-deep)", marginBottom: "20px", }}>
@@ -658,24 +581,7 @@ export function LandingBodyEn({ v }: { v: LandingVals }) {
             The hardware, analytics and engagement layer powering everything.
             
           </p>
-            <div  style={{ display: "flex", gap: "12px", alignItems: "flex-start", padding: "14px 0", borderTop: "1px solid var(--color-border-subtle)", }}>
-              <span  style={{ flex: "1", minWidth: "0", }}>
-                <span  style={{ display: "block", fontSize: "15px", fontWeight: "700", color: "var(--color-text-primary)", }}>Smart Kiosk</span>
-                <span  style={{ display: "block", fontSize: "14px", lineHeight: "1.5", color: "var(--color-text-secondary)", marginTop: "2px", }}>Self-service donation terminals and visitor check-in hardware.</span>
-              </span>
-            </div>
-            <div  style={{ display: "flex", gap: "12px", alignItems: "flex-start", padding: "14px 0", borderTop: "1px solid var(--color-border-subtle)", }}>
-              <span  style={{ flex: "1", minWidth: "0", }}>
-                <span  style={{ display: "block", fontSize: "15px", fontWeight: "700", color: "var(--color-text-primary)", }}>Insight 360</span>
-                <span  style={{ display: "block", fontSize: "14px", lineHeight: "1.5", color: "var(--color-text-secondary)", marginTop: "2px", }}>One AI dashboard across giving and facilities, with predictions.</span>
-              </span>
-            </div>
-            <div  style={{ display: "flex", gap: "12px", alignItems: "flex-start", padding: "14px 0", borderTop: "1px solid var(--color-border-subtle)", }}>
-              <span  style={{ flex: "1", minWidth: "0", }}>
-                <span  style={{ display: "block", fontSize: "15px", fontWeight: "700", color: "var(--color-text-primary)", }}>Communication Platform</span>
-                <span  style={{ display: "block", fontSize: "14px", lineHeight: "1.5", color: "var(--color-text-secondary)", marginTop: "2px", }}>WhatsApp, Facebook and SMS in one AI-powered inbox.</span>
-              </span>
-            </div>
+          <ProductEcosystemGroup group="shared" locale="en" />
         </div>
       </div>
     </div></section>
@@ -955,105 +861,11 @@ export function LandingBodyEn({ v }: { v: LandingVals }) {
     </div>
   </section>
 
-  <section id="demo" aria-labelledby="demo-title"  style={{ padding: "clamp(64px, 7vw, 104px) clamp(20px, 4vw, 48px)", }}>
-    <div data-stack="true"  style={{ maxWidth: "1280px", margin: "0 auto", borderRadius: "22px", background: "var(--color-neutral-950)", padding: "clamp(36px, 5vw, 68px)", display: "grid", gridTemplateColumns: "minmax(0, 1fr) minmax(0, 0.85fr)", gap: "clamp(32px, 4vw, 64px)", alignItems: "center", position: "relative", overflow: "hidden", }} data-reveal="true">
-      <div  style={{ position: "absolute", insetInlineStart: "-120px", bottom: "-140px", width: "380px", height: "380px", borderRadius: "50%", background: "var(--accent)", opacity: "0.22", filter: "blur(20px)", pointerEvents: "none", }}></div>
-      <div  style={{ position: "relative", }}>
-        <h2 id="demo-title" data-display="true"  style={{ margin: "0 0 16px", fontFamily: "var(--font-outfit), var(--font-arabic), sans-serif", fontWeight: "800", fontSize: "clamp(30px, 3.4vw, 48px)", lineHeight: "1.06", letterSpacing: "-0.035em", color: "#fff", }}>
-          See it running on your own sites.
-          
-        </h2>
-        <p  style={{ margin: "0 0 8px", fontSize: "18px", lineHeight: "1.6", color: "rgba(255,255,255,0.7)", maxWidth: "46ch", }}>
-          A 30-minute walkthrough with the team that will run your rollout. No slides — the actual system, with your projects, your sites and your channels.
-          
-        </p>
-        <div  style={{ display: "flex", flexDirection: "column", gap: "12px", marginTop: "26px", paddingTop: "24px", borderTop: "1px solid rgba(255,255,255,0.16)", }}>
-          <a href={v.contactEmailHref}  style={{ display: "flex", alignItems: "center", gap: "12px", color: "#fff", fontSize: "16px", fontWeight: "600", }} data-hover="color: var(--color-blue-300)">
-            <span  style={{ width: "34px", height: "34px", borderRadius: "10px", display: "grid", placeItems: "center", flexShrink: "0", background: "rgba(255,255,255,0.12)", color: "#fff", }}>
-              <Mail aria-hidden="true" size={16} />
-            </span>
-            <bdi dir="ltr">{v.contactEmail}</bdi>
-          </a>
-          <a className="designer-phone-row" href={v.contactPhoneHref}  style={{ display: "flex", alignItems: "center", gap: "12px", color: "#fff", fontSize: "16px", fontWeight: "600", }} data-hover="color: var(--color-blue-300)">
-            <span  style={{ width: "34px", height: "34px", borderRadius: "10px", display: "grid", placeItems: "center", flexShrink: "0", background: "rgba(255,255,255,0.12)", color: "#fff", }}>
-              <Phone aria-hidden="true" size={16} />
-            </span>
-            <bdi dir="ltr">{v.contactPhone}</bdi>
-          </a>
-          <span  style={{ display: "flex", alignItems: "center", gap: "12px", color: "rgba(255,255,255,0.78)", fontSize: "16px", fontWeight: "500", }}>
-            <span  style={{ width: "34px", height: "34px", borderRadius: "10px", display: "grid", placeItems: "center", flexShrink: "0", background: "rgba(255,255,255,0.12)", color: "#fff", }}>
-              <MapPin aria-hidden="true" size={16} />
-            </span>
-            {v.contactAddress}
-          </span>
-        </div>
-      </div>
-      <div  style={{ position: "relative", background: "var(--color-background-primary)", borderRadius: "16px", padding: "26px", }}>
-        <form className="designer-demo-form" onSubmit={v.submitDemo} aria-busy={v.demoDisabled}>
-          <div  style={{ display: "flex", flexDirection: "column", gap: "14px", }}>
-            <label htmlFor="demo-name" style={{ display: "block", }}>
-              <span  style={{ display: "block", fontSize: "13px", fontWeight: "600", color: "var(--color-text-secondary)", marginBottom: "6px", }}>Full name</span>
-              <input  id="demo-name" name="name" autoComplete="name" required minLength={2} maxLength={120} type="text" value={v.demoDraft.name} onChange={(event) => v.updateDemoDraft("name", event.target.value)}  style={{ width: "100%", height: "46px", paddingInline: "14px", borderRadius: "10px", border: "1px solid var(--color-neutral-200)", background: "var(--color-background-primary)", fontFamily: "var(--font-outfit), var(--font-arabic), sans-serif", fontSize: "15px", color: "var(--color-text-primary)", }} />
-            </label>
-            <label htmlFor="demo-email" style={{ display: "block", }}>
-              <span  style={{ display: "block", fontSize: "13px", fontWeight: "600", color: "var(--color-text-secondary)", marginBottom: "6px", }}>Work email</span>
-              <input id="demo-email" name="email" autoComplete="email" required maxLength={254} type="email" dir="ltr" value={v.demoDraft.email} onChange={(event) => v.updateDemoDraft("email", event.target.value)}  style={{ width: "100%", height: "46px", paddingInline: "14px", borderRadius: "10px", border: "1px solid var(--color-neutral-200)", background: "var(--color-background-primary)", fontFamily: "var(--font-outfit), var(--font-arabic), sans-serif", fontSize: "15px", color: "var(--color-text-primary)", }} />
-            </label>
-            <label htmlFor="demo-org" style={{ display: "block", }}>
-              <span  style={{ display: "block", fontSize: "13px", fontWeight: "600", color: "var(--color-text-secondary)", marginBottom: "6px", }}>Organisation</span>
-              <input id="demo-org" name="organization" autoComplete="organization" required minLength={2} maxLength={160} type="text" value={v.demoDraft.organization} onChange={(event) => v.updateDemoDraft("organization", event.target.value)}  style={{ width: "100%", height: "46px", paddingInline: "14px", borderRadius: "10px", border: "1px solid var(--color-neutral-200)", background: "var(--color-background-primary)", fontFamily: "var(--font-outfit), var(--font-arabic), sans-serif", fontSize: "15px", color: "var(--color-text-primary)", }} />
-            </label>
-            <button type="submit" disabled={v.demoDisabled} style={{ minHeight: "50px", border: "0", borderRadius: "999px", paddingInline: "24px", background: "var(--accent)", color: "#fff", fontFamily: "var(--font-outfit), var(--font-arabic), sans-serif", fontSize: "16px", fontWeight: "700", cursor: v.demoDisabled ? "wait" : "pointer", marginTop: "4px", }} data-hover="background: var(--accent-deep)">
-              {v.demoLabel}
-            </button>
-            <div aria-live="polite" aria-atomic="true">
-              <p role={v.demoState === "error" || v.demoState === "timeout" ? "alert" : undefined}  style={{ margin: "2px 0 0", fontSize: "12px", lineHeight: "1.5", color: v.demoNoteColor, textAlign: "center", }}>
-                {v.demoNote}{" "}<a href={v.demoFallbackHref}>{v.demoFallbackLabel}</a>
-              </p>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </section>
+  <DemoSection locale="en" model={v.demoForm} />
   </main>
 
-  <footer  style={{ borderTop: "1px solid var(--color-border-subtle)", padding: "clamp(44px, 5vw, 64px) clamp(20px, 4vw, 48px) 28px", }}>
-    <div  style={{ maxWidth: "1280px", margin: "0 auto", }}>
-      <div data-stack="true"  style={{ display: "grid", gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1.1fr)", gap: "clamp(24px, 3vw, 56px)", paddingBottom: "36px", }}>
-        <div>
-          <div  style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "14px", }}>
-            <img src="/assets/designer/9a22adcf.png" alt="Innovatek SWD" width="1136" height="316"  style={{ height: "32px", width: "auto", display: "block", }} />
-          </div>
-          <p  style={{ margin: "0", fontSize: "14px", lineHeight: "1.65", color: "var(--color-text-secondary)", maxWidth: "34ch", }}>
-            Technology for Impact — AI-native platforms for giving, facility management and customer engagement across the UAE, KSA, Egypt and MENA.
-            
-          </p>
-        </div>
-        <div>
-          <h2  style={{ margin: "0 0 14px", fontSize: "13px", fontWeight: "700", letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--color-text-tertiary)", }}>Contact</h2>
-          <div  style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "10px 28px", }}>
-            <a href={v.contactEmailHref} dir="ltr"  style={{ fontSize: "14px", color: "var(--color-text-secondary)", }} data-hover="color: var(--color-text-primary)"><bdi dir="ltr">{v.contactEmail}</bdi></a>
-            <a className="designer-phone-row" href={v.contactPhoneHref}  style={{ fontSize: "14px", color: "var(--color-text-secondary)", }} data-hover="color: var(--color-text-primary)"><bdi dir="ltr">{v.contactPhone}</bdi></a>
-            <span  style={{ fontSize: "14px", color: "var(--color-text-secondary)", }}>Business Bay, Dubai, UAE</span>
-          </div>
-        </div>
-      </div>
-      <div  style={{ borderTop: "1px solid var(--color-border-subtle)", paddingTop: "22px", display: "flex", flexWrap: "wrap", gap: "16px 28px", alignItems: "center", justifyContent: "space-between", }}>
-        <div  style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "10px 24px", }}>
-          <span  style={{ fontSize: "13px", color: "var(--color-text-tertiary)", }}>
-            © 2026 Innovatek SWD. All rights reserved.
-          </span>
-          <Link href="/terms/"  style={{ fontSize: "13px", color: "var(--color-text-tertiary)", }} data-hover="color: var(--color-text-primary)">Terms &amp; Conditions</Link>
-          <Link href="/privacy/"  style={{ fontSize: "13px", color: "var(--color-text-tertiary)", }} data-hover="color: var(--color-text-primary)">Privacy Policy</Link>
-        </div>
-        <a href={v.localeHref} hrefLang={v.localeHrefLang} lang={v.localeLang}  style={{ display: "inline-flex", alignItems: "center", gap: "8px", minHeight: "44px", paddingInline: "14px", borderRadius: "999px", border: "1px solid var(--color-border-subtle)", background: "transparent", fontFamily: "var(--font-outfit), var(--font-arabic), sans-serif", fontSize: "13px", fontWeight: "600", color: "var(--color-text-secondary)" }} data-hover="color: var(--color-text-primary)">
-          <Languages aria-hidden="true" size={14} />
-          العربية
-        </a>
-      </div>
-    </div>
-  </footer>
+  <MarketingFooter locale="en" />
+
 </div>
 
 

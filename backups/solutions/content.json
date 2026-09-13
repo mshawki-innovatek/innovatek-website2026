@@ -1,0 +1,380 @@
+{
+  "en": {
+    "solutions": [
+      {
+        "slug": "donation-hub",
+        "name": "Donation Hub",
+        "shortName": "Donation Hub",
+        "category": "Giving ecosystem",
+        "title": "Every donation project, device and campaign — in one system.",
+        "description": "Donation Hub replaces the spreadsheets, disconnected terminals and manual reporting that cost teams time and donor trust. Cash, card and digital transactions post to the same live record.",
+        "replaces": "Spreadsheets and disconnected terminals",
+        "capabilities": [
+          "Real-time transactions across cash, card and digital channels",
+          "Projects, devices, layout and media managed from one screen",
+          "Campaign scheduling with live reporting leadership actually opens"
+        ],
+        "outcome": "Run every campaign, device and dirham from one screen.",
+        "image": "/assets/reference/uae-smart-giving-kiosk.webp",
+        "imageAlt": "Emirati visitors using a smart giving kiosk in a modern lobby",
+        "cardClass": "solution-card--cobalt"
+      },
+      {
+        "slug": "bunyan-cmms",
+        "name": "Bunyan + Twin AI",
+        "shortName": "Bunyan",
+        "category": "Facilities ecosystem",
+        "title": "From reactive maintenance to operational certainty.",
+        "description": "Bunyan gives every request, asset and task one owner and one traceable history — preventive and corrective, from the technician on site to the executive reading the report.",
+        "replaces": "Reactive, manual maintenance",
+        "capabilities": [
+          "Preventive and corrective schedules with SLA tracking",
+          "Asset history and multi-stakeholder workflows in one place",
+          "Compliance and audit-ready reporting without a data project"
+        ],
+        "outcome": "One system from the work order to the boardroom.",
+        "image": "/assets/reference/smart-facility-access-control.webp",
+        "imageAlt": "Smart access-control entrance inside a modern UAE facility",
+        "cardClass": "solution-card--ink"
+      },
+      {
+        "slug": "visitor-management-system",
+        "name": "Smart VMS",
+        "shortName": "Smart VMS",
+        "category": "Facilities ecosystem",
+        "title": "Every visitor, secured and accounted for.",
+        "description": "VMS digitises visitor and external-worker access — pre-registration, smart check-in, identity verification and integration with the access control you already run. Paper logs become a full audit trail.",
+        "replaces": "Paper logs and reception books",
+        "capabilities": [
+          "Pre-registration link staff can send from a phone",
+          "External worker and contractor tracking with escort rules",
+          "Full audit trail and reporting, from gate to exit"
+        ],
+        "outcome": "From gate to exit, logged and reportable.",
+        "image": "/assets/reference/visitor-self-check-in-gate.webp",
+        "imageAlt": "Visitor completing self check-in at a secure facility entrance",
+        "cardClass": "solution-card--mist"
+      },
+      {
+        "slug": "communication-platform",
+        "name": "Communication Platform",
+        "shortName": "Communication AI",
+        "category": "Shared core",
+        "title": "One AI layer for every conversation.",
+        "description": "WhatsApp, Facebook and SMS arrive in one AI-powered inbox with automated replies and workflows — so nothing is dropped, and the answer is the same whoever asks.",
+        "replaces": "Four separate inboxes",
+        "capabilities": [
+          "AI answers the routine questions, people take the rest",
+          "One inbox across WhatsApp, Facebook and SMS",
+          "Campaign messaging at scale from the same audience data"
+        ],
+        "outcome": "Answer everyone, everywhere — with AI on the front line.",
+        "image": "/assets/reference/innovatek-engineering-team.webp",
+        "imageAlt": "Innovatek engineering team developing operational software",
+        "cardClass": "solution-card--ice"
+      }
+    ],
+    "indexCopy": [
+      "The Innovatek ecosystem",
+      "Four focused products. One connected operating model.",
+      "Choose the operational problem worth solving first. Each platform is complete on its own and shares the same design, integration and support discipline.",
+      "Explore the solutions",
+      "Open the solution",
+      "The ecosystem",
+      "Ten solutions. Built to work alone or together.",
+      "Two ecosystems, one shared AI core. Start where it hurts most; connect the rest later.",
+      "The shared core",
+      "Modular, without becoming fragmented.",
+      "Identity, permissions, communication, audit history and intelligence connect the products when there is a real operational reason to do so.",
+      "Map your ecosystem with us"
+    ],
+    "ecosystemGroups": [
+      {
+        "title": "Giving",
+        "tagline": "One harmonised journey for every donor — first message to final receipt.",
+        "items": [
+          {
+            "name": "Donation Hub",
+            "description": "Projects, devices, transactions and campaigns in one system."
+          },
+          {
+            "name": "Tajir",
+            "description": "In-kind giving with the simplicity of online shopping."
+          },
+          {
+            "name": "Agent Management",
+            "description": "Field agents, custody reconciliation and attendance in real time."
+          },
+          {
+            "name": "Jood",
+            "description": "SMS campaigns and lead management that convert outreach into action."
+          }
+        ]
+      },
+      {
+        "title": "Facilities",
+        "tagline": "From reactive maintenance to real-time operational certainty.",
+        "items": [
+          {
+            "name": "Bunyan · CMMS / CAFM",
+            "description": "Preventive and corrective maintenance with SLA and asset history."
+          },
+          {
+            "name": "Twin AI",
+            "description": "A live digital twin that shows risk forming before failure."
+          },
+          {
+            "name": "VMS",
+            "description": "Visitor and contractor access, secured and fully logged."
+          }
+        ]
+      },
+      {
+        "title": "Shared core",
+        "tagline": "The hardware, analytics and engagement layer powering everything.",
+        "items": [
+          {
+            "name": "Smart Kiosk",
+            "description": "Self-service donation terminals and visitor check-in hardware."
+          },
+          {
+            "name": "Insight 360",
+            "description": "One AI dashboard across giving and facilities, with predictions."
+          },
+          {
+            "name": "Communication Platform",
+            "description": "WhatsApp, Facebook and SMS in one AI-powered inbox."
+          }
+        ]
+      }
+    ],
+    "detailCopy": [
+      "Breadcrumb",
+      "Home",
+      "Solutions",
+      "Discuss your workflow",
+      "Explore capabilities",
+      "The operational shift",
+      "Replace scattered work with a clear record of the decision.",
+      "What it replaces",
+      "What becomes possible",
+      "The capabilities that carry the workflow.",
+      "Each capability is configured around your roles, devices and data boundaries. There is no default bundle that ignores operational reality.",
+      "Designed to fit",
+      "The product stays focused. Its connections stay deliberate.",
+      "When it is time to connect",
+      "Adjacent solutions, ready when useful.",
+      "Begin with one product. Add the next when the workflow and data relationship are clear."
+    ],
+    "operatingPrinciples": [
+      [
+        "Workflow first",
+        "We start with the people, decision and movement of data, then configure technology around the real operation."
+      ],
+      [
+        "Documented integration",
+        "Devices, systems and ownership boundaries are mapped before integration promises become rollout scope."
+      ],
+      [
+        "Clear governance",
+        "Permissions, history and accountability are designed into the product from the beginning."
+      ]
+    ],
+    "contact": {
+      "preface": "Bring us one real workflow",
+      "title": "See it running on your own sites.",
+      "body": "A 30-minute walkthrough with the team that will run your rollout. No slides — the actual system, with your projects, your sites and your channels.",
+      "emailLabel": "Prefer email?",
+      "note": "Your details are sent to Sales@innovatek-swd.com. If delivery is not confirmed, your draft stays in the form and you can open a prefilled email instead."
+    }
+  },
+  "ar": {
+    "solutions": [
+      {
+        "slug": "donation-hub",
+        "name": "Donation Hub",
+        "shortName": "Donation Hub",
+        "category": "منظومة العطاء",
+        "title": "كل مشروع تبرع وجهاز وحملة — في نظام واحد.",
+        "description": "يستبدل Donation Hub الجداول والأجهزة غير المترابطة والتقارير اليدوية التي تُكلّف الفرق وقتها وثقة المتبرعين. المعاملات النقدية والبطاقات والرقمية تُسجَّل في السجل الحي نفسه.",
+        "replaces": "الجداول والأجهزة غير المترابطة",
+        "capabilities": [
+          "معاملات فورية عبر النقد والبطاقات والقنوات الرقمية",
+          "إدارة المشاريع والأجهزة والتصميم والوسائط من شاشة واحدة",
+          "جدولة الحملات مع تقارير حية تفتحها الإدارة فعلاً"
+        ],
+        "outcome": "أدر كل حملة وجهاز ودرهم من شاشة واحدة.",
+        "image": "/assets/reference/uae-smart-giving-kiosk.webp",
+        "imageAlt": "زوار إماراتيون يستخدمون كشك تبرع ذكي في ردهة حديثة",
+        "cardClass": "solution-card--cobalt"
+      },
+      {
+        "slug": "bunyan-cmms",
+        "name": "بنيان + Twin AI",
+        "shortName": "بنيان",
+        "category": "منظومة المرافق",
+        "title": "من الصيانة التفاعلية إلى يقين تشغيلي.",
+        "description": "يمنح Bunyan كل طلب وأصل ومهمة مسؤولاً واحداً وسجلاً واحداً قابلاً للتتبع — وقائية وتصحيحية، من الفني في الموقع إلى المدير الذي يقرأ التقرير.",
+        "replaces": "الصيانة التفاعلية اليدوية",
+        "capabilities": [
+          "جداول وقائية وتصحيحية مع تتبع مستوى الخدمة",
+          "سجل الأصول ومسارات العمل لكل الأطراف في مكان واحد",
+          "تقارير امتثال جاهزة للتدقيق دون مشروع بيانات"
+        ],
+        "outcome": "نظام واحد من أمر العمل إلى قاعة الإدارة.",
+        "image": "/assets/reference/smart-facility-access-control.webp",
+        "imageAlt": "مدخل ذكي للتحكم بالدخول داخل منشأة حديثة في الإمارات",
+        "cardClass": "solution-card--ink"
+      },
+      {
+        "slug": "visitor-management-system",
+        "name": "Smart VMS",
+        "shortName": "Smart VMS",
+        "category": "منظومة المرافق",
+        "title": "كل زائر، مؤمَّن وموثّق.",
+        "description": "يرقمن VMS دخول الزوار والعاملين الخارجيين — تسجيل مسبق، دخول سريع، تحقق من الهوية، وتكامل مع أنظمة التحكم بالدخول التي تشغّلها. فتتحول السجلات الورقية إلى مسار تدقيق كامل.",
+        "replaces": "السجلات الورقية ودفاتر الاستقبال",
+        "capabilities": [
+          "رابط تسجيل مسبق يرسله الموظف من هاتفه",
+          "تتبع العاملين الخارجيين والمقاولين بقواعد المرافقة",
+          "مسار تدقيق وتقارير كاملة، من البوابة حتى الخروج"
+        ],
+        "outcome": "من البوابة حتى الخروج، موثّق وقابل للتقرير.",
+        "image": "/assets/reference/visitor-self-check-in-gate.webp",
+        "imageAlt": "زائر يُكمل إجراءات الدخول الذاتي عند مدخل منشأة آمنة",
+        "cardClass": "solution-card--mist"
+      },
+      {
+        "slug": "communication-platform",
+        "name": "منصة التواصل",
+        "shortName": "ذكاء التواصل",
+        "category": "النواة المشتركة",
+        "title": "طبقة ذكاء واحدة لكل محادثة.",
+        "description": "واتساب وفيسبوك والرسائل النصية تصل إلى صندوق واحد مدعوم بالذكاء الاصطناعي مع ردود ومسارات مؤتمتة — فلا تُهمل رسالة، ويبقى الجواب واحداً لكل من يسأل.",
+        "replaces": "أربعة صناديق منفصلة",
+        "capabilities": [
+          "الذكاء الاصطناعي يجيب على الأسئلة المتكررة، والفريق يتولى الباقي",
+          "صندوق واحد لواتساب وفيسبوك والرسائل النصية",
+          "حملات رسائل واسعة النطاق من بيانات الجمهور نفسها"
+        ],
+        "outcome": "أجب على الجميع في كل مكان — بالذكاء الاصطناعي في الصف الأول.",
+        "image": "/assets/reference/innovatek-engineering-team.webp",
+        "imageAlt": "فريق إنوفاتك الهندسي يطور البرمجيات التشغيلية",
+        "cardClass": "solution-card--ice"
+      }
+    ],
+    "indexCopy": [
+      "منظومة إنوفاتك",
+      "أربعة منتجات مركزة. نموذج تشغيل واحد مترابط.",
+      "اختر المشكلة التشغيلية التي تستحق الحل أولاً. كل منصة مكتملة بمفردها، وتشترك جميعها في منهج التصميم والتكامل والدعم.",
+      "استعرض الحلول",
+      "افتح صفحة الحل",
+      "المنظومة",
+      "عشرة حلول. مبنية لتعمل منفردة — أو معاً.",
+      "منظومتان ونواة ذكاء واحدة. ابدأ من الأكثر إلحاحاً، وأضف الباقي لاحقاً.",
+      "النواة المشتركة",
+      "معيارية من دون تجزئة.",
+      "تربط الهوية والصلاحيات والتواصل والتدقيق والذكاء الحلول عندما توجد قيمة تشغيلية حقيقية للربط.",
+      "ارسم منظومتك معنا"
+    ],
+    "ecosystemGroups": [
+      {
+        "title": "العطاء",
+        "tagline": "رحلة واحدة منسجمة لكل متبرع — من أول رسالة إلى آخر إيصال.",
+        "items": [
+          {
+            "name": "Donation Hub",
+            "description": "المشاريع والأجهزة والمعاملات والحملات في نظام واحد."
+          },
+          {
+            "name": "Tajir",
+            "description": "التبرع العيني بسهولة الشراء الإلكتروني."
+          },
+          {
+            "name": "Agent Management",
+            "description": "المندوبون الميدانيون ومطابقة الأمانات والحضور في الوقت الفعلي."
+          },
+          {
+            "name": "Jood",
+            "description": "حملات الرسائل وإدارة العملاء المحتملين تحوّل التواصل إلى نتيجة."
+          }
+        ]
+      },
+      {
+        "title": "المرافق",
+        "tagline": "من الصيانة التفاعلية إلى يقين تشغيلي في الوقت الفعلي.",
+        "items": [
+          {
+            "name": "Bunyan · CMMS / CAFM",
+            "description": "صيانة وقائية وتصحيحية مع مستوى خدمة وسجل للأصول."
+          },
+          {
+            "name": "Twin AI",
+            "description": "توأم رقمي حي يكشف تكوّن المخاطر قبل العطل."
+          },
+          {
+            "name": "VMS",
+            "description": "دخول الزوار والمقاولين، مؤمَّن وموثّق بالكامل."
+          }
+        ]
+      },
+      {
+        "title": "النواة المشتركة",
+        "tagline": "طبقة الأجهزة والتحليلات والتفاعل التي تُشغّل كل شيء.",
+        "items": [
+          {
+            "name": "Smart Kiosk",
+            "description": "أجهزة تبرع ذاتية الخدمة وأجهزة تسجيل دخول الزوار."
+          },
+          {
+            "name": "Insight 360",
+            "description": "لوحة ذكاء واحدة للعطاء والمرافق، مع تنبؤات."
+          },
+          {
+            "name": "Communication Platform",
+            "description": "واتساب وفيسبوك والرسائل النصية في صندوق واحد بالذكاء الاصطناعي."
+          }
+        ]
+      }
+    ],
+    "detailCopy": [
+      "مسار الصفحة",
+      "الرئيسية",
+      "الحلول",
+      "ناقش مسار العمل",
+      "استعرض الإمكانات",
+      "التغيير التشغيلي",
+      "استبدل العمل المتناثر بسجل واضح للقرار.",
+      "اليوم",
+      "بعد الربط",
+      "القدرات التي تحمل مسار العمل.",
+      "تُضبط كل قدرة حول الأدوار والأجهزة وحدود البيانات في جهتك. لا توجد حزمة افتراضية تتجاهل الواقع التشغيلي.",
+      "مصمم ليتلاءم",
+      "يبقى المنتج مركزاً. ويتصل بما حوله بعناية.",
+      "عندما يحين وقت الربط",
+      "حلول قريبة من مسار العمل.",
+      "ابدأ بحل واحد. أضف التالي عندما تكون علاقة العمل والبيانات واضحة."
+    ],
+    "operatingPrinciples": [
+      [
+        "مسار العمل أولاً",
+        "نبدأ بالأشخاص والقرار وحركة البيانات، ثم نضبط التقنية حول العملية الفعلية."
+      ],
+      [
+        "تكامل موثّق",
+        "يتم تحديد الأجهزة والأنظمة وحدود الملكية قبل أن تصبح وعود التكامل جزءاً من التطبيق."
+      ],
+      [
+        "حوكمة واضحة",
+        "تُصمم الصلاحيات والتاريخ ومسؤولية كل خطوة في المنتج منذ البداية."
+      ]
+    ],
+    "contact": {
+      "preface": "أحضر لنا مسار عمل حقيقي",
+      "title": "شاهدها تعمل على مواقعك أنت.",
+      "body": "جلسة 30 دقيقة مع الفريق الذي سينفّذ مشروعك. بلا عروض تقديمية — النظام الفعلي، بمشاريعك ومواقعك وقنواتك.",
+      "emailLabel": "تفضل البريد؟",
+      "note": "تُرسل بياناتك إلى Sales@innovatek-swd.com. إذا لم يتأكد التسليم، تبقى البيانات في النموذج ويمكنك فتح بريد مُعبّأ مسبقاً."
+    }
+  }
+}

@@ -1,4 +1,4 @@
-// Designer landing data — ported verbatim from the approved design export.
+// Landing content and product demonstrations shared by both languages.
 import { APP_HOST } from "@/lib/site";
 
 export const T = {
@@ -17,7 +17,7 @@ export const T = {
         { label: { en: "Projects", ar: "المشاريع" }, value: "18", ink: "var(--color-text-primary)" },
         { label: { en: "Devices", ar: "الأجهزة" }, value: "142", ink: "var(--color-text-primary)" },
         { label: { en: "Today", ar: "اليوم" }, value: "86.4k", ink: "var(--color-green-600)" },
-        { label: { en: "Failed", ar: "فاشلة" }, value: "3", ink: "var(--color-orange-500)" }
+        { label: { en: "Failed", ar: "فاشلة" }, value: "3", ink: "var(--color-orange-700)" }
       ],
       cols: { en: ["Donation project", "Channel", "Collected", "Status"], ar: ["مشروع التبرع", "القناة", "المُحصّل", "الحالة"] },
       rows: [
@@ -27,7 +27,7 @@ export const T = {
         { a: "Winter blankets", aAr: "بطانيات الشتاء", b: { en: "Kiosk — Al Quoz", ar: "كشك — القوز" }, c: "8,270", d: { en: "Scheduled", ar: "مجدول" }, s: "info" },
         { a: "Mosque renovation", aAr: "ترميم المسجد", b: { en: "Bank transfer", ar: "حوالة بنكية" }, c: "—", d: { en: "Draft", ar: "مسودة" }, s: "warn" }
       ],
-      panelTitle: { en: "Every donation project, device and campaign — in one system.", ar: "كل مشروع تبرع وجهاز وحملة — في نظام واحد." },
+      panelTitle: { en: "Donation management software for every campaign.", ar: "برنامج إدارة التبرعات لكل حملة." },
       panelBody: { en: "Donation Hub replaces the spreadsheets, disconnected terminals and manual reporting that cost teams time and donor trust. Cash, card and digital transactions post to the same live record.", ar: "يستبدل Donation Hub الجداول والأجهزة غير المترابطة والتقارير اليدوية التي تُكلّف الفرق وقتها وثقة المتبرعين. المعاملات النقدية والبطاقات والرقمية تُسجَّل في السجل الحي نفسه." },
       points: {
         en: ["Real-time transactions across cash, card and digital channels", "Projects, devices, layout and media managed from one screen", "Campaign scheduling with live reporting leadership actually opens"],
@@ -58,7 +58,7 @@ export const T = {
         { a: "Lighting — Car park B", aAr: "إضاءة — مواقف B", b: { en: "Unassigned", ar: "غير مُسند" }, c: { en: "Triage", ar: "فرز" }, d: { en: "Due today", ar: "مستحق اليوم" }, s: "warn" },
         { a: "Door reader — Clinic wing", aAr: "قارئ الباب — جناح العيادة", b: { en: "S. Faisal", ar: "س. فيصل" }, c: { en: "Verifying", ar: "تحقق" }, d: { en: "On time", ar: "في الوقت" }, s: "info" }
       ],
-      panelTitle: { en: "From reactive maintenance to operational certainty.", ar: "من الصيانة التفاعلية إلى يقين تشغيلي." },
+      panelTitle: { en: "CMMS and CAFM software for facility maintenance.", ar: "برنامج لإدارة المرافق والصيانة CMMS وCAFM." },
       panelBody: { en: "Bunyan gives every request, asset and task one owner and one traceable history — preventive and corrective, from the technician on site to the executive reading the report.", ar: "يمنح Bunyan كل طلب وأصل ومهمة مسؤولاً واحداً وسجلاً واحداً قابلاً للتتبع — وقائية وتصحيحية، من الفني في الموقع إلى المدير الذي يقرأ التقرير." },
       points: {
         en: ["Preventive and corrective schedules with SLA tracking", "Asset history and multi-stakeholder workflows in one place", "Compliance and audit-ready reporting without a data project"],
@@ -89,7 +89,7 @@ export const T = {
         { a: "Sara Ibrahim", aAr: "سارة إبراهيم", b: { en: "Programmes", ar: "البرامج" }, c: "—", d: { en: "Expected", ar: "متوقع" }, s: "info" },
         { a: "Unregistered walk-in", aAr: "زائر غير مسجل", b: { en: "Reception", ar: "الاستقبال" }, c: "11:18", d: { en: "Denied", ar: "مرفوض" }, s: "bad" }
       ],
-      panelTitle: { en: "Every visitor, secured and accounted for.", ar: "كل زائر، مؤمَّن وموثّق." },
+      panelTitle: { en: "A visitor management system from invitation to exit.", ar: "نظام إدارة الزوار من الدعوة إلى المغادرة." },
       panelBody: { en: "VMS digitises visitor and external-worker access — pre-registration, smart check-in, identity verification and integration with the access control you already run. Paper logs become a full audit trail.", ar: "يرقمن VMS دخول الزوار والعاملين الخارجيين — تسجيل مسبق، دخول سريع، تحقق من الهوية، وتكامل مع أنظمة التحكم بالدخول التي تشغّلها. فتتحول السجلات الورقية إلى مسار تدقيق كامل." },
       points: {
         en: ["Pre-registration link staff can send from a phone", "External worker and contractor tracking with escort rules", "Full audit trail and reporting, from gate to exit"],
@@ -110,7 +110,7 @@ export const T = {
         { label: { en: "Messages", ar: "الرسائل" }, value: "18.4k", ink: "var(--color-text-primary)" },
         { label: { en: "AI handled", ar: "بالذكاء" }, value: "82%", ink: "var(--color-green-600)" },
         { label: { en: "First reply", ar: "أول رد" }, value: "24s", ink: "var(--color-text-primary)" },
-        { label: { en: "Open", ar: "مفتوحة" }, value: "37", ink: "var(--color-orange-500)" }
+        { label: { en: "Open", ar: "مفتوحة" }, value: "37", ink: "var(--color-orange-700)" }
       ],
       cols: { en: ["Conversation", "Channel", "Handled by", "State"], ar: ["المحادثة", "القناة", "المعالج", "الحالة"] },
       rows: [
@@ -120,7 +120,7 @@ export const T = {
         { a: "Ramadan campaign replies", aAr: "ردود حملة رمضان", b: { en: "SMS", ar: "رسالة نصية" }, c: { en: "Automation", ar: "أتمتة" }, d: { en: "Running", ar: "يعمل" }, s: "info" },
         { a: "In-kind pickup question", aAr: "استفسار استلام عيني", b: { en: "WhatsApp", ar: "واتساب" }, c: { en: "Unassigned", ar: "غير مُسند" }, d: { en: "Waiting", ar: "بالانتظار" }, s: "warn" }
       ],
-      panelTitle: { en: "One AI layer for every conversation.", ar: "طبقة ذكاء واحدة لكل محادثة." },
+      panelTitle: { en: "An AI customer engagement platform for every channel.", ar: "منصة تفاعل العملاء بالذكاء الاصطناعي لكل قناة." },
       panelBody: { en: "WhatsApp, Facebook and SMS arrive in one AI-powered inbox with automated replies and workflows — so nothing is dropped, and the answer is the same whoever asks.", ar: "واتساب وفيسبوك والرسائل النصية تصل إلى صندوق واحد مدعوم بالذكاء الاصطناعي مع ردود ومسارات مؤتمتة — فلا تُهمل رسالة، ويبقى الجواب واحداً لكل من يسأل." },
       points: {
         en: ["AI answers the routine questions, people take the rest", "One inbox across WhatsApp, Facebook and SMS", "Campaign messaging at scale from the same audience data"],
@@ -137,6 +137,8 @@ export const T = {
     { icon: "GroupGroupBold", en: ["A partner after go-live", "Continuous support, regular updates and a team that knows the sector — not a handover and an invoice."], ar: ["شريك بعد التشغيل", "دعم مستمر وتحديثات منتظمة وفريق يعرف القطاع — لا تسليم مشروع وفاتورة."] }
   ],
   faqs: [
+    { en: ["What does a donation system manage?", "A donation management system connects fundraising campaigns, donation channels, transactions and receipts. Donation Hub brings cash, card and digital donations into one record, with kiosk management and reconciliation for charities and foundations. Tajir supports in-kind giving, while Agent Management and Jood cover field collection and outreach."], ar: ["ماذا يدير نظام التبرعات؟", "يربط نظام إدارة التبرعات حملات جمع التبرعات والقنوات والمعاملات والإيصالات. يجمع Donation Hub التبرعات النقدية والبطاقات والرقمية في سجل واحد مع إدارة الأكشاك والمطابقة للجمعيات والمؤسسات. ويدعم Tajir التبرعات العينية، بينما يغطي Agent Management وJood التحصيل الميداني والتواصل."] },
+    { en: ["How do Bunyan, Twin AI and Insight 360 work together?", "Bunyan provides CMMS and CAFM workflows for work orders, preventive maintenance and asset history. Twin AI adds a digital twin and risk signals for predictive maintenance. Insight 360 brings reporting and forecasts across giving and facilities into an operational analytics dashboard. Each addresses a different part of the operation."], ar: ["كيف تعمل بنيان وTwin AI وInsight 360 معاً؟", "توفر بنيان مسارات CMMS وCAFM لأوامر العمل والصيانة الوقائية وسجل الأصول. ويضيف Twin AI التوأم الرقمي وإشارات المخاطر للصيانة التنبؤية. وتجمع Insight 360 التقارير والتوقعات عبر العطاء والمرافق في لوحة تحليلات تشغيلية. كل منها يعالج جانباً مختلفاً من التشغيل."] },
     { en: ["Can we start with one solution only?", "Yes, and most clients do. Donation Hub, Bunyan or VMS is the usual entry point because each shows value on its own. The other modules connect later without re-implementation — that is what modular by design means."], ar: ["هل يمكننا البدء بحل واحد فقط؟", "نعم، وهذا ما يفعله معظم عملائنا. Donation Hub أو Bunyan أو VMS هي نقطة البداية المعتادة لأن كل واحد منها يُثبت قيمته منفرداً. وتتصل الوحدات الأخرى لاحقاً دون إعادة تنفيذ — وهذا معنى التصميم المعياري."] },
     { en: ["What does “AI-native” actually mean here?", "Intelligence sits inside the modules, not in a chat window bolted on top: Twin AI shows asset risk forming before failure, the Communication Platform answers routine messages, and Insight 360 forecasts across giving and facilities together."], ar: ["ما معنى «الذكاء الأصلي» عملياً؟", "الذكاء داخل الوحدات، لا في نافذة محادثة مُضافة فوقها: Twin AI يكشف تكوّن مخاطر الأصول قبل الأعطال، ومنصة التواصل تجيب على الرسائل المتكررة، وInsight 360 يتوقع عبر العطاء والمرافق معاً."] },
     { en: ["Where is our data hosted, and are you compliant?", "Deployments are GDPR and UAE PDPL aligned, hosted in the region. We document the exact hosting and data-processing arrangement in your proposal before anything is signed."], ar: ["أين تُستضاف بياناتنا، وهل أنتم ممتثلون؟", "عملياتنا متوافقة مع GDPR وقانون حماية البيانات الشخصية الإماراتي، والاستضافة داخل المنطقة. ونوثّق ترتيب الاستضافة ومعالجة البيانات بالتفصيل في العرض قبل أي توقيع."] },
@@ -150,7 +152,7 @@ export const HERO = [
     tab: { en: "Donation Hub", ar: "Donation Hub" },
     eyebrow: { en: "Donation Hub · Giving ecosystem", ar: "Donation Hub · منظومة العطاء" },
     title: { en: "We build the systems your operation runs on.", ar: "نبني الأنظمة التي تُدير عملياتك." },
-    body: { en: "Innovatek SWD builds and runs Donation Hub — campaigns, kiosks and receipts in one ledger, reconciled the moment a donation is made.", ar: "تبني إنوفاتك SWD وتشغّل Donation Hub — الحملات والأكشاك والإيصالات في سجل واحد، تُطابَق لحظة التبرع." }
+    body: { en: "Donation Hub is our donation management system for UAE charities and foundations. Manage campaigns, donation kiosks, receipts and reconciliation in one place.", ar: "Donation Hub هو نظام إدارة التبرعات للجمعيات الخيرية والمؤسسات في الإمارات، يجمع الحملات وأكشاك التبرع والإيصالات والمطابقة في مكان واحد." }
   },
   {
     tab: { en: "Bunyan + Twin AI", ar: "بنيان + Twin AI" },

@@ -110,7 +110,7 @@ export function HomePage({ locale }: HomePageProps) {
         <PerspectivesCarousel locale={locale} copy={copy.perspectives} />
         <Approach copy={copy.approach} />
         <FaqSection copy={copy.faq} items={localizedFaqs} />
-        <ContactSection locale={locale} copy={copy.contact} />
+        <ContactSection locale={locale} />
       </main>
       <SiteFooter locale={locale} />
     </>

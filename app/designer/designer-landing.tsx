@@ -1,43 +1,15 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import type { FormEvent, KeyboardEvent as ReactKeyboardEvent } from "react";
-import {
-  buildContactMailto,
-  ContactEmailRateLimitError,
-  ContactEmailTimeoutError,
-  describeContactEmailError,
-  startContactEmail,
-} from "@/lib/contact-email";
-import { checkContactRateLimit, formatRetryIn } from "@/lib/contact-rate-limit";
+import type { ComponentType, FormEvent, KeyboardEvent as ReactKeyboardEvent } from "react";
+import { useDemoForm } from "@/lib/use-demo-form";
 import { HERO, T, TINT, pick, type Lang } from "@/lib/designer/landing-data";
 import { CONTACT } from "@/lib/site";
-import { LandingBodyEn } from "./landing-body-en";
-import { LandingBodyAr } from "./landing-body-ar";
 import { DesignerMotion } from "./designer-motion";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export type LandingVals = Record<string, any>;
 
-type DemoDraft = {
-  name: string;
-  email: string;
-  organization: string;
-};
-
-type DemoState =
-  | "idle"
-  | "sending"
-  | "sent"
-  | "error"
-  | "timeout"
-  | "throttled";
-
-const EMPTY_DEMO_DRAFT: DemoDraft = {
-  name: "",
-  email: "",
-  organization: "",
-};
 /** Chapter index labels, in T.panels order. */
 const PANEL_TABS = [
   { en: "Donation Hub", ar: "Donation Hub" },
@@ -50,10 +22,9 @@ const TINT_NEUTRAL = {
   ink: "var(--color-text-secondary)",
 };
 
-export function DesignerLanding({ lang }: { lang: Lang }) {
+export function DesignerLanding({ lang, Body }: { lang: Lang; Body: ComponentType<{ v: LandingVals }> }) {
   const ar = lang === "ar";
 
-  const [navState, setNavState] = useState(false);
   const [tab, setTab] = useState(0);
   const [slide, setSlide] = useState(0);
   const [open, setOpen] = useState(0);
@@ -61,14 +32,11 @@ export function DesignerLanding({ lang }: { lang: Lang }) {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [heroPaused, setHeroPaused] = useState(false);
   const [documentHidden, setDocumentHidden] = useState(false);
-  const [demoDraft, setDemoDraft] = useState<DemoDraft>(EMPTY_DEMO_DRAFT);
-  const [demoState, setDemoState] = useState<DemoState>("idle");
-  const [demoRetryAt, setDemoRetryAt] = useState<number | null>(null);
-  const [demoNow, setDemoNow] = useState(0);
+  const demoForm = useDemoForm(lang);
+  const { demoDraft, updateDemoDraft } = demoForm;
 
   const heroMotionPaused =
     prefersReducedMotion || heroPaused || documentHidden;
-  const demoServices = ar ? "طلب عرض توضيحي" : "Demo request";
 
   useEffect(() => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -85,37 +53,6 @@ export function DesignerLanding({ lang }: { lang: Lang }) {
     return () =>
       document.removeEventListener("visibilitychange", updateVisibility);
   }, []);
-
-  useEffect(() => {
-    if (!navState) return;
-
-    const focusFrame = requestAnimationFrame(() => {
-      document
-        .getElementById("designer-mobile-nav")
-        ?.querySelector<HTMLElement>("a")
-        ?.focus();
-    });
-    const closeAndRestore = () => {
-      setNavState(false);
-      requestAnimationFrame(() =>
-        document.getElementById("designer-menu-button")?.focus(),
-      );
-    };
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") closeAndRestore();
-    };
-    const handleResize = () => {
-      if (window.innerWidth >= 901) setNavState(false);
-    };
-
-    document.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("resize", handleResize);
-    return () => {
-      cancelAnimationFrame(focusFrame);
-      document.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [navState]);
 
   // Reset after manual navigation so every selected slide gets a full cycle.
   useEffect(() => {
@@ -278,45 +215,6 @@ export function DesignerLanding({ lang }: { lang: Lang }) {
     });
   }, [prefersReducedMotion, slide]);
 
-  useEffect(() => {
-    if (demoState !== "sent") return;
-    const reset = setTimeout(() => setDemoState("idle"), 8000);
-    return () => clearTimeout(reset);
-  }, [demoState]);
-
-  // Read after hydration rather than during render: localStorage is client-only
-  // and this page is prerendered as a static export. A timeout rather than an
-  // animation frame, because frame callbacks are paused in a background tab.
-  useEffect(() => {
-    const task = window.setTimeout(() => {
-      const verdict = checkContactRateLimit();
-      if (verdict.allowed) return;
-      setDemoRetryAt(verdict.retryAt);
-      setDemoNow(Date.now());
-      setDemoState("throttled");
-    }, 0);
-    return () => window.clearTimeout(task);
-  }, []);
-
-  useEffect(() => {
-    if (demoRetryAt === null) return;
-    const timer = window.setInterval(() => {
-      const tick = Date.now();
-      setDemoNow(tick);
-      if (tick < demoRetryAt) return;
-      setDemoRetryAt(null);
-      setDemoState((current) => (current === "throttled" ? "idle" : current));
-    }, 1000);
-    return () => window.clearInterval(timer);
-  }, [demoRetryAt]);
-
-  function updateDemoDraft(field: keyof DemoDraft, value: string) {
-    setDemoDraft((current) => ({ ...current, [field]: value }));
-    if (demoState !== "sending" && demoState !== "throttled") {
-      setDemoState("idle");
-    }
-  }
-
   function continueToDemo(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -382,58 +280,6 @@ export function DesignerLanding({ lang }: { lang: Lang }) {
     );
   }
 
-  async function submitDemo(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const form = event.currentTarget;
-    if (form.dataset.submitting === "true") return;
-    const formData = new FormData(form);
-    const nextDraft = {
-      name: String(formData.get("name") ?? "").trim(),
-      email: String(formData.get("email") ?? "").trim(),
-      organization: String(formData.get("organization") ?? "").trim(),
-    };
-    setDemoDraft(nextDraft);
-
-    if (!nextDraft.name || !nextDraft.email || !nextDraft.organization) {
-      form.reportValidity();
-      return;
-    }
-
-    form.dataset.submitting = "true";
-    setDemoState("sending");
-    let operation: ReturnType<typeof startContactEmail> | undefined;
-    try {
-      operation = startContactEmail({
-        name: nextDraft.name,
-        email: nextDraft.email,
-        organization: nextDraft.organization,
-        services: demoServices,
-      });
-      void operation.settled.then(() => {
-        if (form.isConnected) delete form.dataset.submitting;
-      });
-      await operation.result;
-      setDemoDraft(EMPTY_DEMO_DRAFT);
-      setDemoState("sent");
-    } catch (error) {
-      if (error instanceof ContactEmailRateLimitError) {
-        setDemoRetryAt(error.retryAt);
-        setDemoNow(Date.now());
-        setDemoState("throttled");
-      } else {
-        console.error(
-          "[demo form] send failed:",
-          describeContactEmailError(error),
-        );
-        setDemoState(
-          error instanceof ContactEmailTimeoutError ? "timeout" : "error",
-        );
-      }
-    } finally {
-      if (!operation) delete form.dataset.submitting;
-    }
-  }
-
   const selectPanel = useCallback((index: number) => setTab(index), []);
 
   // Every chapter is on the page, so the index is a jump link: highlight the
@@ -466,26 +312,6 @@ export function DesignerLanding({ lang }: { lang: Lang }) {
       lang,
       dir: ar ? "rtl" : "ltr",
       showCaseStudy: true,
-      toggleNav: () => setNavState((current) => !current),
-      closeNav: () => setNavState(false),
-      navOpen: navState ? "1" : "0",
-      navExpanded: navState,
-      navLabel: ar ? "التنقل الرئيسي" : "Primary navigation",
-      mobileNavLabel: ar ? "التنقل على الهاتف" : "Mobile navigation",
-      menuLabel: navState
-        ? ar
-          ? "إغلاق القائمة"
-          : "Close menu"
-        : ar
-          ? "فتح القائمة"
-          : "Open menu",
-      localeHref: ar ? "/" : "/ar",
-      localeHrefLang: ar ? "en-AE" : "ar-AE",
-      localeLang: ar ? "en" : "ar",
-      navBarTop: navState ? "translateY(6px) rotate(45deg)" : "none",
-      navBarMid: navState ? 0 : 1,
-      navBarBot: navState ? "translateY(-6px) rotate(-45deg)" : "none",
-
       heroEyebrow: pick(HERO[slide].eyebrow, lang),
       heroTitle: pick(HERO[slide].title, lang),
       heroBody: pick(HERO[slide].body, lang),
@@ -641,69 +467,7 @@ export function DesignerLanding({ lang }: { lang: Lang }) {
       activeTab: tab,
       activeTabId: `solution-tab-${tab}`,
 
-      submitDemo,
-      demoDraft,
-      updateDemoDraft,
-      demoState,
-      demoDisabled: demoState === "sending" || demoState === "throttled",
-      demoFallbackHref: buildContactMailto(
-        {
-          name: demoDraft.name,
-          email: demoDraft.email,
-          organization: demoDraft.organization,
-          services: demoServices,
-        },
-        lang,
-      ),
-      demoFallbackLabel: ar ? "افتح بريدك مباشرة" : "Open direct email",
-      demoLabel: (() => {
-        if (demoState === "sending") return ar ? "جارٍ الإرسال…" : "Sending…";
-        if (demoState === "sent") return ar ? "تم الإرسال" : "Sent";
-        if (demoState === "error" || demoState === "timeout") {
-          return ar ? "أعد المحاولة" : "Try again";
-        }
-        if (demoState === "throttled") return ar ? "غير متاح مؤقتاً" : "Paused";
-        return ar ? "احجز عرضاً توضيحياً" : "Book a demo";
-      })(),
-      demoNoteColor:
-        demoState === "sent"
-          ? "var(--color-green-600)"
-          : demoState === "error" || demoState === "timeout"
-            ? "var(--color-red-600)"
-            : demoState === "throttled"
-              ? "var(--color-orange-700)"
-              : "var(--color-text-tertiary)",
-      demoNote: (() => {
-        if (demoState === "throttled") {
-          const retryLabel =
-            demoRetryAt === null
-              ? ""
-              : formatRetryIn(demoRetryAt - demoNow, lang);
-          return ar
-            ? `عدد كبير من الطلبات من هذا الجهاز. يمكنك الإرسال مجدداً ${retryLabel}.`
-            : `Too many requests from this device. You can submit again ${retryLabel}.`;
-        }
-        if (demoState === "sent") {
-          return ar
-            ? "تم تأكيد استلام طلبك. نرد خلال يوم عمل واحد."
-            : "Your request was delivered. We reply within one working day.";
-        }
-        if (demoState === "timeout") {
-          return ar
-            ? "لم يصل تأكيد التسليم في الوقت المحدد. لا تكرر الإرسال قبل استخدام البريد المباشر."
-            : "Delivery was not confirmed in time. Avoid duplicate submissions and use direct email if needed.";
-        }
-        if (demoState === "error") {
-          return ar
-            ? "تعذّر الإرسال. بقيت بياناتك في النموذج لإعادة المحاولة."
-            : "The request could not be sent. Your details remain in the form for another try.";
-        }
-        if (demoState === "sending") {
-          return ar ? "جارٍ إرسال طلبك…" : "Sending your request…";
-        }
-        // Idle: no explanatory hint, just the direct-email action beneath it.
-        return "";
-      })(),
+      demoForm,
       contactEmail: CONTACT.email,
       contactEmailHref: CONTACT.emailHref,
       contactPhone: CONTACT.phone,
@@ -730,7 +494,7 @@ export function DesignerLanding({ lang }: { lang: Lang }) {
   return (
     <>
       <DesignerMotion onPanelChange={selectPanel} />
-      {lang === "ar" ? <LandingBodyAr v={vals} /> : <LandingBodyEn v={vals} />}
+      <Body v={vals} />
     </>
   );
 }
