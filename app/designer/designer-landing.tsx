@@ -113,8 +113,7 @@ export function DesignerLanding({ lang, Body }: { lang: Lang; Body: ComponentTyp
     );
     const items = Array.from(parts.values()).flat();
     // Timing and travel live in landing.css; this only tags what moves and
-    // when. Attributes rather than inline styles, so the [data-hover] handler
-    // never snapshots a half-revealed element and pins it at opacity 0.
+    // when. Attributes keep section reveals separate from inline GSAP motion.
     const strip = () =>
       items.forEach((element) => {
         delete element.dataset.revealItem;
@@ -168,19 +167,32 @@ export function DesignerLanding({ lang, Body }: { lang: Lang; Body: ComponentTyp
     root.querySelectorAll<HTMLElement>("[data-hover]").forEach((element) => {
       const declarations = element.getAttribute("data-hover");
       if (!declarations) return;
-      const base = element.getAttribute("style") ?? "";
+      const hoverProperties = declarations.split(";").flatMap((declaration) => {
+        const [property, ...value] = declaration.split(":");
+        return property.trim() && value.length
+          ? [{ property: property.trim(), value: value.join(":").trim() }]
+          : [];
+      });
+      let base: Array<{ property: string; value: string; priority: string }> | null = null;
       const apply = () => {
-        declarations.split(";").forEach((declaration) => {
-          const [property, ...value] = declaration.split(":");
-          if (property && value.length) {
-            element.style.setProperty(
-              property.trim(),
-              value.join(":").trim(),
-            );
-          }
+        // Capture only properties we change, after any entrance animation.
+        // Restoring the entire style attribute can restore GSAP's opacity: 0.
+        base ??= hoverProperties.map(({ property }) => ({
+          property,
+          value: element.style.getPropertyValue(property),
+          priority: element.style.getPropertyPriority(property),
+        }));
+        hoverProperties.forEach(({ property, value }) => {
+          element.style.setProperty(property, value);
         });
       };
-      const reset = () => element.setAttribute("style", base);
+      const reset = () => {
+        base?.forEach(({ property, value, priority }) => {
+          if (value) element.style.setProperty(property, value, priority);
+          else element.style.removeProperty(property);
+        });
+        base = null;
+      };
       element.addEventListener("mouseenter", apply);
       element.addEventListener("mouseleave", reset);
       element.addEventListener("focus", apply);

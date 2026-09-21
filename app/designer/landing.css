@@ -742,7 +742,7 @@
 }
 
 /* The demo button carries its palette in an inline style, and the [data-hover]
-   handler restores a snapshot of that attribute, so only !important can hold a
+   handler updates those colors inline, so only !important can hold a
    disabled look. The panel behind it is white, hence the light neutrals. */
 .designer-landing .designer-demo-form button[type="submit"]:disabled {
   background: var(--color-neutral-200) !important;
@@ -878,9 +878,7 @@
 /* --- Section reveal --------------------------------------------------------
    Driven from designer-landing.tsx, which tags the parts of each [data-reveal]
    block and then flips them to "in" as the block crosses into view. Attributes
-   rather than inline styles: the [data-hover] handler snapshots and restores
-   an element's whole style attribute, so anything left inline here would be
-   caught in that snapshot and pinned at opacity 0 on the first hover. */
+   keep these reveals separate from inline GSAP motion. */
 
 @media (prefers-reduced-motion: no-preference) {
   .designer-landing [data-reveal-item] {
