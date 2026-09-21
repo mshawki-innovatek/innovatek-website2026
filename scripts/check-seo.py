@@ -9,6 +9,8 @@ from xml.etree import ElementTree as ET
 
 OUT = Path('out')
 INDEXABLE = ['/', '/ar/', '/about/', '/ar/about/', '/contact/', '/ar/contact/']
+PRODUCT_IDS = ['donation-hub', 'tajir', 'agent-management', 'jood', 'bunyan-cmms', 'twin-ai', 'visitor-management-system', 'smart-kiosk', 'insight-360', 'communication-platform']
+REVIEW_PAGES = [f'{prefix}/products/{slug}/' for prefix in ('', '/ar') for slug in PRODUCT_IDS]
 RETIRED = ['/solutions/', '/ar/solutions/']
 
 
@@ -86,7 +88,7 @@ def file_for(path):
     return OUT / path.lstrip('/') / 'index.html'
 
 
-pages = {path: Page(file_for(path)) for path in INDEXABLE}
+pages = {path: Page(file_for(path)) for path in INDEXABLE + REVIEW_PAGES}
 origin = urlsplit(pages['/'].canonical())
 assert origin.scheme == 'https' and origin.hostname not in ('localhost', '127.0.0.1')
 origin = f'{origin.scheme}://{origin.netloc}'
@@ -101,8 +103,11 @@ for path, page in pages.items():
     description = page.meta.get('description', '')
     assert description and description not in seen_descriptions, f'{path}: missing/duplicate description'
     seen_descriptions.add(description)
-    assert 'noindex' not in page.meta.get('robots', ''), path
-    assert 'noindex' not in page.meta.get('googlebot', ''), path
+    for robot in ('robots', 'googlebot'):
+        if path in REVIEW_PAGES:
+            assert 'noindex' in page.meta.get(robot, ''), f'{path}: review page must stay noindex'
+        else:
+            assert 'noindex' not in page.meta.get(robot, ''), path
     assert page.canonical() == origin + path, f'{path}: noncanonical trailing slash or host'
     assert page.lang.startswith('ar' if path.startswith('/ar/') else 'en'), path
     alternates = {a.get('hreflang'): a.get('href') for a in page.links if a.get('rel') == 'alternate'}
@@ -146,7 +151,8 @@ for path in ('/', '/ar/'):
     for service in services:
         assert normalize(service['name']) in text, f'{path}: product missing from HTML'
         assert normalize(service['description']) in text, f'{path}: schema description differs from visible copy'
-        assert urlsplit(service['url']).fragment in page.ids, f'{path}: missing product anchor'
+        assert urlsplit(service['url']).path in pages, f'{path}: missing product page'
+        assert any(a.get('href') == urlsplit(service['url']).path for a in page.links), f'{path}: product missing crawlable link'
     faq = next(node for node in nodes if node.get('@type') == 'FAQPage')
     for question in faq['mainEntity']:
         assert normalize(question['name']) in text, f'{path}: FAQ question not in HTML'
@@ -155,6 +161,28 @@ for path in ('/', '/ar/'):
     for destination in ('about/', 'contact/'):
         prefix = '/ar/' if path == '/ar/' else '/'
         assert any(a.get('href') == prefix + destination for a in page.links), f'{path}: orphaned {destination}'
+
+# Product pages must expose unique content and matching structured data in static HTML.
+for path, page in pages.items():
+    if '/products/' not in path:
+        continue
+    text = normalize(' '.join(page.text))
+    nodes = [node for schema in page.schemas for node in schema.get('@graph', [schema])]
+    service = next(node for node in nodes if node.get('@type') == 'Service')
+    assert service['url'] == page.canonical(), f'{path}: incorrect service URL'
+    assert service['@id'] == page.canonical() + '#service', path
+    assert normalize(service['description']) in text, f'{path}: hidden service description'
+    assert normalize(service['name']) in text, f'{path}: hidden service name'
+    faq = next(node for node in nodes if node.get('@type') == 'FAQPage')
+    assert len(faq['mainEntity']) >= 2, path
+    for question in faq['mainEntity']:
+        assert normalize(question['name']) in text, f'{path}: hidden FAQ question'
+        assert normalize(question['acceptedAnswer']['text']) in text, f'{path}: hidden FAQ answer'
+    breadcrumb = next(node for node in nodes if node.get('@type') == 'BreadcrumbList')
+    assert breadcrumb['itemListElement'][-1]['item'] == page.canonical(), path
+    assert ('بيانات افتراضية بالكامل' if path.startswith('/ar/') else 'entirely fictional data') in text, f'{path}: demo data must be labeled'
+    assert not any('donationhub-demo.com' in a.get('href', '') for a in page.links), f'{path}: private demo link'
+    assert len([a for a in page.links if a['tag'] == 'a' and '/products/' in a.get('href','')]) >= 3, f'{path}: missing related products'
 
 ns = {'s': 'http://www.sitemaps.org/schemas/sitemap/0.9', 'x': 'http://www.w3.org/1999/xhtml'}
 sitemap = ET.parse(OUT / 'sitemap.xml')
@@ -170,4 +198,4 @@ assert 'noindex' in Page(OUT / '404.html').meta.get('robots', '')
 for path in RETIRED:
     assert not (OUT / path.lstrip('/')).exists(), f'Retired route exported: {path}'
 assert not (OUT / 'backups').exists(), 'Backups must not be public'
-print(f'SEO checks passed: {len(pages)} indexable pages, 10 products × 2 languages, metadata, sitemap, links, assets, FAQ parity and retired routes.')
+print(f'SEO checks passed: {len(INDEXABLE)} indexable pages, {len(REVIEW_PAGES)} noindex product review pages, metadata, sitemap exclusion, links, assets, FAQ parity and retired routes.')

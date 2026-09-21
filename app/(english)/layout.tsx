@@ -4,6 +4,7 @@ import { outfit, plexArabic } from "@/app/fonts";
 import "@/app/globals.css";
 import "@/app/designer/landing.css";
 import "@/app/secondary-pages.css";
+import "@/app/product-pages.css";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import { searchVerification } from "@/lib/page-metadata";
 

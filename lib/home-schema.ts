@@ -1,5 +1,6 @@
 import type { Locale } from "@/lib/content";
 import { T } from "@/lib/designer/landing-data";
+import { productPath } from "@/lib/product-pages";
 import { PRODUCT_CATALOG } from "@/lib/product-catalog";
 import { PAGE_SEO } from "@/lib/page-metadata";
 import { absoluteUrl, canonicalUrl, CONTACT, SITE_NAME, SITE_URL } from "@/lib/site";
@@ -9,8 +10,8 @@ export function buildHomeSchema(locale: Locale) {
   const organizationId = `${SITE_URL}/#organization`;
   const products = PRODUCT_CATALOG.map((product) => ({
     "@type": "Service",
-    "@id": `${pageUrl}#product-${product.id}`,
-    url: `${pageUrl}#product-${product.id}`,
+    "@id": `${canonicalUrl(productPath(product.id, locale))}#service`,
+    url: canonicalUrl(productPath(product.id, locale)),
     name: product.name[locale],
     serviceType: product.category[locale],
     description: product.description[locale],

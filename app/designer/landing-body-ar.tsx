@@ -4,7 +4,7 @@
 import { DemoSection } from "@/components/contact-section";
 import { MarketingHeader, MarketingFooter } from "@/components/marketing-chrome";
 import { Fragment } from "react";
-import { ArrowDown, ArrowLeft, ArrowRight, BadgeCheck, Building2, CircleCheck, Coins, FilePen, KeyRound, Layers, LayoutDashboard, Mail, MessageCircle, MonitorSmartphone, PhoneCall, Sparkles } from "lucide-react";
+import { ArrowUpRight, ArrowDown, ArrowLeft, ArrowRight, BadgeCheck, Building2, CircleCheck, Coins, FilePen, KeyRound, Layers, LayoutDashboard, Mail, MessageCircle, MonitorSmartphone, PhoneCall, Sparkles } from "lucide-react";
 import { ProductEcosystemGroup } from "@/components/product-ecosystem-group";
 import type { LandingVals } from "./designer-landing";
 
@@ -525,6 +525,7 @@ export function LandingBodyAr({ v }: { v: LandingVals }) {
                   ))}
                 </div>
                 <a href="#demo"  style={{ display: "inline-flex", alignItems: "center", height: "48px", padding: "0 26px", borderRadius: "999px", background: "var(--color-neutral-950)", color: "#fff", fontSize: "15px", fontWeight: "700", }} data-hover="background: var(--accent); color: #fff">احجز عرضاً لهذا الحل</a>
+                <a href={`/ar/products/${["donation-hub", "bunyan-cmms", "visitor-management-system", "communication-platform"][index]}/`} style={{ display: "inline-flex", alignItems: "center", gap: "8px", minHeight: "48px", marginInlineStart: "20px", fontSize: "15px", fontWeight: "600", color: "var(--accent)" }}>تفاصيل المنتج <ArrowUpRight size={16} aria-hidden="true" /></a>
               </div>
             </article>
           ))}
