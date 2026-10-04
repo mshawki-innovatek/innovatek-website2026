@@ -8,9 +8,9 @@ from urllib.parse import urlsplit, unquote
 from xml.etree import ElementTree as ET
 
 OUT = Path('out')
-INDEXABLE = ['/', '/ar/', '/about/', '/ar/about/', '/contact/', '/ar/contact/']
 PRODUCT_IDS = ['donation-hub', 'tajir', 'agent-management', 'jood', 'bunyan-cmms', 'twin-ai', 'visitor-management-system', 'smart-kiosk', 'insight-360', 'communication-platform']
-REVIEW_PAGES = [f'{prefix}/products/{slug}/' for prefix in ('', '/ar') for slug in PRODUCT_IDS]
+PRODUCT_PATHS = [f'{prefix}/products/{slug}/' for prefix in ('', '/ar') for slug in PRODUCT_IDS]
+INDEXABLE = ['/', '/ar/', '/about/', '/ar/about/', '/contact/', '/ar/contact/'] + PRODUCT_PATHS
 RETIRED = ['/solutions/', '/ar/solutions/']
 
 
@@ -88,7 +88,7 @@ def file_for(path):
     return OUT / path.lstrip('/') / 'index.html'
 
 
-pages = {path: Page(file_for(path)) for path in INDEXABLE + REVIEW_PAGES}
+pages = {path: Page(file_for(path)) for path in INDEXABLE}
 origin = urlsplit(pages['/'].canonical())
 assert origin.scheme == 'https' and origin.hostname not in ('localhost', '127.0.0.1')
 origin = f'{origin.scheme}://{origin.netloc}'
@@ -104,10 +104,8 @@ for path, page in pages.items():
     assert description and description not in seen_descriptions, f'{path}: missing/duplicate description'
     seen_descriptions.add(description)
     for robot in ('robots', 'googlebot'):
-        if path in REVIEW_PAGES:
-            assert 'noindex' in page.meta.get(robot, ''), f'{path}: review page must stay noindex'
-        else:
-            assert 'noindex' not in page.meta.get(robot, ''), path
+        directives = {value.strip() for value in page.meta.get(robot, '').lower().split(',')}
+        assert not directives.intersection({'noindex', 'nofollow', 'none'}), f'{path}: indexing blocked by {robot}'
     assert page.canonical() == origin + path, f'{path}: noncanonical trailing slash or host'
     assert page.lang.startswith('ar' if path.startswith('/ar/') else 'en'), path
     alternates = {a.get('hreflang'): a.get('href') for a in page.links if a.get('rel') == 'alternate'}
@@ -198,4 +196,4 @@ assert 'noindex' in Page(OUT / '404.html').meta.get('robots', '')
 for path in RETIRED:
     assert not (OUT / path.lstrip('/')).exists(), f'Retired route exported: {path}'
 assert not (OUT / 'backups').exists(), 'Backups must not be public'
-print(f'SEO checks passed: {len(INDEXABLE)} indexable pages, {len(REVIEW_PAGES)} noindex product review pages, metadata, sitemap exclusion, links, assets, FAQ parity and retired routes.')
+print(f'SEO checks passed: {len(INDEXABLE)} indexable pages including {len(PRODUCT_PATHS)} product pages, metadata, sitemap coverage, links, assets, FAQ parity and retired routes.')

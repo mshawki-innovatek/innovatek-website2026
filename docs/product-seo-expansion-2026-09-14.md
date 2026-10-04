@@ -75,3 +75,16 @@ A real case study needs approved facts and permission to publish. No customer re
 The owner requested publication of the pages before manager feedback, with SEO activation deferred. All 20 product URLs therefore use `noindex, follow` for both generic robots and Googlebot, and stay outside the sitemap. The existing six indexable pages remain in the sitemap. Product titles, language links, structured content and homepage navigation remain available for review; none overrides the noindex directive. No Search Console indexing requests are part of this release.
 
 The export checker verifies all 26 pages, enforces noindex on every new product route, and confirms exact sitemap exclusion. Once feedback is resolved and the owner authorizes SEO activation, remove the product noindex settings, add the product routes to the sitemap, update the checker expectations, deploy, and then verify/request indexing in Search Console.
+
+## SEO activation - 4 October 2026
+
+The owner requested SEO work on the published product pages, specifically for “donation management system” and “donation systems”. This activates the SEO phase deferred in September.
+
+Before changes, the live Donation Hub response returned HTTP 200 but still included `noindex, follow` for both robots and Googlebot. Search Console in the Innovatek account reported “URL is unknown to Google” for the product URL, with no recorded crawl or referring sitemap. The three-month performance report, displaying 30 June through 29 September, showed 19 clicks and 836 impressions overall; filtering queries containing `donation` showed zero recorded clicks and impressions. Filtered query data can be incomplete and is not proof of every search performed.
+
+- Enabled indexing for all 20 English and Arabic product pages and included them in the sitemap alongside the six existing marketing pages.
+- Updated export checks to reject indexing blocks and require exact sitemap coverage of all 26 pages.
+- Gave Donation Hub an explicit donation-management heading, refined its English description, and added bilingual FAQs about evaluating donation systems and distinguishing them from donation forms and donor CRMs. Existing unique titles, canonical URLs, reciprocal language links, internal links and matching structured data remain in place.
+- `npm run check` passed. Donation Hub was visually inspected in both languages at 390px, 768px and 1280px. The new FAQs open correctly; mobile checks found no horizontal overflow and the browser reported no console errors.
+
+Google must crawl and evaluate the updated pages after deployment. Indexability and submission do not guarantee inclusion or rankings. Guidance: [noindex](https://developers.google.com/search/docs/crawling-indexing/block-indexing), [sitemaps](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap), [recrawl requests](https://developers.google.com/search/docs/crawling-indexing/ask-google-to-recrawl).

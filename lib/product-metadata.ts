@@ -11,8 +11,7 @@ export function productMetadata(id: string, locale: Locale): Metadata {
   const description = product.description[locale];
   return {
     title: { absolute: product.title }, description,
-    // Public review release: enable indexing only after manager approval.
-    robots: { index: false, follow: true, googleBot: { index: false, follow: true } },
+    robots: { index: true, follow: true, googleBot: { index: true, follow: true } },
     alternates: { canonical: url, languages: languageAlternates(`/products/${id}`) },
     openGraph: { type: "website", url, siteName: SITE_NAME, title: product.title, description,
       locale: locale === "ar" ? "ar_AE" : "en_AE", alternateLocale: [locale === "ar" ? "en_AE" : "ar_AE"],

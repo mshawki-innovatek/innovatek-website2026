@@ -16,7 +16,7 @@ export const PRODUCT_CATALOG: Product[] = [
     name: { en: "Donation Hub", ar: "Donation Hub" },
     category: { en: "Donation management system", ar: "نظام إدارة التبرعات" },
     description: {
-      en: "A donation system for charities and foundations: manage fundraising campaigns, donation kiosks, cash and card transactions, receipts and reconciliation in one record.",
+      en: "Donation management system for UAE charities and foundations. Manage campaigns, kiosks, cash and card donations, receipts and reconciliation with Donation Hub.",
       ar: "نظام تبرعات للجمعيات الخيرية والمؤسسات، يجمع إدارة حملات جمع التبرعات وأكشاك التبرع والمعاملات النقدية والبطاقات والإيصالات والمطابقة في سجل واحد.",
     },
   },
